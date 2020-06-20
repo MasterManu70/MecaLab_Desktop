@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>C:\Users\m_adr\source\repos\DemoDataGriedView_ExcelFunction\DemoDataGriedView_ExcelFunction\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternarColorFilaDGV.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="FrmAlumno.cs">
       <SubType>Form</SubType>
     </Compile>
