@@ -99,6 +99,12 @@
     <Compile Include="FrmCarreras.Designer.cs">
       <DependentUpon>FrmCarreras.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrud.Designer.cs">
+      <DependentUpon>FrmCrud.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLaboratorioDatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCarreras.resx">
       <DependentUpon>FrmCarreras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCrud.resx">
+      <DependentUpon>FrmCrud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLaboratorioDatos.resx">
       <DependentUpon>FrmLaboratorioDatos.cs</DependentUpon>

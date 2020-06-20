@@ -66,3 +66,4 @@ E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.csproj.Co
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.csproj.CopyComplete
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.exe
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.pdb
+E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmCrud.resources
