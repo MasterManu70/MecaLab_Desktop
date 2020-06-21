@@ -165,23 +165,23 @@
     <Compile Include="FrmAlumnoRegistro.Designer.cs">
       <DependentUpon>FrmAlumnoRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProductoDatos.cs">
+    <Compile Include="FrmArticuloDatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProductoDatos.Designer.cs">
-      <DependentUpon>FrmProductoDatos.cs</DependentUpon>
+    <Compile Include="FrmArticuloDatos.Designer.cs">
+      <DependentUpon>FrmArticuloDatos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProductoRegistro.cs">
+    <Compile Include="FrmArticuloRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProductoRegistro.Designer.cs">
-      <DependentUpon>FrmProductoRegistro.cs</DependentUpon>
+    <Compile Include="FrmArticuloRegistro.Designer.cs">
+      <DependentUpon>FrmArticuloRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProductos.cs">
+    <Compile Include="FrmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProductos.Designer.cs">
-      <DependentUpon>FrmProductos.cs</DependentUpon>
+    <Compile Include="FrmArticulos.Designer.cs">
+      <DependentUpon>FrmArticulos.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUsuarioDatos.cs">
       <SubType>Form</SubType>
@@ -262,14 +262,14 @@
     <EmbeddedResource Include="FrmAlumnoRegistro.resx">
       <DependentUpon>FrmAlumnoRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProductoDatos.resx">
-      <DependentUpon>FrmProductoDatos.cs</DependentUpon>
+    <EmbeddedResource Include="FrmArticuloDatos.resx">
+      <DependentUpon>FrmArticuloDatos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProductoRegistro.resx">
-      <DependentUpon>FrmProductoRegistro.cs</DependentUpon>
+    <EmbeddedResource Include="FrmArticuloRegistro.resx">
+      <DependentUpon>FrmArticuloRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProductos.resx">
-      <DependentUpon>FrmProductos.cs</DependentUpon>
+    <EmbeddedResource Include="FrmArticulos.resx">
+      <DependentUpon>FrmArticulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuarioDatos.resx">
       <DependentUpon>FrmUsuarioDatos.cs</DependentUpon>

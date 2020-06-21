@@ -54,9 +54,6 @@ E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmMaestr
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmMenu.resources
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmPrincipal.resources
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmAlumnoRegistro.resources
-E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmProductoDatos.resources
-E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmProductoRegistro.resources
-E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmProductos.resources
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmUsuarioDatos.resources
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmUsuarioRegistro.resources
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmUsuarios.resources
@@ -67,3 +64,6 @@ E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.csproj.Co
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.exe
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.pdb
 E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmCrud.resources
+E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmArticuloDatos.resources
+E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmArticuloRegistro.resources
+E:\Projects\Estadía\MecaLab_Desktop\MECA_LAB_V2\obj\Debug\MECA_LAB_V2.FrmArticulos.resources

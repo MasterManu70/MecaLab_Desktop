@@ -56,7 +56,7 @@ namespace MECA_LAB_V2
         private void btnRegistro_Click(object sender, EventArgs e)
         {
             btnRegistroForm = Rutas.GetForm(tabla, "Registro");
-            btnRegistroForm.Show();
+            btnRegistroForm.ShowDialog();
         }
 
         //Método GetColums: Obtener los nombres de cada columna de la tabla asignada en el constructor de la clase.

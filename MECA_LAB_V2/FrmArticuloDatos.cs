@@ -3,27 +3,38 @@ using System.Windows.Forms;
 
 namespace MECA_LAB_V2
 {
-    public partial class FrmAsignaturaRegistro : Form
+    public partial class FrmArticuloDatos : Form
     {
-        public FrmAsignaturaRegistro()
+        public FrmArticuloDatos()
         {
             InitializeComponent();
         }
+
         //Variables Publicas y Privadas
         private int xClick = 0, yClick = 0;
         //Formulario Carga o Cierra
         //Desarrollo
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre de la asignatura", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
-            var respuesta = MessageBox.Show("¿Esta seguro de registrar esta asignatura?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
+            if (txtComentario.Text == "") { MessageBox.Show("Ingrese el comentario del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtComentario.Focus(); return; }
+            var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (respuesta == DialogResult.Yes)
             {
                 //Codigo Mysql
                 borrarContenido();
-
+                this.Close();
             }
-
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            var respuesta = MessageBox.Show("¿Esta seguro de eliminar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (respuesta == DialogResult.Yes)
+            {
+                //Codigo Mysql
+                borrarContenido();
+                this.Close();
+            }
         }
         //Rutas
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -42,7 +53,7 @@ namespace MECA_LAB_V2
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void FrmAsignaturaRegistro_MouseMove(object sender, MouseEventArgs e)
+        private void FrmProductoDatos_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
             { xClick = e.X; yClick = e.Y; }
@@ -59,7 +70,7 @@ namespace MECA_LAB_V2
         {
             txtNombre.Focus();
             txtNombre.Clear();
+            txtComentario.Clear();
         }
-
     }
 }
