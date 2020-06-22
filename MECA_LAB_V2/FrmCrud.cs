@@ -28,7 +28,6 @@ namespace MECA_LAB_V2
             this.color = color;
             InitializeComponent();
         }
-
         private void FrmCrud_Load(object sender, EventArgs e)
         {
             //DISEÑO
@@ -42,6 +41,7 @@ namespace MECA_LAB_V2
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = color;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = color;
             dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = color;
+            
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
