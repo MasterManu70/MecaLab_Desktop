@@ -1,6 +1,6 @@
 ﻿namespace MECA_LAB_V2
 {
-    partial class FrmCarreraDatos
+    partial class FrmAsignaturaRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCarreraDatos));
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.btnActualizar = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAsignaturaRegistro));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,31 +38,10 @@
             this.btnCerrar = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(12, 12);
-            this.txtId.Name = "txtId";
-            this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(86, 27);
-            this.txtId.TabIndex = 5;
-            this.txtId.Visible = false;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnActualizar.FlatAppearance.BorderSize = 0;
-            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(365, 248);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(159, 40);
-            this.btnActualizar.TabIndex = 1;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = false;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // groupBox1
             // 
@@ -84,6 +61,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(273, 27);
             this.txtNombre.TabIndex = 1;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // label1
             // 
@@ -119,6 +97,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnMinimizar
@@ -146,11 +125,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(186, 23);
+            this.label5.Location = new System.Drawing.Point(173, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(210, 36);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Datos Carrera";
+            this.label5.Size = new System.Drawing.Size(253, 36);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Datos Asignatura";
             // 
             // label7
             // 
@@ -161,7 +140,30 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "_______________________________________________________________________";
             // 
-            // FrmCarreraDatos
+            // btnActualizar
+            // 
+            this.btnActualizar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnActualizar.FlatAppearance.BorderSize = 0;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.Location = new System.Drawing.Point(365, 248);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(159, 40);
+            this.btnActualizar.TabIndex = 1;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(12, 12);
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(86, 27);
+            this.txtId.TabIndex = 6;
+            this.txtId.Visible = false;
+            // 
+            // FrmAsignaturaRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -182,10 +184,11 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmCarreraDatos";
+            this.Name = "FrmAsignaturaRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCarreraDatos";
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmCarreraDatos_MouseMove);
+            this.Text = "FrmAsignaturaDatos";
+            this.Load += new System.EventHandler(this.FrmAsignaturaRegistro_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmAsignaturaDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -195,16 +198,16 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnActualizar;
         public System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txtId;
     }
 }

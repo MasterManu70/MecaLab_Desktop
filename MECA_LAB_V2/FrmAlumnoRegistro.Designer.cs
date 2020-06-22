@@ -1,6 +1,6 @@
 ﻿namespace MECA_LAB_V2
 {
-    partial class FrmAlumnoDatos
+    partial class FrmAlumnoRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAlumnoDatos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAlumnoRegistro));
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -168,10 +168,6 @@
             // 
             this.cmbCarrera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCarrera.FormattingEnabled = true;
-            this.cmbCarrera.Items.AddRange(new object[] {
-            "Seleccionar",
-            "T.S.U Tecnologias de la Informacion",
-            "T.S.U Mecatronica"});
             this.cmbCarrera.Location = new System.Drawing.Point(84, 275);
             this.cmbCarrera.Name = "cmbCarrera";
             this.cmbCarrera.Size = new System.Drawing.Size(238, 29);
@@ -303,9 +299,10 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // FrmAlumnoDatos
+            // FrmAlumnoRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -326,9 +323,10 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmAlumnoDatos";
+            this.Name = "FrmAlumnoRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAlumnoDatos";
+            this.Load += new System.EventHandler(this.FrmAlumnoRegistro_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmAlumnoDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

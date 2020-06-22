@@ -55,7 +55,7 @@ namespace MECA_LAB_V2
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            btnRegistroForm = Rutas.GetForm(tabla, "Registro");
+            btnRegistroForm = Rutas.GetForm(tabla);
             btnRegistroForm.ShowDialog();
         }
 
@@ -98,6 +98,13 @@ namespace MECA_LAB_V2
                 for (int y = 0; y < ds.Tables["tabla"].Columns.Count; y++)
                     DataGrid.Rows[x].Cells[y].Value = ds.Tables["tabla"].Rows[x][y];
             }
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            btnRegistroForm = Rutas.GetForm(tabla,id);
+            btnRegistroForm.ShowDialog();
         }
     }
 }

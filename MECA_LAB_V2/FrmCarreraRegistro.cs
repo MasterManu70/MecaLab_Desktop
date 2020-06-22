@@ -1,22 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MECA_LAB_V2
 {
-    public partial class FrmLaboratorioDatos : Form
+    public partial class FrmCarreraRegistro : Form
     {
-        public FrmLaboratorioDatos()
+        int id;
+        public FrmCarreraRegistro(int id = 0)
         {
+            this.id = id;
             InitializeComponent();
         }
-
+        private void FrmCarreraRegistro_Load(object sender, EventArgs e)
+        {
+            DataSet ds;
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("select * from carreras where id=" + id +";");
+                btnEliminar.Visible = true;
+                txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
+                txtNombre.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+            }
+        }
         //Variables Publicas y Privadas
         private int xClick = 0, yClick = 0;
         //Formulario Carga o Cierra
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del laboratorio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
+            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre de la carrera", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
             var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (respuesta == DialogResult.Yes)
             {
@@ -52,7 +71,7 @@ namespace MECA_LAB_V2
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void FrmLaboratorioDatos_MouseMove(object sender, MouseEventArgs e)
+        private void FrmCarreraDatos_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
             { xClick = e.X; yClick = e.Y; }
@@ -64,6 +83,7 @@ namespace MECA_LAB_V2
         {
             Validar.SoloLetras(e);
         }
+
         //Metodos
         private void borrarContenido()
         {

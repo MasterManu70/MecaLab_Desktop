@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuarioRegistro));
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.txtContraseñaC = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,6 +44,8 @@
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.Gainsboro;
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(59, 374);
+            this.btnCancelar.Location = new System.Drawing.Point(48, 374);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(159, 40);
             this.btnCancelar.TabIndex = 2;
@@ -71,19 +73,19 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnRegistrar
+            // btnActualizar
             // 
-            this.btnRegistrar.BackColor = System.Drawing.Color.Crimson;
-            this.btnRegistrar.FlatAppearance.BorderSize = 0;
-            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.Location = new System.Drawing.Point(347, 374);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(159, 40);
-            this.btnRegistrar.TabIndex = 1;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = false;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnActualizar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnActualizar.FlatAppearance.BorderSize = 0;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.Location = new System.Drawing.Point(378, 374);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(159, 40);
+            this.btnActualizar.TabIndex = 1;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // txtContraseñaC
             // 
@@ -119,7 +121,8 @@
             this.cmbNivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNivel.FormattingEnabled = true;
             this.cmbNivel.Items.AddRange(new object[] {
-            "Seleccionar"});
+            "1",
+            "2"});
             this.cmbNivel.Location = new System.Drawing.Point(130, 185);
             this.cmbNivel.Name = "cmbNivel";
             this.cmbNivel.Size = new System.Drawing.Size(273, 29);
@@ -208,16 +211,43 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "_______________________________________________________________________";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(213, 374);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(159, 40);
+            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(12, 12);
+            this.txtId.MaxLength = 8;
+            this.txtId.Multiline = true;
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(72, 27);
+            this.txtId.TabIndex = 8;
+            this.txtId.Visible = false;
+            // 
             // FrmUsuarioRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(570, 439);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
@@ -242,7 +272,7 @@
         #endregion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.TextBox txtContraseñaC;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -255,5 +285,7 @@
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnEliminar;
+        public System.Windows.Forms.TextBox txtId;
     }
 }

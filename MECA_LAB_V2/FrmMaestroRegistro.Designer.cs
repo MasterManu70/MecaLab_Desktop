@@ -1,6 +1,6 @@
 ﻿namespace MECA_LAB_V2
 {
-    partial class FrmMaestroDatos
+    partial class FrmMaestroRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMaestroDatos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMaestroRegistro));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMaterno = new System.Windows.Forms.TextBox();
             this.txtPaterno = new System.Windows.Forms.TextBox();
@@ -194,6 +194,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // txtId
@@ -205,7 +206,7 @@
             this.txtId.TabIndex = 6;
             this.txtId.Visible = false;
             // 
-            // FrmMaestroDatos
+            // FrmMaestroRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,9 +225,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "FrmMaestroDatos";
+            this.Name = "FrmMaestroRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMaestroDatos";
+            this.Load += new System.EventHandler(this.FrmMaestroRegistro_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmMaestroDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

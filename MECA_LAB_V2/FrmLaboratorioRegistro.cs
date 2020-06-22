@@ -1,13 +1,27 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace MECA_LAB_V2
 {
-    public partial class FrmMaestroDatos : Form
+    public partial class FrmLaboratorioRegistro : Form
     {
-        public FrmMaestroDatos()
+        int id;
+        public FrmLaboratorioRegistro(int id = 0)
         {
+            this.id = id;
             InitializeComponent();
+        }
+        private void FrmLaboratorioRegistro_Load(object sender, EventArgs e)
+        {
+            DataSet ds;
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("select * from laboratorios where id=" + id + ";");
+                btnEliminar.Visible = true;
+                txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
+                txtNombre.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+            }
         }
 
         //Variables Publicas y Privadas
@@ -16,9 +30,7 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre de la asignatura", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
-            if (txtPaterno.Text == "") { MessageBox.Show("Ingrese el apellido paterno del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtPaterno.Focus(); return; }
-            if (txtMaterno.Text == "") { MessageBox.Show("Ingrese el apellido materno del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtMaterno.Focus(); return; }
+            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del laboratorio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
             var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (respuesta == DialogResult.Yes)
             {
@@ -49,17 +61,15 @@ namespace MECA_LAB_V2
             borrarContenido();
             this.Close();
         }
+
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void FrmMaestroDatos_MouseMove(object sender, MouseEventArgs e)
+        private void FrmLaboratorioDatos_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
-            {
-                xClick = e.X; yClick =
-          e.Y;
-            }
+            { xClick = e.X; yClick = e.Y; }
             else
             { this.Left = this.Left + (e.X - xClick); this.Top = this.Top + (e.Y - yClick); }
         }
@@ -69,22 +79,11 @@ namespace MECA_LAB_V2
             Validar.SoloLetras(e);
         }
 
-        private void txtPaterno_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.SoloLetras(e);
-        }
-
-        private void txtMaterno_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.SoloLetras(e);
-        }
         //Metodos
         private void borrarContenido()
         {
             txtNombre.Focus();
             txtNombre.Clear();
-            txtPaterno.Clear();
-            txtMaterno.Clear();
         }
     }
 }

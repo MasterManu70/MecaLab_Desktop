@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace MECA_LAB_V2
 {
     public partial class FrmUsuarioRegistro : Form
     {
-        public FrmUsuarioRegistro()
+        int id;
+        public FrmUsuarioRegistro(int id = 0)
         {
+            this.id = id;
             InitializeComponent();
         }
         //Variables Publicas y Privadas
@@ -14,7 +17,14 @@ namespace MECA_LAB_V2
         //Carga o cierra Formulario
         private void FrmUsuarioRegistro_Load(object sender, EventArgs e)
         {
-            cmbNivel.SelectedIndex = 0;
+            DataSet ds;
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("select id,usuario from usuarios where id=" + id + ";");
+                btnEliminar.Visible = true;
+                txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
+                txtUsuario.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+            }
         }
         //Desarrollo
         private void btnRegistrar_Click(object sender, EventArgs e)

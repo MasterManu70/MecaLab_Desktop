@@ -39,7 +39,7 @@ namespace MECA_LAB_V2
             {
                 da.Fill(ds, "tabla");
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 //MessageBox.Show(ex.Message, "Error No. " + ex.ErrorCode, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return ds;

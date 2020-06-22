@@ -1,6 +1,6 @@
 ﻿namespace MECA_LAB_V2
 {
-    partial class FrmArticuloDatos
+    partial class FrmArticuloRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmArticuloDatos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmArticuloRegistro));
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -72,9 +72,9 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(181, 28);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(230, 36);
+            this.label5.Size = new System.Drawing.Size(211, 36);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Datos Producto";
+            this.label5.Text = "Datos Artículo";
             // 
             // groupBox2
             // 
@@ -173,6 +173,7 @@
             this.btnEliminar.TabIndex = 15;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // txtId
@@ -184,7 +185,7 @@
             this.txtId.TabIndex = 17;
             this.txtId.Visible = false;
             // 
-            // FrmProductoDatos
+            // FrmArticuloRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -205,9 +206,10 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmProductoDatos";
+            this.Name = "FrmArticuloRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmProductoDatos";
+            this.Load += new System.EventHandler(this.FrmArticuloRegistro_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmProductoDatos_MouseMove);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

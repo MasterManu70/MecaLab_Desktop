@@ -1,6 +1,6 @@
 ﻿namespace MECA_LAB_V2
 {
-    partial class FrmLaboratorioDatos
+    partial class FrmCarreraRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLaboratorioDatos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCarreraRegistro));
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,7 +49,7 @@
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(86, 27);
-            this.txtId.TabIndex = 6;
+            this.txtId.TabIndex = 5;
             this.txtId.Visible = false;
             // 
             // btnActualizar
@@ -84,7 +84,6 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(273, 27);
             this.txtNombre.TabIndex = 1;
-            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // label1
             // 
@@ -120,6 +119,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnMinimizar
@@ -147,11 +147,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(169, 23);
+            this.label5.Location = new System.Drawing.Point(186, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(264, 36);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Datos Laboratorio";
+            this.label5.Size = new System.Drawing.Size(210, 36);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Datos Carrera";
             // 
             // label7
             // 
@@ -162,7 +162,7 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "_______________________________________________________________________";
             // 
-            // FrmLaboratorioDatos
+            // FrmCarreraRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,10 +183,11 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmLaboratorioDatos";
+            this.Name = "FrmCarreraRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmLaboratorioDatos";
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmLaboratorioDatos_MouseMove);
+            this.Text = "FrmCarreraDatos";
+            this.Load += new System.EventHandler(this.FrmCarreraRegistro_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmCarreraDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -199,13 +200,13 @@
         public System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label label1;
     }
 }

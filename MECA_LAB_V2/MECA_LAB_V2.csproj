@@ -51,23 +51,11 @@
   <ItemGroup>
     <Compile Include="AlternarColorFilaDGV.cs" />
     <Compile Include="Conexion.cs" />
-    <Compile Include="FrmAlumno.cs">
+    <Compile Include="FrmAlumnoRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAlumno.Designer.cs">
-      <DependentUpon>FrmAlumno.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmAlumnoDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAlumnoDatos.Designer.cs">
-      <DependentUpon>FrmAlumnoDatos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmAsignaturaDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAsignaturaDatos.Designer.cs">
-      <DependentUpon>FrmAsignaturaDatos.cs</DependentUpon>
+    <Compile Include="FrmAlumnoRegistro.Designer.cs">
+      <DependentUpon>FrmAlumnoRegistro.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmAsignaturaRegistro.cs">
       <SubType>Form</SubType>
@@ -75,29 +63,11 @@
     <Compile Include="FrmAsignaturaRegistro.Designer.cs">
       <DependentUpon>FrmAsignaturaRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAsignaturas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAsignaturas.Designer.cs">
-      <DependentUpon>FrmAsignaturas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmCarreraDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmCarreraDatos.Designer.cs">
-      <DependentUpon>FrmCarreraDatos.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmCarreraRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmCarreraRegistro.Designer.cs">
       <DependentUpon>FrmCarreraRegistro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmCarreras.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmCarreras.Designer.cs">
-      <DependentUpon>FrmCarreras.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmCrud.cs">
       <SubType>Form</SubType>
@@ -105,23 +75,11 @@
     <Compile Include="FrmCrud.Designer.cs">
       <DependentUpon>FrmCrud.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmLaboratorioDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmLaboratorioDatos.Designer.cs">
-      <DependentUpon>FrmLaboratorioDatos.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmLaboratorioRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLaboratorioRegistro.Designer.cs">
       <DependentUpon>FrmLaboratorioRegistro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmLaboratorios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmLaboratorios.Designer.cs">
-      <DependentUpon>FrmLaboratorios.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -129,23 +87,11 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMaestroDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmMaestroDatos.Designer.cs">
-      <DependentUpon>FrmMaestroDatos.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmMaestroRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMaestroRegistro.Designer.cs">
       <DependentUpon>FrmMaestroRegistro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmMaestros.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmMaestros.Designer.cs">
-      <DependentUpon>FrmMaestros.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMenu.cs">
       <SubType>Form</SubType>
@@ -159,35 +105,11 @@
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAlumnoRegistro.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAlumnoRegistro.Designer.cs">
-      <DependentUpon>FrmAlumnoRegistro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmArticuloDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmArticuloDatos.Designer.cs">
-      <DependentUpon>FrmArticuloDatos.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmArticuloRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmArticuloRegistro.Designer.cs">
       <DependentUpon>FrmArticuloRegistro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmArticulos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmArticulos.Designer.cs">
-      <DependentUpon>FrmArticulos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmUsuarioDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmUsuarioDatos.Designer.cs">
-      <DependentUpon>FrmUsuarioDatos.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUsuarioRegistro.cs">
       <SubType>Form</SubType>
@@ -195,63 +117,31 @@
     <Compile Include="FrmUsuarioRegistro.Designer.cs">
       <DependentUpon>FrmUsuarioRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUsuarios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmUsuarios.Designer.cs">
-      <DependentUpon>FrmUsuarios.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Funciones.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rutas.cs" />
     <Compile Include="Validar.cs" />
-    <EmbeddedResource Include="FrmAlumno.resx">
-      <DependentUpon>FrmAlumno.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmAlumnoDatos.resx">
-      <DependentUpon>FrmAlumnoDatos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmAsignaturaDatos.resx">
-      <DependentUpon>FrmAsignaturaDatos.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAlumnoRegistro.resx">
+      <DependentUpon>FrmAlumnoRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAsignaturaRegistro.resx">
       <DependentUpon>FrmAsignaturaRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAsignaturas.resx">
-      <DependentUpon>FrmAsignaturas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmCarreraDatos.resx">
-      <DependentUpon>FrmCarreraDatos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmCarreraRegistro.resx">
       <DependentUpon>FrmCarreraRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmCarreras.resx">
-      <DependentUpon>FrmCarreras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCrud.resx">
       <DependentUpon>FrmCrud.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmLaboratorioDatos.resx">
-      <DependentUpon>FrmLaboratorioDatos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmLaboratorioRegistro.resx">
       <DependentUpon>FrmLaboratorioRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmLaboratorios.resx">
-      <DependentUpon>FrmLaboratorios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMaestroDatos.resx">
-      <DependentUpon>FrmMaestroDatos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmMaestroRegistro.resx">
       <DependentUpon>FrmMaestroRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmMaestros.resx">
-      <DependentUpon>FrmMaestros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>
@@ -259,26 +149,11 @@
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAlumnoRegistro.resx">
-      <DependentUpon>FrmAlumnoRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmArticuloDatos.resx">
-      <DependentUpon>FrmArticuloDatos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmArticuloRegistro.resx">
       <DependentUpon>FrmArticuloRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmArticulos.resx">
-      <DependentUpon>FrmArticulos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmUsuarioDatos.resx">
-      <DependentUpon>FrmUsuarioDatos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuarioRegistro.resx">
       <DependentUpon>FrmUsuarioRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmUsuarios.resx">
-      <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
