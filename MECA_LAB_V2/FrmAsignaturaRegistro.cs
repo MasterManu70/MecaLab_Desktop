@@ -19,7 +19,10 @@ namespace MECA_LAB_V2
             if (id != 0)
             {
                 ds = Conexion.MySQL("select * from asignaturas where id=" + id + ";");
-
+                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
+                {
+                    btnEliminar.Text = "Habilitar";
+                }
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
                 txtNombre.Text = ds.Tables["tabla"].Rows[0][1].ToString();
                 btnEliminar.Visible = true;
@@ -43,11 +46,8 @@ namespace MECA_LAB_V2
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("¿Esta seguro de eliminar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
+            if (Funciones.StatusUpdate("asignaturas", btnEliminar.Text, id))
             {
-                //Codigo Mysql
-                borrarContenido();
                 this.Close();
             }
         }

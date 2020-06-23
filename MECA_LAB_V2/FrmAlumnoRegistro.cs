@@ -31,21 +31,12 @@ namespace MECA_LAB_V2
             if (txtCorreo.Text == "") { MessageBox.Show("Ingrese el correo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtCorreo.Focus(); return; }
             if (txtTelefono.Text == "") { MessageBox.Show("Ingrese el telefono", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtTelefono.Focus(); return; }
 
-            var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
-            {
-                //Codigo Mysql
-                borrarContenido();
-                this.Close();
-            }
+            
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("¿Esta seguro de eliminar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
+            if (Funciones.StatusUpdate("alumnos", btnEliminar.Text, id))
             {
-                //Codigo Mysql
-                borrarContenido();
                 this.Close();
             }
         }
@@ -102,6 +93,10 @@ namespace MECA_LAB_V2
             if (id != 0)
             {
                 ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.nombre, alumnos.correo, alumnos.telefono, alumnos.created_at, alumnos.updated_at, alumnos.status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
+                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
+                {
+                    btnEliminar.Text = "Habilitar";
+                }
                 btnEliminar.Visible = true;
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
                 txtMatricula.Text = ds.Tables["tabla"].Rows[0][1].ToString();

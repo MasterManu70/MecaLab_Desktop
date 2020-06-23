@@ -20,7 +20,11 @@ namespace MECA_LAB_V2
             DataSet ds;
             if (id != 0)
             {
-                ds = Conexion.MySQL("select id,usuario from usuarios where id=" + id + ";");
+                ds = Conexion.MySQL("select id,usuario,status from usuarios where id=" + id + ";");
+                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
+                {
+                    btnEliminar.Text = "Habilitar";
+                }
                 btnEliminar.Visible = true;
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
                 txtUsuario.Text = ds.Tables["tabla"].Rows[0][1].ToString();
@@ -79,6 +83,15 @@ namespace MECA_LAB_V2
         {
             Validar.SoloLetrasONumeros(e);
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (Funciones.StatusUpdate("usuarios", btnEliminar.Text, id))
+            {
+                this.Close();
+            }
+        }
+
         //Metodos
         private void borrarContenido() {
             txtContraseña.Clear();
