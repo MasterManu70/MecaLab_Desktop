@@ -133,7 +133,7 @@
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(159, 40);
             this.btnActualizar.TabIndex = 1;
-            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Text = "Agregar";
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 

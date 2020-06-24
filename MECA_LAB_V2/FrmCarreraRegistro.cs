@@ -29,6 +29,7 @@ namespace MECA_LAB_V2
                     btnEliminar.Text = "Habilitar";
                 }
                 btnEliminar.Visible = true;
+                btnActualizar.Text = "Actualizar";
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
                 txtNombre.Text = ds.Tables["tabla"].Rows[0][1].ToString();
             }

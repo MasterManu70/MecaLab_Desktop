@@ -21,6 +21,28 @@ namespace MECA_LAB_V2
         private int xClick = 0, yClick = 0;
         //Formulario Carga o Cierra
         //Desarrollo
+        private void FrmAlumnoRegistro_Load(object sender, EventArgs e)
+        {
+            DataSet ds;
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.nombre, alumnos.correo, alumnos.telefono, alumnos.created_at, alumnos.updated_at, alumnos.status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
+                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
+                {
+                    btnEliminar.Text = "Habilitar";
+                }
+                btnEliminar.Visible = true;
+                btnActualizar.Text = "Actualizar";
+                txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
+                txtMatricula.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+                txtNombre.Text = ds.Tables["tabla"].Rows[0][2].ToString();
+                txtPaterno.Text = ds.Tables["tabla"].Rows[0][3].ToString();
+                txtMaterno.Text = ds.Tables["tabla"].Rows[0][4].ToString();
+                cmbCarrera.Text = ds.Tables["tabla"].Rows[0][5].ToString();
+                txtCorreo.Text = ds.Tables["tabla"].Rows[0][6].ToString();
+                txtTelefono.Text = ds.Tables["tabla"].Rows[0][7].ToString();
+            }
+        }
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if (txtMatricula.Text == "") { MessageBox.Show("Ingrese la matricula", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtMatricula.Focus(); return; }
@@ -84,29 +106,5 @@ namespace MECA_LAB_V2
         {
             Validar.SoloNumeros(e);
         }
-
-        private void FrmAlumnoRegistro_Load(object sender, EventArgs e)
-        {
-            DataSet ds;
-            if (id != 0)
-            {
-                ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.nombre, alumnos.correo, alumnos.telefono, alumnos.created_at, alumnos.updated_at, alumnos.status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
-                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
-                {
-                    btnEliminar.Text = "Habilitar";
-                }
-                btnEliminar.Visible = true;
-                txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
-                txtMatricula.Text = ds.Tables["tabla"].Rows[0][1].ToString();
-                txtNombre.Text = ds.Tables["tabla"].Rows[0][2].ToString();
-                txtPaterno.Text = ds.Tables["tabla"].Rows[0][3].ToString();
-                txtMaterno.Text = ds.Tables["tabla"].Rows[0][4].ToString();
-                cmbCarrera.Text = ds.Tables["tabla"].Rows[0][5].ToString();
-                txtCorreo.Text = ds.Tables["tabla"].Rows[0][6].ToString();
-                txtTelefono.Text = ds.Tables["tabla"].Rows[0][7].ToString();
-            }
-        }
-
-        //Metodos
     }
 }
