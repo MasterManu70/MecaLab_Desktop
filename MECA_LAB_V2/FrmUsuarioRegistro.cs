@@ -45,6 +45,7 @@ namespace MECA_LAB_V2
             if (cmbNivel.Text == "") { MessageBox.Show("Seleccione el Nivel", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbNivel.Focus(); return; }
             if (txtContraseña.Text != txtContraseñaC.Text) { MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseña.Focus(); return; }
 
+<<<<<<< HEAD
             valores.Add(id.ToString());
             valores.Add("'" + txtUsuario.Text + "'");
             valores.Add("md5('" + txtContraseña.Text + "')");
@@ -52,6 +53,12 @@ namespace MECA_LAB_V2
             valores.Add("NOW()");
             valores.Add("NOW()");
             valores.Add("1");
+=======
+            var respuesta = MessageBox.Show("¿Esta seguro de registrar este usuario?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (respuesta == DialogResult.Yes)
+            {
+                //Codigo Mysql
+>>>>>>> 71fa1d5f5291022c7e93f070770d56c9eafa4c0c
 
             if (id != 0)
             {
@@ -102,7 +109,6 @@ namespace MECA_LAB_V2
         {
             Validar.SoloLetrasONumeros(e);
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (Funciones.StatusUpdate("usuarios", btnEliminar.Text, id))
@@ -110,5 +116,10 @@ namespace MECA_LAB_V2
                 this.Close();
             }
         }
+<<<<<<< HEAD
+=======
+
+        //Metodos
+>>>>>>> 71fa1d5f5291022c7e93f070770d56c9eafa4c0c
     }
 }

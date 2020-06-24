@@ -11,6 +11,7 @@ namespace MECA_LAB_V2
         }
         //Variables Publicas y Privadas
         public int xClick = 0, yClick = 0;
+
         //Formulario carga o cierra
         //Desarrollo
         private void btnlogin_Click(object sender, EventArgs e)
@@ -21,7 +22,6 @@ namespace MECA_LAB_V2
             this.Close();
             textBox1.Clear();
             textBox2.Clear();
-
             //Codigo conexion MYSQL
         }
         private void btnSalir_Click(object sender, EventArgs e)

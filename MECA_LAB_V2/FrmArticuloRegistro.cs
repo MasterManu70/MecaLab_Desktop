@@ -59,7 +59,11 @@ namespace MECA_LAB_V2
             }
             else
             {
+<<<<<<< HEAD
                 Funciones.Insert("articulos", valores);
+=======
+                //Codigo Mysql
+>>>>>>> 71fa1d5f5291022c7e93f070770d56c9eafa4c0c
                 this.Close();
             }
         }
@@ -73,13 +77,11 @@ namespace MECA_LAB_V2
         //Rutas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
 
@@ -101,11 +103,5 @@ namespace MECA_LAB_V2
         }
 
         //Metodos
-        private void borrarContenido()
-        {
-            txtNombre.Focus();
-            txtNombre.Clear();
-            txtComentario.Clear();
-        }
     }
 }

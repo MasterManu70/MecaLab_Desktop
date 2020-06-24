@@ -11,7 +11,7 @@ namespace MECA_LAB_V2
             InitializeComponent();
         }
         //Variables Publicas y Privadas
-        private FrmLogin FrmLogin =          new FrmLogin();
+        private FrmLogin FrmLogin = new FrmLogin();
         private FrmPrincipal frmPrincipal =  new FrmPrincipal();
 
         //CRUDs
@@ -25,8 +25,7 @@ namespace MECA_LAB_V2
 
         private int xClick = 0, yClick = 0;
         //Formulario carga o cierra
-        private void FrmMenu_Load(object sender, EventArgs e)
-        {
+        private void FrmMenu_Load(object sender, EventArgs e) { 
             this.Show();
             AbrirFormEnPanel(frmPrincipal);
             viejaPosicion();
@@ -37,8 +36,8 @@ namespace MECA_LAB_V2
         //Desarollo
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            pnlLado.Height = btnPrincipal.Height;
-            pnlLado.Top = btnPrincipal.Top;
+            pnlLado2.Visible = false;
+            panelPosicion(pnlLado,btnPrincipal,true);
             ocultarSubMenu();
             viejaPosicion();
             AbrirFormEnPanel(frmPrincipal);
@@ -48,82 +47,82 @@ namespace MECA_LAB_V2
         //Rutas
         private void btnPrincipal_Click(object sender, EventArgs e)
         {
-            pnlLado.Height = btnPrincipal.Height;
-            pnlLado.Top = btnPrincipal.Top;
+            pnlLado2.Visible = false;
+            panelPosicion(pnlLado,btnPrincipal,true);
             ocultarSubMenu();
             viejaPosicion();
             AbrirFormEnPanel(frmPrincipal);
             frmPrincipal.txtCodigo.Focus();
-           
 
         }
-        private void btnProductos_Click(object sender, EventArgs e)
+        private void btnArticulos_Click(object sender, EventArgs e)
         {
-            pnlLado.Height = btnProductos.Height;
-            pnlLado.Top = btnProductos.Top;
+            pnlLado2.Visible = false;
+            panelPosicion(pnlLado,btnArticulos,true);
             ocultarSubMenu();
             viejaPosicion();
             AbrirFormEnPanel(frmArticulos);
+            frmArticulos.textBox1.Focus();
         }
         private void btnAlumnos_Click(object sender, EventArgs e)
         {
-            pnlLado.Height = btnAlumnos.Height;
-            pnlLado.Top = btnAlumnos.Top;
+            pnlLado2.Visible = false;
+            panelPosicion(pnlLado,btnAlumnos,true);
             ocultarSubMenu();
             viejaPosicion();
             AbrirFormEnPanel(frmAlumnos);
+            frmAlumnos.textBox1.Focus();
         }
 
         private void btnDatos_Click(object sender, EventArgs e)
         {
-            pnlLado.Height = btnDatos.Height;
-            pnlLado.Top = btnDatos.Top;
+            panelPosicion(pnlLado, btnDatos,true);
             mostrarSubMenu(pnlSubMenuDatos);
             alternarPosicion();
         }
         private void btnPrestamos_Click(object sender, EventArgs e)
         {
-            pnlLado.Height = btnPrestamos.Height;
-            pnlLado.Top = btnPrestamos.Top;
+            panelPosicion(pnlLado,btnPrestamos,true);
             ocultarSubMenu();
             viejaPosicion();
+            pnlLado2.Visible = false;
         }
         private void btnConsultas_Click(object sender, EventArgs e)
         {
             viejaPosicion();
             ocultarSubMenu();
-            pnlLado.Height = btnConsultas.Height;
-            pnlLado.Top = btnConsultas.Top;
+            panelPosicion(pnlLado, btnConsultas, true);
+            pnlLado2.Visible = false;
         }
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            viejaPosicion();
-            ocultarSubMenu();
+            panelPosicion(pnlLado2,btnUsuarios,true);
             AbrirFormEnPanel(frmUsuarios);
+            frmUsuarios.textBox1.Focus();
         }
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
-            viejaPosicion();
-            ocultarSubMenu();
+            panelPosicion(pnlLado2,btnAsignaturas,true);
             AbrirFormEnPanel(frmAsignaturas);
+            frmAsignaturas.textBox1.Focus();
         }
         private void btnCarreras_Click(object sender, EventArgs e)
         {
-            viejaPosicion();
-            ocultarSubMenu();
+            panelPosicion(pnlLado2,btnCarreras,true);
             AbrirFormEnPanel(frmCarreras);
+            frmCarreras.textBox1.Focus();
         }
         private void btnLaboratorios_Click(object sender, EventArgs e)
         {
-            viejaPosicion();
-            ocultarSubMenu();
+            panelPosicion(pnlLado2,btnLaboratorios,true);
             AbrirFormEnPanel(frmLaboratorios);
+            frmLaboratorios.textBox1.Focus();
         }
         private void btnMaestros_Click(object sender, EventArgs e)
         {
-            viejaPosicion();
-            ocultarSubMenu();
+            panelPosicion(pnlLado2, btnMaestros, true);
             AbrirFormEnPanel(frmMaestros);
+            frmMaestros.textBox1.Focus();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -175,29 +174,27 @@ namespace MECA_LAB_V2
         }
 
         private void mostrarSubMenu(Panel subMenu) {
-            if (pnlSubMenuDatos.Visible == false)
+            if (subMenu.Visible == false)
             {
                 ocultarSubMenu();
                 subMenu.Visible = true;
             }
-            else
-            {
-                subMenu.Visible = false;
-            }
         }
         private void viejaPosicion() {
-            btnConsultas.Location = new Point(29, 539);
+            btnConsultas.Location = new Point(31, 459);
         }
         private void alternarPosicion()
         {
-            if (btnConsultas.Location == new Point(29, 539))
+            if (btnConsultas.Location == new Point(31, 459))
             {
-                btnConsultas.Location = new Point(29, 755);
+                btnConsultas.Location = new Point(31, 628);
             }
-            else
-            {
-                btnConsultas.Location = new Point(29, 539);
-            }
+        }
+        private void panelPosicion(Panel pnl, Button btn, Boolean bol)
+        {
+            pnl.Height = btn.Height;
+            pnl.Top = btn.Top;
+            pnl.Visible = bol;
         }
     }
 }
