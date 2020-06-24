@@ -37,13 +37,29 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            List<string> valores = new List<string>();
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
             if (txtComentario.Text == "") { MessageBox.Show("Ingrese el comentario del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtComentario.Focus(); return; }
-            var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
+            
+            valores.Add(id.ToString());
+            valores.Add("'" + txtNombre.Text + "'");
+            valores.Add("'" + txtComentario.Text + "'");
+            valores.Add("NOW()");
+            valores.Add("NOW()");
+            valores.Add("1");
+
+            if (id != 0)
             {
-                //Codigo Mysql
-                borrarContenido();
+                var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Funciones.Insert("articulos", valores);
+                    this.Close();
+                }
+            }
+            else
+            {
+                Funciones.Insert("articulos", valores);
                 this.Close();
             }
         }

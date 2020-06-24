@@ -56,9 +56,9 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(165, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(247, 36);
+            this.label5.Size = new System.Drawing.Size(206, 36);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Registrar Usuario";
+            this.label5.Text = "Datos Usuario";
             // 
             // btnCancelar
             // 
@@ -83,7 +83,7 @@
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(159, 40);
             this.btnActualizar.TabIndex = 1;
-            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Text = "Agregar";
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 

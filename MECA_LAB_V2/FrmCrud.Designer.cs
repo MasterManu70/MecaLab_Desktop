@@ -203,6 +203,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCrud";
             this.Text = "FrmCrud";
+            this.Activated += new System.EventHandler(this.FrmCrud_Activated);
             this.Load += new System.EventHandler(this.FrmCrud_Load);
             this.panelTitle.ResumeLayout(false);
             this.panelTitle.PerformLayout();

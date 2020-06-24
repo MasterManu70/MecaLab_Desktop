@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlternarColorFilaDGV.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="FrmAlumnoRegistro.cs">
       <SubType>Form</SubType>

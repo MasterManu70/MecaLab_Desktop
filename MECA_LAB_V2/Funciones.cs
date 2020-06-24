@@ -79,5 +79,90 @@ namespace MECA_LAB_V2
                 return false;
             }
         }
+
+        //Método GetColums: Obtener los nombres de cada columna de la tabla asignada en el constructor de la clase.
+        public static List<string> GetColumns(string tabla)
+        {
+            List<string> Columns = new List<string>();
+            DataSet ds = Conexion.MySQL("describe " + tabla + ";");
+
+            try
+            {
+                for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
+                    Columns.Add(Convert.ToString(ds.Tables["tabla"].Rows[i][0]));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error de MySQL: " + e);
+                throw;
+            }
+
+            return Columns;
+        }
+
+        public static string GetQuery(string tabla)
+        {
+            string query = "";
+            tabla = tabla.ToLower();
+            switch(tabla)
+            {
+                case "alumnos":
+                    break;
+                case "articulos":       query = "select * from articulos;"; break;
+                case "asignaturas":     query = "select * from asignaturas;"; break;
+                case "carreras":        query = "select * from carreras;";  break;
+                case "laboratorios":    query = "select * from laboratorios;"; break;
+                case "maestros":        query = "select * from maestros;"; break;
+                case "usuarios":        query = "select id,usuario,nivel,created_at,updated_at,status from usuarios;"; break;
+
+            }
+            return query;
+        }
+
+
+
+        public static bool Insert(string tabla, List<string> valores)
+        {
+            List<string> columnas;
+            columnas = GetColumns(tabla);
+
+            string query;
+
+            if (valores[0] != "0")
+            {
+                query = "UPDATE " + tabla + " SET ";
+                for (int i = 1; i < columnas.Count; i++)
+                {
+                    if (columnas[i].ToLower() == "created_at" || (columnas[i].ToLower() == "password" && valores[i].Length <= 7)) continue;
+
+                    query += columnas[i] + "=" + valores[i];
+
+                    if (i < columnas.Count - 1) query += ",";
+                }
+
+                query += " WHERE id=" + valores[0] + ";";
+            }
+            else
+            {
+                query = "INSERT INTO " + tabla + " VALUES(NULL,";
+                for (int i = 1; i < columnas.Count; i++)
+                {
+                    query += valores[i];
+
+                    if (i < columnas.Count - 1) query += ",";
+                }
+                query += ");";
+            }
+
+            try
+            {
+                Conexion.MySQL(query);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

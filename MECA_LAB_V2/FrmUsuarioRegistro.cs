@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -20,42 +21,60 @@ namespace MECA_LAB_V2
             DataSet ds;
             if (id != 0)
             {
-                ds = Conexion.MySQL("select id,usuario,status from usuarios where id=" + id + ";");
+                ds = Conexion.MySQL("select id,usuario,nivel,status from usuarios where id=" + id + ";");
                 if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
                 {
                     btnEliminar.Text = "Habilitar";
                 }
                 btnEliminar.Visible = true;
+                btnActualizar.Text = "Actualizar";
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
                 txtUsuario.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+                cmbNivel.Text = ds.Tables["tabla"].Rows[0][2].ToString();
             }
         }
         //Desarrollo
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            List<string> valores = new List<string>();
+
             if (txtUsuario.Text == "") { MessageBox.Show("Ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtUsuario.Focus(); return; }
-            if (txtContraseña.Text == "") { MessageBox.Show("Ingrese la contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseña.Focus(); return; }
-            if (txtContraseñaC.Text == "") { MessageBox.Show("Ingrese la contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseñaC.Focus(); return; }
+            if (txtContraseña.Text == "" && txtContraseñaC.Text != "") { MessageBox.Show("Ingrese la contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseña.Focus(); return; }
+            if (txtContraseñaC.Text == "" && txtContraseña.Text != "") { MessageBox.Show("Ingrese la contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseñaC.Focus(); return; }
             if (!(txtContraseña.Text == txtContraseñaC.Text)) { MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
-            if (cmbNivel.SelectedIndex == 0) { MessageBox.Show("Seleccione el Nivel", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbNivel.Focus(); return; }
+            if (cmbNivel.Text == "") { MessageBox.Show("Seleccione el Nivel", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbNivel.Focus(); return; }
+            if (txtContraseña.Text != txtContraseñaC.Text) { MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseña.Focus(); return; }
 
-            var respuesta = MessageBox.Show("¿Esta seguro de registrar este usuario?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
+            valores.Add(id.ToString());
+            valores.Add("'" + txtUsuario.Text + "'");
+            valores.Add("md5('" + txtContraseña.Text + "')");
+            valores.Add("'" + cmbNivel.Text + "'");
+            valores.Add("NOW()");
+            valores.Add("NOW()");
+            valores.Add("1");
+
+            if (id != 0)
             {
-                //Codigo Mysql
-                borrarContenido();
-
+                var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Funciones.Insert("usuarios", valores);
+                    this.Close();
+                }
+            }
+            else
+            {
+                Funciones.Insert("usuarios", valores);
+                this.Close();
             }
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
 
@@ -90,15 +109,6 @@ namespace MECA_LAB_V2
             {
                 this.Close();
             }
-        }
-
-        //Metodos
-        private void borrarContenido() {
-            txtContraseña.Clear();
-            txtContraseñaC.Clear();
-            txtUsuario.Clear();
-            txtUsuario.Focus();
-            cmbNivel.SelectedIndex = 0;
         }
     }
 }

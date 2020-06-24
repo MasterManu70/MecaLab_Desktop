@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MECA_LAB_V2
@@ -16,7 +17,10 @@ namespace MECA_LAB_V2
             cmbAsignatura.SelectedIndex = 0;
             cmbLaboratorio.SelectedIndex = 0;
             cmbMaestro.SelectedIndex = 0;
-            AlternarColorFilaDGV.BlancoVerde(dataGridView1);
+
+            dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSteelBlue;
+
             dataGridView1.Columns.Add("id", "ID");
             dataGridView1.Columns.Add("nombre", "Nombre");
             dataGridView1.Columns.Add("comentario", "Comentario");

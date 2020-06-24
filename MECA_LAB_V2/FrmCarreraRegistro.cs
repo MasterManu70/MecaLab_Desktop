@@ -39,12 +39,27 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre de la carrera", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
-            var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
+            List<string> valores = new List<string>();
+            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre de la asignatura", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
+
+            valores.Add(id.ToString());
+            valores.Add("'" + txtNombre.Text + "'");
+            valores.Add("NOW()");
+            valores.Add("NOW()");
+            valores.Add("1");
+
+            if (id != 0)
             {
-                //Codigo Mysql
-                borrarContenido();
+                var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Funciones.Insert("carreras", valores);
+                    this.Close();
+                }
+            }
+            else
+            {
+                Funciones.Insert("carreras", valores);
                 this.Close();
             }
         }

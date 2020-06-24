@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -23,6 +24,7 @@ namespace MECA_LAB_V2
                     btnEliminar.Text = "Habilitar";
                 }
                 btnEliminar.Visible = true;
+                btnActualizar.Text = "Actualizar";
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
                 txtNombre.Text = ds.Tables["tabla"].Rows[0][1].ToString();
                 txtPaterno.Text = ds.Tables["tabla"].Rows[0][2].ToString();
@@ -35,14 +37,32 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            List<string> valores = new List<string>();
+
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre de la asignatura", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
             if (txtPaterno.Text == "") { MessageBox.Show("Ingrese el apellido paterno del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtPaterno.Focus(); return; }
             if (txtMaterno.Text == "") { MessageBox.Show("Ingrese el apellido materno del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtMaterno.Focus(); return; }
-            var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes)
+
+            valores.Add(id.ToString());
+            valores.Add("'"+txtNombre.Text+"'");
+            valores.Add("'"+txtPaterno.Text+"'");
+            valores.Add("'"+txtMaterno.Text+"'");
+            valores.Add("NOW()");
+            valores.Add("NOW()");
+            valores.Add("1");
+
+            if (id != 0)
             {
-                //Codigo Mysql
-                borrarContenido();
+                var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Funciones.Insert("maestros",valores);
+                    this.Close();
+                }
+            }
+            else
+            {
+                Funciones.Insert("maestros", valores);
                 this.Close();
             }
         }
@@ -56,13 +76,11 @@ namespace MECA_LAB_V2
         //Rutas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
         private void btnMinimizar_Click(object sender, EventArgs e)
@@ -96,12 +114,5 @@ namespace MECA_LAB_V2
         }
 
         //Metodos
-        private void borrarContenido()
-        {
-            txtNombre.Focus();
-            txtNombre.Clear();
-            txtPaterno.Clear();
-            txtMaterno.Clear();
-        }
     }
 }

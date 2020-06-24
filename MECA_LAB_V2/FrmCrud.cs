@@ -20,6 +20,7 @@ namespace MECA_LAB_V2
         string tabla;           //Nombre de la tabla que se encuentra en la base de datos.
         Color color;            //Objeto de tipo color el cual se asignará a las propiedades del formulario.
         List<string> columnas;  //Lista de los nombres de cada columna en la tabla especificada en al variable 'tabla'.
+        //public static bool consultar = false; //Variable que se usa para validar si el formulario requiere actualizarse.
 
         Form btnRegistroForm;   //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
         public FrmCrud(string tabla, Color color)
@@ -44,39 +45,24 @@ namespace MECA_LAB_V2
             
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        public void btnBuscar_Click(object sender, EventArgs e)
         {
             string query = "select * from " + tabla + ";";
 
-            if (columnas == null) AddColumns(dataGridView1, columnas = GetColumns(tabla));
+            if (columnas == null) AddColumns(dataGridView1, columnas = Funciones.GetColumns(tabla));
             dataGridView1.Rows.Clear();
             AddRows(dataGridView1, Conexion.MySQL(query));
+        }
+
+        public void RefreshCrud(object sender, EventArgs e)
+        {
+            btnBuscar_Click(sender, e);
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
             btnRegistroForm = Rutas.GetForm(tabla);
             btnRegistroForm.ShowDialog();
-        }
-
-        //Método GetColums: Obtener los nombres de cada columna de la tabla asignada en el constructor de la clase.
-        public List<string> GetColumns(string tabla)
-        {
-            List<string> Columns = new List<string>();
-            DataSet ds = Conexion.MySQL("describe " + tabla + ";");
-
-            try
-            {
-                for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
-                    Columns.Add(Convert.ToString(ds.Tables["tabla"].Rows[i][0]));
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error de MySQL: " + e);
-                throw;
-            }
-
-            return Columns;
         }
 
         //Método AddColums: Agregar los nombres de columnas contenidas en una lista de tipo 'string' al DataGridView cargado en el método.
@@ -105,6 +91,15 @@ namespace MECA_LAB_V2
             int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
             btnRegistroForm = Rutas.GetForm(tabla,id);
             btnRegistroForm.ShowDialog();
+        }
+
+        private void FrmCrud_Activated(object sender, EventArgs e)
+        {
+            //if (consultar)
+            //{
+            //    btnBuscar_Click(sender, e);
+            //    consultar = false;
+            //}
         }
     }
 }
