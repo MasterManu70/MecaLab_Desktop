@@ -39,11 +39,11 @@ namespace MECA_LAB_V2
         {
             List<string> valores = new List<string>();
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
-            if (txtComentario.Text == "") { MessageBox.Show("Ingrese el comentario del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtComentario.Focus(); return; }
             
             valores.Add(id.ToString());
             valores.Add("'" + txtNombre.Text + "'");
             valores.Add("'" + txtComentario.Text + "'");
+            valores.Add("'1'");
             valores.Add("NOW()");
             valores.Add("NOW()");
             valores.Add("1");
@@ -59,11 +59,7 @@ namespace MECA_LAB_V2
             }
             else
             {
-<<<<<<< HEAD
                 Funciones.Insert("articulos", valores);
-=======
-                //Codigo Mysql
->>>>>>> 71fa1d5f5291022c7e93f070770d56c9eafa4c0c
                 this.Close();
             }
         }

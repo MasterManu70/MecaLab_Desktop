@@ -56,12 +56,7 @@ namespace MECA_LAB_V2
             }
             else
             {
-<<<<<<< HEAD
                 Funciones.Insert("asignaturas", valores);
-=======
-                //Codigo Mysql
- 
->>>>>>> 71fa1d5f5291022c7e93f070770d56c9eafa4c0c
                 this.Close();
             }
         }

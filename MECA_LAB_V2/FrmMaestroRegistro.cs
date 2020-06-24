@@ -53,7 +53,6 @@ namespace MECA_LAB_V2
 
             if (id != 0)
             {
-<<<<<<< HEAD
                 var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
@@ -64,9 +63,6 @@ namespace MECA_LAB_V2
             else
             {
                 Funciones.Insert("maestros", valores);
-=======
-                //Codigo Mysql
->>>>>>> 71fa1d5f5291022c7e93f070770d56c9eafa4c0c
                 this.Close();
             }
         }
