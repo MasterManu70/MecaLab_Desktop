@@ -190,6 +190,7 @@
             // btnlogin
             // 
             this.btnlogin.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnlogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnlogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlogin.ForeColor = System.Drawing.Color.White;
             this.btnlogin.Location = new System.Drawing.Point(347, 283);
@@ -204,10 +205,11 @@
             // 
             this.btnMinimizar.AutoSize = true;
             this.btnMinimizar.BackColor = System.Drawing.Color.White;
+            this.btnMinimizar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimizar.ForeColor = System.Drawing.Color.Black;
-            this.btnMinimizar.Location = new System.Drawing.Point(684, 3);
+            this.btnMinimizar.Location = new System.Drawing.Point(678, 3);
             this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(15, 21);
+            this.btnMinimizar.Size = new System.Drawing.Size(21, 30);
             this.btnMinimizar.TabIndex = 10;
             this.btnMinimizar.Text = "-";
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
@@ -216,10 +218,11 @@
             // 
             this.btnCerrar.AutoSize = true;
             this.btnCerrar.BackColor = System.Drawing.Color.White;
+            this.btnCerrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.Color.Black;
-            this.btnCerrar.Location = new System.Drawing.Point(708, 3);
+            this.btnCerrar.Location = new System.Drawing.Point(702, 3);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(18, 21);
+            this.btnCerrar.Size = new System.Drawing.Size(25, 30);
             this.btnCerrar.TabIndex = 11;
             this.btnCerrar.Text = "x";
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -227,6 +230,7 @@
             // btnSalir
             // 
             this.btnSalir.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Black;

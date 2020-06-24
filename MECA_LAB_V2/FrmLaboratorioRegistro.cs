@@ -39,7 +39,6 @@ namespace MECA_LAB_V2
             if (respuesta == DialogResult.Yes)
             {
                 //Codigo Mysql
-                borrarContenido();
                 this.Close();
             }
         }
@@ -52,14 +51,12 @@ namespace MECA_LAB_V2
         }
         //Rutas
         private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            borrarContenido();
+        { 
             this.Close();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
 
@@ -81,10 +78,5 @@ namespace MECA_LAB_V2
         }
 
         //Metodos
-        private void borrarContenido()
-        {
-            txtNombre.Focus();
-            txtNombre.Clear();
-        }
     }
 }

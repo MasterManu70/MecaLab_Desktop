@@ -65,12 +65,12 @@ namespace MECA_LAB_V2
             {
                 if (accion == "Eliminar")
                 {
-                    if (SetStatus(tabla, id, 0)) MessageBox.Show("El registro se ha dado de baja correctamente.");
+                    if (SetStatus(tabla, id, 0)) MessageBox.Show("El registro se ha dado de baja correctamente.","Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
                 {
-                    if (SetStatus(tabla, id, 1)) MessageBox.Show("El registro se ha dado de alta correctamente.");
+                    if (SetStatus(tabla, id, 1)) MessageBox.Show("El registro se ha dado de alta correctamente.","Informacion",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     return true;
                 }
             }

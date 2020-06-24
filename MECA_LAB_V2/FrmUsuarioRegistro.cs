@@ -43,19 +43,16 @@ namespace MECA_LAB_V2
             if (respuesta == DialogResult.Yes)
             {
                 //Codigo Mysql
-                borrarContenido();
 
             }
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
 
@@ -83,7 +80,6 @@ namespace MECA_LAB_V2
         {
             Validar.SoloLetrasONumeros(e);
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (Funciones.StatusUpdate("usuarios", btnEliminar.Text, id))
@@ -93,12 +89,5 @@ namespace MECA_LAB_V2
         }
 
         //Metodos
-        private void borrarContenido() {
-            txtContraseña.Clear();
-            txtContraseñaC.Clear();
-            txtUsuario.Clear();
-            txtUsuario.Focus();
-            cmbNivel.SelectedIndex = 0;
-        }
     }
 }

@@ -43,13 +43,11 @@ namespace MECA_LAB_V2
         //Rutas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            borrarContenido();
             this.Close();
         }
 
@@ -110,16 +108,5 @@ namespace MECA_LAB_V2
         }
 
         //Metodos
-        private void borrarContenido()
-        {
-            txtMatricula.Focus();
-            txtMatricula.Clear();
-            txtNombre.Clear();
-            txtPaterno.Clear();
-            txtMaterno.Clear();
-            cmbCarrera.SelectedIndex = 0;
-            txtCorreo.Clear();
-            txtTelefono.Clear();
-        }
     }
 }
