@@ -26,7 +26,7 @@ namespace MECA_LAB_V2
             DataSet ds;
             if (id != 0)
             {
-                ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.nombre, alumnos.correo, alumnos.telefono, alumnos.created_at, alumnos.updated_at, alumnos.status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
+                ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.carrera, alumnos.correo, alumnos.telefono, alumnos.created_at, alumnos.updated_at, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
                 if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
                 {
                     btnEliminar.Text = "Habilitar";
@@ -45,15 +45,42 @@ namespace MECA_LAB_V2
         }
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            List<string> valores = new List<string>();
+
             if (txtMatricula.Text == "") { MessageBox.Show("Ingrese la matricula", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtMatricula.Focus(); return; }
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtNombre.Focus(); return; }
             if (txtPaterno.Text == "") { MessageBox.Show("Ingrese el apellido paterno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtPaterno.Focus(); return; }
             if (txtMaterno.Text == "") { MessageBox.Show("Ingrese el apellido materno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtMaterno.Focus(); return; }
-            if (cmbCarrera.SelectedIndex == 0) { MessageBox.Show("Seleccione una carrera", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); cmbCarrera.Focus(); return; }
+            if (cmbCarrera.Text == "") { MessageBox.Show("Seleccione una carrera", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); cmbCarrera.Focus(); return; }
             if (txtCorreo.Text == "") { MessageBox.Show("Ingrese el correo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtCorreo.Focus(); return; }
             if (txtTelefono.Text == "") { MessageBox.Show("Ingrese el telefono", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtTelefono.Focus(); return; }
 
-            
+            valores.Add(id.ToString());
+            valores.Add("'" + txtMatricula.Text + "'");
+            valores.Add("'" + txtNombre.Text + "'");
+            valores.Add("'" + txtPaterno.Text + "'");
+            valores.Add("'" + txtMaterno.Text + "'");
+            valores.Add("" + llaves[cmbCarrera.SelectedIndex] + "");
+            valores.Add("'" + txtCorreo.Text + "'");
+            valores.Add("'" + txtTelefono.Text + "'");
+            valores.Add("NOW()");
+            valores.Add("NOW()");
+            valores.Add("1");
+
+            if (id != 0)
+            {
+                var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Funciones.Insert("alumnos", valores);
+                    this.Close();
+                }
+            }
+            else
+            {
+                Funciones.Insert("alumnos", valores);
+                this.Close();
+            }
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {

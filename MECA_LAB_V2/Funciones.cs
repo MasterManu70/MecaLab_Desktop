@@ -100,27 +100,29 @@ namespace MECA_LAB_V2
             return Columns;
         }
 
+        //Método GetQuery: Devuelve la consulta correspondiente dependiendo del nombre de la tabla que se envíe al ser llamado el método.
         public static string GetQuery(string tabla)
         {
             string query = "";
             tabla = tabla.ToLower();
             switch(tabla)
             {
-                case "alumnos":
-                    break;
-                case "articulos":       query = "select * from articulos;"; break;
-                case "asignaturas":     query = "select * from asignaturas;"; break;
-                case "carreras":        query = "select * from carreras;";  break;
-                case "laboratorios":    query = "select * from laboratorios;"; break;
-                case "maestros":        query = "select * from maestros;"; break;
-                case "usuarios":        query = "select id,usuario,nivel,created_at,updated_at,status from usuarios;"; break;
-
+                case "alumnos":         query = "SELECT alumnos.id as ID, alumnos.matricula as Matrícula, alumnos.nombre as Nombre, alumnos.apellidop as Paterno, alumnos.apellidom as Materno, carreras.carrera as Carrera, alumnos.correo as Correo, alumnos.telefono as Teléfono, alumnos.created_at as Creado, alumnos.updated_at as Actualizado, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id;"; break;
+                case "articulos":       query = "SELECT id as ID, articulo as Artículo, comentario as Comentario, disponible as Disponible, created_at as Creado, updated_at as Actualizado, status FROM articulos;"; break;
+                case "asignaturas":     query = "SELECT id as ID, asignatura as Asignatura, created_at as Creado, updated_at as Actualizado, status FROM asignaturas;"; break;
+                case "carreras":        query = "SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras;";  break;
+                case "laboratorios":    query = "SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios;"; break;
+                case "maestros":        query = "SELECT id as ID, concat(nombre," + Keys.Space + ",apellidop," + Keys.Space + ",apellidom) as Maestro,created_at as Creado, updated_at as Actualizado, status FROM maestros;"; break;
+                case "usuarios":        query = "SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios;"; break;
             }
             return query;
         }
 
 
-
+        //Método Insert: Inserta o actualiza los registros de una tabla dependiendo de qué tabla se le cargue al ser llamado.
+        // - tabla      : Nombre de la tabla
+        // - valores    : Lista de valores del registro que se desea agregar o modificar que se agregan a la lista en el orden que está en la tabla.
+        //                Si se envía el ID correspondiente al registro se modificará, si se envía ID = 0 se creará un nuevo registro.
         public static bool Insert(string tabla, List<string> valores)
         {
             List<string> columnas;
