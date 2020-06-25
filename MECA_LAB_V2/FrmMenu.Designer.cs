@@ -314,7 +314,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "SISTEMA DE INVENTARIO Y PRESTAMOS";
+            this.label1.Text = "SISTEMA DE INVENTARIO Y PRÉSTAMOS";
             // 
             // btnArticulos
             // 
