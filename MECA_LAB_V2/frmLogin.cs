@@ -22,7 +22,7 @@ namespace MECA_LAB_V2
             if (textBox1.Text == "") { MessageBox.Show("Ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); textBox1.Focus(); return; }
             if (textBox2.Text == "") { MessageBox.Show("Ingrese la contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); textBox2.Focus(); return; }
 
-            ds = Conexion.MySQL("SELECT id, nivel FROM usuarios WHERE usuario='" + textBox1.Text + "' and password=md5('" + textBox2.Text + "');");
+            ds = Conexion.MySQL("SELECT id, nivel FROM usuarios WHERE usuario='" + textBox1.Text + "' AND password=md5('" + textBox2.Text + "') AND status=1;");
 
             int count = ds.Tables["tabla"].Rows.Count;
             if (count == 0) 
