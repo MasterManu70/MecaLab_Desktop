@@ -6,6 +6,10 @@ namespace MECA_LAB_V2
 {
     public partial class FrmMenu : Form
     {
+        public static string usuario = "";
+        public static int usuarioID = 0;
+        public static int usuarioNivel = 0;
+        public static bool showed = false;
         public FrmMenu()
         {
             InitializeComponent();
@@ -190,6 +194,21 @@ namespace MECA_LAB_V2
                 btnConsultas.Location = new Point(31, 628);
             }
         }
+
+        private void FrmMenu_Activated(object sender, EventArgs e)
+        {
+            if (showed)
+            {
+                label5.Visible = true;
+                lblUsuario.Text = usuario;
+                lblUsuario.Visible = true;
+
+                label6.Visible = true;
+                if (usuarioNivel == 1) lblNivel.Text = "Administrador"; else lblNivel.Text = "Usuario";
+                lblNivel.Visible = true;
+            }
+        }
+
         private void panelPosicion(Panel pnl, Button btn, Boolean bol)
         {
             pnl.Height = btn.Height;

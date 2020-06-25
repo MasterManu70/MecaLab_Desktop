@@ -451,9 +451,10 @@
             this.lblNivel.ForeColor = System.Drawing.Color.White;
             this.lblNivel.Location = new System.Drawing.Point(615, 6);
             this.lblNivel.Name = "lblNivel";
-            this.lblNivel.Size = new System.Drawing.Size(120, 21);
+            this.lblNivel.Size = new System.Drawing.Size(48, 21);
             this.lblNivel.TabIndex = 1;
-            this.lblNivel.Text = "Administrador";
+            this.lblNivel.Text = "Nivel";
+            this.lblNivel.Visible = false;
             // 
             // lblUsuario
             // 
@@ -463,9 +464,10 @@
             this.lblUsuario.ForeColor = System.Drawing.Color.White;
             this.lblUsuario.Location = new System.Drawing.Point(373, 6);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(53, 21);
+            this.lblUsuario.Size = new System.Drawing.Size(66, 21);
             this.lblUsuario.TabIndex = 1;
-            this.lblUsuario.Text = "Tania";
+            this.lblUsuario.Text = "Usuario";
+            this.lblUsuario.Visible = false;
             // 
             // label3
             // 
@@ -502,6 +504,7 @@
             this.label6.Size = new System.Drawing.Size(52, 21);
             this.label6.TabIndex = 1;
             this.label6.Text = "Nivel:";
+            this.label6.Visible = false;
             // 
             // label5
             // 
@@ -514,6 +517,7 @@
             this.label5.Size = new System.Drawing.Size(100, 21);
             this.label5.TabIndex = 0;
             this.label5.Text = "Bienvenido:";
+            this.label5.Visible = false;
             // 
             // pnlContenedor
             // 
@@ -549,6 +553,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMenu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.FrmMenu_Activated);
             this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
