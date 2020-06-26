@@ -10,6 +10,11 @@ namespace MECA_LAB_V2
     {
         int id;
         List<int> llaves = new List<int>();
+        List<string> registro = new List<string>();     //Registro tomado de la base de datos.
+        List<string> valores = new List<string>();      //Registro que se actualizará/insertará en la base de datos.
+
+        List<List<string>> movimientos = new List<List<string>>();
+        List<string> movimiento = new List<string>();   //Registro que se insertará en la tabla movimientos.
         public FrmAlumnoRegistro(int id = 0)
         {
             this.id = id;
@@ -25,7 +30,7 @@ namespace MECA_LAB_V2
             DataSet ds;
             if (id != 0)
             {
-                ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.carrera, alumnos.correo, alumnos.telefono, alumnos.created_at, alumnos.updated_at, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
+                ds = Conexion.MySQL("SELECT alumnos.id, alumnos.matricula, alumnos.nombre, alumnos.apellidop, alumnos.apellidom, carreras.carrera, alumnos.correo, alumnos.telefono,alumnos.created_at,alumnos.updated_at, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id where alumnos.id=" + id + ";");
                 if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
                 {
                     btnEliminar.Text = "Habilitar";
@@ -40,12 +45,14 @@ namespace MECA_LAB_V2
                 cmbCarrera.Text = ds.Tables["tabla"].Rows[0][5].ToString();
                 txtCorreo.Text = ds.Tables["tabla"].Rows[0][6].ToString();
                 txtTelefono.Text = ds.Tables["tabla"].Rows[0][7].ToString();
+
+                for (int i = 0; i < ds.Tables["tabla"].Columns.Count; i++)
+                    registro.Add(ds.Tables["tabla"].Rows[0][i].ToString());
             }
         }
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            List<string> valores = new List<string>();
-
+            DataSet ds;
             if (txtMatricula.Text == "") { MessageBox.Show("Ingrese la matricula", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtMatricula.Focus(); return; }
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtNombre.Focus(); return; }
             if (txtPaterno.Text == "") { MessageBox.Show("Ingrese el apellido paterno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtPaterno.Focus(); return; }
@@ -68,17 +75,59 @@ namespace MECA_LAB_V2
 
             if (id != 0)
             {
+                List<string> columnas = Funciones.GetColumns("alumnos");
                 var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
-                    Funciones.Insert("alumnos", valores);
-                    this.Close();
+                    if(Funciones.Insert("alumnos", valores))
+                    {
+                        for (int i = 1; i < valores.Count; i++)
+                        {
+                            if (valores[i].Replace("'",String.Empty) != registro[i] && valores[i] != "NOW()" && (registro[i] != "True" || registro[i] != "False"))
+                            {
+                                List<string> movimiento = new List<string>();
+                                movimiento.Add("0");
+                                movimiento.Add(FrmMenu.usuarioID.ToString());
+                                movimiento.Add(id.ToString());
+                                movimiento.Add("'alumnos'");
+                                movimiento.Add("'" + columnas[i].ToString() + "'");
+                                movimiento.Add("'" + valores[i] + "'");
+                                movimiento.Add("'" + registro[i] + "'");
+                                movimiento.Add("'MODIFICACIÓN'");
+                                movimiento.Add("NOW()");
+                                movimiento.Add("NOW()");
+                                movimiento.Add("1");
+                                movimientos.Add(movimiento);
+                            }
+                        }
+
+                        foreach (List<string> item in movimientos)
+                        {
+                            Funciones.Insert("movimientos",item);
+                        }
+                        this.Close();
+                    }
                 }
             }
             else
             {
-                Funciones.Insert("alumnos", valores);
-                this.Close();
+                if(Funciones.Insert("alumnos", valores))
+                {
+                    ds = Conexion.MySQL("SELECT Last_Insert_ID();");
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(ds.Tables["tabla"].Rows[0][0].ToString());
+                    movimiento.Add("'alumnos'");
+                    movimiento.Add("' '");
+                    movimiento.Add("' '");
+                    movimiento.Add("' '");
+                    movimiento.Add("'INSERCIÓN'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos",movimiento);
+                    this.Close();
+                }
             }
         }
         private void btnEliminar_Click(object sender, EventArgs e)

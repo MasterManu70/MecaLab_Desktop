@@ -115,7 +115,7 @@ namespace MECA_LAB_V2
                 //No me sirvio nomas por el keys.space da error igual no tiene nada de malo poner ''   case "maestros":        query = "SELECT id as ID, concat(nombre," + Keys.Space + ",apellidop," + Keys.Space + ",apellidom) as Maestro,created_at as Creado, updated_at as Actualizado, status FROM maestros;"; break;
                 case "maestros":        query = "SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros;"; break;
                 case "usuarios":        query = "SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios;"; break;
-                case "movimientos":     query = "SELECT id ID, usuario Usuario, id_registro Registro, tabla Tabla, campo Campo, nuevo Nuevo, viejo Viejo, descripcion Descripcion, created_at Creado, updated_at Actualizado, status FROM movimientos;"; break;
+                case "movimientos":     query = "SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id;"; break;
             }
             return query;
         }
@@ -161,12 +161,12 @@ namespace MECA_LAB_V2
             try
             {
                 Conexion.MySQL(query);
-                return true;
             }
             catch (Exception)
             {
                 return false;
             }
+            return true;
         }
     }
 }
