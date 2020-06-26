@@ -112,8 +112,10 @@ namespace MECA_LAB_V2
                 case "asignaturas":     query = "SELECT id as ID, asignatura as Asignatura, created_at as Creado, updated_at as Actualizado, status FROM asignaturas;"; break;
                 case "carreras":        query = "SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras;";  break;
                 case "laboratorios":    query = "SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios;"; break;
-                case "maestros":        query = "SELECT id as ID, concat(nombre," + Keys.Space + ",apellidop," + Keys.Space + ",apellidom) as Maestro,created_at as Creado, updated_at as Actualizado, status FROM maestros;"; break;
+                //No me sirvio nomas por el keys.space da error igual no tiene nada de malo poner ''   case "maestros":        query = "SELECT id as ID, concat(nombre," + Keys.Space + ",apellidop," + Keys.Space + ",apellidom) as Maestro,created_at as Creado, updated_at as Actualizado, status FROM maestros;"; break;
+                case "maestros":        query = "SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros;"; break;
                 case "usuarios":        query = "SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios;"; break;
+                case "movimientos":     query = "SELECT id ID, usuario Usuario, id_registro Registro, tabla Tabla, campo Campo, nuevo Nuevo, viejo Viejo, descripcion Descripcion, created_at Creado, updated_at Actualizado, status FROM movimientos;"; break;
             }
             return query;
         }

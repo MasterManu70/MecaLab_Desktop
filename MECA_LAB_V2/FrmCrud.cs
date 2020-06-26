@@ -37,6 +37,7 @@ namespace MECA_LAB_V2
             panelTitle.BackColor = color;
             btnBuscar.BackColor = color;
             btnRegistro.BackColor = color;
+            btnImprimir.BackColor = color;
 
             dataGridView1.DefaultCellStyle.BackColor = Color.White;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = color;

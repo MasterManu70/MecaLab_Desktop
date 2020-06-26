@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuarioRegistro));
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -46,6 +47,8 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
+            this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +94,7 @@
             // 
             // txtContraseñaC
             // 
+            this.txtContraseñaC.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtContraseñaC.Location = new System.Drawing.Point(130, 143);
             this.txtContraseñaC.MaxLength = 8;
             this.txtContraseñaC.Name = "txtContraseñaC";
@@ -133,6 +137,7 @@
             // 
             // txtContraseña
             // 
+            this.txtContraseña.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtContraseña.Location = new System.Drawing.Point(130, 100);
             this.txtContraseña.MaxLength = 8;
             this.txtContraseña.Name = "txtContraseña";
@@ -143,6 +148,7 @@
             // 
             // txtUsuario
             // 
+            this.txtUsuario.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtUsuario.Location = new System.Drawing.Point(130, 58);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
@@ -243,11 +249,23 @@
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // Curva
+            // 
+            this.Curva.ElipseRadius = 25;
+            this.Curva.TargetControl = this;
+            // 
+            // MoverForm
+            // 
+            this.MoverForm.Fixed = true;
+            this.MoverForm.Horizontal = true;
+            this.MoverForm.TargetControl = this;
+            this.MoverForm.Vertical = true;
+            // 
             // FrmUsuarioRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(570, 439);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
@@ -268,7 +286,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRegistroUsuario";
             this.Load += new System.EventHandler(this.FrmUsuarioRegistro_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmUsuarioRegistro_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -294,5 +311,7 @@
         public System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
+        private Bunifu.Framework.UI.BunifuElipse Curva;
+        private Bunifu.Framework.UI.BunifuDragControl MoverForm;
     }
 }

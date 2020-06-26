@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenu));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlSubMenuDatos2 = new System.Windows.Forms.Panel();
+            this.pnlLado3 = new System.Windows.Forms.Panel();
+            this.btnReportes = new System.Windows.Forms.Button();
+            this.btnMovimientos = new System.Windows.Forms.Button();
+            this.btnConsultas = new System.Windows.Forms.Button();
             this.pnlSubMenuDatos = new System.Windows.Forms.Panel();
             this.pnlLado2 = new System.Windows.Forms.Panel();
             this.btnUsuarios = new System.Windows.Forms.Button();
@@ -40,7 +45,6 @@
             this.btnAsignaturas = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
-            this.btnConsultas = new System.Windows.Forms.Button();
             this.btnPrestamos = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDatos = new System.Windows.Forms.Button();
@@ -49,6 +53,7 @@
             this.pnlLado = new System.Windows.Forms.Panel();
             this.btnPrincipal = new System.Windows.Forms.Button();
             this.btnAlumnos = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnMaximizar = new System.Windows.Forms.Label();
             this.btnMinimizar = new System.Windows.Forms.Label();
@@ -61,7 +66,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pnlContenedor = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1.SuspendLayout();
+            this.pnlSubMenuDatos2.SuspendLayout();
             this.pnlSubMenuDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -71,10 +79,11 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pnlSubMenuDatos2);
+            this.panel1.Controls.Add(this.btnConsultas);
             this.panel1.Controls.Add(this.pnlSubMenuDatos);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.btnCerrarSesion);
-            this.panel1.Controls.Add(this.btnConsultas);
             this.panel1.Controls.Add(this.btnPrestamos);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnDatos);
@@ -83,11 +92,91 @@
             this.panel1.Controls.Add(this.pnlLado);
             this.panel1.Controls.Add(this.btnPrincipal);
             this.panel1.Controls.Add(this.btnAlumnos);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(258, 900);
             this.panel1.TabIndex = 1;
+            // 
+            // pnlSubMenuDatos2
+            // 
+            this.pnlSubMenuDatos2.Controls.Add(this.pnlLado3);
+            this.pnlSubMenuDatos2.Controls.Add(this.btnReportes);
+            this.pnlSubMenuDatos2.Controls.Add(this.btnMovimientos);
+            this.pnlSubMenuDatos2.Location = new System.Drawing.Point(3, 667);
+            this.pnlSubMenuDatos2.Name = "pnlSubMenuDatos2";
+            this.pnlSubMenuDatos2.Size = new System.Drawing.Size(243, 100);
+            this.pnlSubMenuDatos2.TabIndex = 0;
+            this.pnlSubMenuDatos2.Visible = false;
+            // 
+            // pnlLado3
+            // 
+            this.pnlLado3.BackColor = System.Drawing.Color.Orange;
+            this.pnlLado3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLado3.Location = new System.Drawing.Point(35, 5);
+            this.pnlLado3.Name = "pnlLado3";
+            this.pnlLado3.Size = new System.Drawing.Size(10, 25);
+            this.pnlLado3.TabIndex = 14;
+            this.pnlLado3.Visible = false;
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnReportes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReportes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.ForeColor = System.Drawing.Color.White;
+            this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
+            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportes.Location = new System.Drawing.Point(43, 36);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(164, 25);
+            this.btnReportes.TabIndex = 13;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            // 
+            // btnMovimientos
+            // 
+            this.btnMovimientos.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnMovimientos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMovimientos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMovimientos.FlatAppearance.BorderSize = 0;
+            this.btnMovimientos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMovimientos.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMovimientos.ForeColor = System.Drawing.Color.White;
+            this.btnMovimientos.Image = ((System.Drawing.Image)(resources.GetObject("btnMovimientos.Image")));
+            this.btnMovimientos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMovimientos.Location = new System.Drawing.Point(43, 5);
+            this.btnMovimientos.Name = "btnMovimientos";
+            this.btnMovimientos.Size = new System.Drawing.Size(164, 25);
+            this.btnMovimientos.TabIndex = 12;
+            this.btnMovimientos.Text = "Movimientos";
+            this.btnMovimientos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMovimientos.UseVisualStyleBackColor = false;
+            this.btnMovimientos.Click += new System.EventHandler(this.btnMovimientos_Click);
+            // 
+            // btnConsultas
+            // 
+            this.btnConsultas.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnConsultas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnConsultas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConsultas.FlatAppearance.BorderSize = 0;
+            this.btnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultas.ForeColor = System.Drawing.Color.White;
+            this.btnConsultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultas.Image")));
+            this.btnConsultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultas.Location = new System.Drawing.Point(31, 623);
+            this.btnConsultas.Name = "btnConsultas";
+            this.btnConsultas.Size = new System.Drawing.Size(208, 38);
+            this.btnConsultas.TabIndex = 12;
+            this.btnConsultas.Text = "Consultas";
+            this.btnConsultas.UseVisualStyleBackColor = false;
+            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
             // pnlSubMenuDatos
             // 
@@ -98,16 +187,17 @@
             this.pnlSubMenuDatos.Controls.Add(this.btnMaestros);
             this.pnlSubMenuDatos.Controls.Add(this.btnCarreras);
             this.pnlSubMenuDatos.Controls.Add(this.btnAsignaturas);
-            this.pnlSubMenuDatos.Location = new System.Drawing.Point(11, 459);
+            this.pnlSubMenuDatos.Location = new System.Drawing.Point(3, 459);
             this.pnlSubMenuDatos.Name = "pnlSubMenuDatos";
             this.pnlSubMenuDatos.Size = new System.Drawing.Size(243, 165);
             this.pnlSubMenuDatos.TabIndex = 0;
+            this.pnlSubMenuDatos.Visible = false;
             // 
             // pnlLado2
             // 
             this.pnlLado2.BackColor = System.Drawing.Color.Orange;
             this.pnlLado2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlLado2.Location = new System.Drawing.Point(27, 4);
+            this.pnlLado2.Location = new System.Drawing.Point(35, 4);
             this.pnlLado2.Name = "pnlLado2";
             this.pnlLado2.Size = new System.Drawing.Size(10, 25);
             this.pnlLado2.TabIndex = 13;
@@ -216,10 +306,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(13, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(26, 6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(233, 169);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.Size = new System.Drawing.Size(207, 169);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 
@@ -239,24 +329,6 @@
             this.btnCerrarSesion.TabIndex = 9;
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
-            // 
-            // btnConsultas
-            // 
-            this.btnConsultas.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnConsultas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnConsultas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConsultas.FlatAppearance.BorderSize = 0;
-            this.btnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultas.ForeColor = System.Drawing.Color.White;
-            this.btnConsultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultas.Image")));
-            this.btnConsultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultas.Location = new System.Drawing.Point(31, 628);
-            this.btnConsultas.Name = "btnConsultas";
-            this.btnConsultas.Size = new System.Drawing.Size(208, 38);
-            this.btnConsultas.TabIndex = 12;
-            this.btnConsultas.Text = "Consultas";
-            this.btnConsultas.UseVisualStyleBackColor = false;
-            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
             // btnPrestamos
             // 
@@ -380,6 +452,16 @@
             this.btnAlumnos.UseVisualStyleBackColor = false;
             this.btnAlumnos.Click += new System.EventHandler(this.btnAlumnos_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label7.Location = new System.Drawing.Point(4, 211);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(250, 21);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "______________________________";
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -399,7 +481,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1280, 38);
             this.panel2.TabIndex = 7;
-            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             // 
             // btnMaximizar
             // 
@@ -533,6 +614,18 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Curva
+            // 
+            this.Curva.ElipseRadius = 25;
+            this.Curva.TargetControl = this;
+            // 
+            // MoverForm
+            // 
+            this.MoverForm.Fixed = true;
+            this.MoverForm.Horizontal = true;
+            this.MoverForm.TargetControl = this.panel2;
+            this.MoverForm.Vertical = true;
+            // 
             // FrmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -557,6 +650,7 @@
             this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlSubMenuDatos2.ResumeLayout(false);
             this.pnlSubMenuDatos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -584,7 +678,6 @@
         private System.Windows.Forms.Label btnMaximizar;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPrestamos;
         private System.Windows.Forms.Button btnConsultas;
         private System.Windows.Forms.Panel pnlSubMenuDatos;
@@ -598,5 +691,13 @@
         public System.Windows.Forms.Label lblUsuario;
         public System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pnlLado2;
+        private System.Windows.Forms.Label label4;
+        private Bunifu.Framework.UI.BunifuElipse Curva;
+        private Bunifu.Framework.UI.BunifuDragControl MoverForm;
+        private System.Windows.Forms.Panel pnlSubMenuDatos2;
+        private System.Windows.Forms.Button btnReportes;
+        private System.Windows.Forms.Button btnMovimientos;
+        private System.Windows.Forms.Panel pnlLado3;
+        private System.Windows.Forms.Label label7;
     }
 }

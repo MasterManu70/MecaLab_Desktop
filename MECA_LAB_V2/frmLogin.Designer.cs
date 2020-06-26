@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -45,6 +46,8 @@
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -99,9 +102,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(52, 51);
+            this.pictureBox1.Location = new System.Drawing.Point(52, 37);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(164, 143);
+            this.pictureBox1.Size = new System.Drawing.Size(164, 182);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -109,7 +112,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(424, 21);
@@ -120,7 +123,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.ForeColor = System.Drawing.Color.Black;
             this.textBox1.Location = new System.Drawing.Point(399, 125);
@@ -133,7 +136,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(395, 141);
             this.label4.Name = "label4";
@@ -144,7 +147,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(395, 101);
             this.label6.Name = "label6";
@@ -155,7 +158,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(395, 183);
             this.label5.Name = "label5";
@@ -166,7 +169,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(395, 223);
             this.label7.Name = "label7";
@@ -176,7 +179,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.ForeColor = System.Drawing.Color.Black;
             this.textBox2.Location = new System.Drawing.Point(399, 207);
@@ -204,7 +207,7 @@
             // btnMinimizar
             // 
             this.btnMinimizar.AutoSize = true;
-            this.btnMinimizar.BackColor = System.Drawing.Color.White;
+            this.btnMinimizar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnMinimizar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimizar.ForeColor = System.Drawing.Color.Black;
             this.btnMinimizar.Location = new System.Drawing.Point(678, 3);
@@ -217,7 +220,7 @@
             // btnCerrar
             // 
             this.btnCerrar.AutoSize = true;
-            this.btnCerrar.BackColor = System.Drawing.Color.White;
+            this.btnCerrar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCerrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.Color.Black;
             this.btnCerrar.Location = new System.Drawing.Point(702, 3);
@@ -242,12 +245,24 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // Curva
+            // 
+            this.Curva.ElipseRadius = 25;
+            this.Curva.TargetControl = this;
+            // 
+            // MoverForm
+            // 
+            this.MoverForm.Fixed = true;
+            this.MoverForm.Horizontal = true;
+            this.MoverForm.TargetControl = this;
+            this.MoverForm.Vertical = true;
+            // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnlogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(730, 408);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnMinimizar);
@@ -266,12 +281,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(730, 408);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(730, 408);
             this.Name = "FrmLogin";
-            this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmLogin_MouseMove);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -298,6 +313,8 @@
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Button btnSalir;
+        private Bunifu.Framework.UI.BunifuElipse Curva;
+        private Bunifu.Framework.UI.BunifuDragControl MoverForm;
     }
 }
 

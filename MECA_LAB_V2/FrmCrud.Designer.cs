@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrud));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.btnRegistro = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -40,6 +40,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblFiltrar = new System.Windows.Forms.Label();
+            this.cmbFiltro = new System.Windows.Forms.ComboBox();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -109,7 +112,7 @@
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(37, 139);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(951, 689);
+            this.groupBox1.Size = new System.Drawing.Size(951, 672);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             // 
@@ -121,24 +124,24 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Orange;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Orange;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Orange;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Orange;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
@@ -148,7 +151,7 @@
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(945, 670);
+            this.dataGridView1.Size = new System.Drawing.Size(945, 653);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
@@ -190,12 +193,57 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // lblFiltrar
+            // 
+            this.lblFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFiltrar.AutoSize = true;
+            this.lblFiltrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltrar.Location = new System.Drawing.Point(656, 92);
+            this.lblFiltrar.Name = "lblFiltrar";
+            this.lblFiltrar.Size = new System.Drawing.Size(82, 21);
+            this.lblFiltrar.TabIndex = 15;
+            this.lblFiltrar.Text = "Filtrar por";
+            // 
+            // cmbFiltro
+            // 
+            this.cmbFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFiltro.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFiltro.FormattingEnabled = true;
+            this.cmbFiltro.Location = new System.Drawing.Point(744, 90);
+            this.cmbFiltro.Name = "cmbFiltro";
+            this.cmbFiltro.Size = new System.Drawing.Size(241, 29);
+            this.cmbFiltro.TabIndex = 16;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImprimir.BackColor = System.Drawing.Color.Gray;
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(858, 817);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(130, 33);
+            this.btnImprimir.TabIndex = 17;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            // 
             // FrmCrud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1022, 862);
+            this.Controls.Add(this.btnImprimir);
+            this.Controls.Add(this.cmbFiltro);
+            this.Controls.Add(this.lblFiltrar);
             this.Controls.Add(this.panelTitle);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
@@ -219,7 +267,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTitle;
-        private System.Windows.Forms.Button btnRegistro;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -227,5 +274,9 @@
         private System.Windows.Forms.Button btnBuscar;
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.Button btnRegistro;
+        public System.Windows.Forms.Label lblFiltrar;
+        public System.Windows.Forms.ComboBox cmbFiltro;
+        public System.Windows.Forms.Button btnImprimir;
     }
 }

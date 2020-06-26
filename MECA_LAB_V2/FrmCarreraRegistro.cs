@@ -35,7 +35,6 @@ namespace MECA_LAB_V2
             }
         }
         //Variables Publicas y Privadas
-        private int xClick = 0, yClick = 0;
         //Formulario Carga o Cierra
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -86,14 +85,6 @@ namespace MECA_LAB_V2
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void FrmCarreraDatos_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left)
-            { xClick = e.X; yClick = e.Y; }
-            else
-            { this.Left = this.Left + (e.X - xClick); this.Top = this.Top + (e.Y - yClick); }
-        }
-
         //Validaciones
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {

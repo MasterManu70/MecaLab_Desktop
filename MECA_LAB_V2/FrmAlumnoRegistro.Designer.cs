@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAlumnoRegistro));
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
@@ -52,6 +53,8 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,6 +125,7 @@
             // 
             // txtTelefono
             // 
+            this.txtTelefono.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTelefono.Location = new System.Drawing.Point(84, 385);
             this.txtTelefono.MaxLength = 10;
             this.txtTelefono.Multiline = true;
@@ -141,6 +145,7 @@
             // 
             // txtCorreo
             // 
+            this.txtCorreo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCorreo.Location = new System.Drawing.Point(84, 331);
             this.txtCorreo.MaxLength = 255;
             this.txtCorreo.Multiline = true;
@@ -177,6 +182,7 @@
             // 
             // txtMaterno
             // 
+            this.txtMaterno.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtMaterno.Location = new System.Drawing.Point(84, 220);
             this.txtMaterno.MaxLength = 60;
             this.txtMaterno.Multiline = true;
@@ -196,6 +202,7 @@
             // 
             // txtPaterno
             // 
+            this.txtPaterno.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtPaterno.Location = new System.Drawing.Point(84, 165);
             this.txtPaterno.MaxLength = 60;
             this.txtPaterno.Multiline = true;
@@ -215,6 +222,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNombre.Location = new System.Drawing.Point(84, 110);
             this.txtNombre.MaxLength = 60;
             this.txtNombre.Multiline = true;
@@ -225,6 +233,7 @@
             // 
             // txtMatricula
             // 
+            this.txtMatricula.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtMatricula.Location = new System.Drawing.Point(84, 56);
             this.txtMatricula.MaxLength = 8;
             this.txtMatricula.Multiline = true;
@@ -307,11 +316,23 @@
             this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // Curva
+            // 
+            this.Curva.ElipseRadius = 25;
+            this.Curva.TargetControl = this;
+            // 
+            // MoverForm
+            // 
+            this.MoverForm.Fixed = true;
+            this.MoverForm.Horizontal = true;
+            this.MoverForm.TargetControl = this;
+            this.MoverForm.Vertical = true;
+            // 
             // FrmAlumnoRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(570, 630);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnCancelar);
@@ -332,7 +353,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAlumnoDatos";
             this.Load += new System.EventHandler(this.FrmAlumnoRegistro_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmAlumnoDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -365,5 +385,7 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEliminar;
+        private Bunifu.Framework.UI.BunifuElipse Curva;
+        private Bunifu.Framework.UI.BunifuDragControl MoverForm;
     }
 }

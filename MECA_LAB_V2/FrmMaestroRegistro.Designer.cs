@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMaestroRegistro));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMaterno = new System.Windows.Forms.TextBox();
@@ -44,6 +45,8 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
+            this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +67,7 @@
             // 
             // txtMaterno
             // 
+            this.txtMaterno.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtMaterno.Location = new System.Drawing.Point(87, 177);
             this.txtMaterno.MaxLength = 60;
             this.txtMaterno.Name = "txtMaterno";
@@ -73,6 +77,7 @@
             // 
             // txtPaterno
             // 
+            this.txtPaterno.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtPaterno.Location = new System.Drawing.Point(87, 123);
             this.txtPaterno.MaxLength = 60;
             this.txtPaterno.Name = "txtPaterno";
@@ -100,6 +105,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNombre.Location = new System.Drawing.Point(87, 69);
             this.txtNombre.MaxLength = 60;
             this.txtNombre.Name = "txtNombre";
@@ -211,11 +217,23 @@
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // Curva
+            // 
+            this.Curva.ElipseRadius = 25;
+            this.Curva.TargetControl = this;
+            // 
+            // MoverForm
+            // 
+            this.MoverForm.Fixed = true;
+            this.MoverForm.Horizontal = true;
+            this.MoverForm.TargetControl = this;
+            this.MoverForm.Vertical = true;
+            // 
             // FrmMaestroRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(570, 421);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
@@ -234,7 +252,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMaestroDatos";
             this.Load += new System.EventHandler(this.FrmMaestroRegistro_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmMaestroDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -259,5 +276,7 @@
         public System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
+        private Bunifu.Framework.UI.BunifuElipse Curva;
+        private Bunifu.Framework.UI.BunifuDragControl MoverForm;
     }
 }

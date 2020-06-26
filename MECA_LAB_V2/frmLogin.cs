@@ -12,7 +12,7 @@ namespace MECA_LAB_V2
             InitializeComponent();
         }
         //Variables Publicas y Privadas
-        public int xClick = 0, yClick = 0;
+
 
         //Formulario carga o cierra
         //Desarrollo
@@ -38,7 +38,7 @@ namespace MECA_LAB_V2
             FrmMenu.usuarioNivel = int.Parse(ds.Tables["tabla"].Rows[0][1].ToString());
 
             FrmMenu.showed = true;
-
+       
             this.Close();
             textBox1.Clear();
             textBox2.Clear();
@@ -56,13 +56,6 @@ namespace MECA_LAB_V2
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-        private void FrmLogin_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left)
-            { xClick = e.X; yClick = e.Y; }
-            else
-            { this.Left = this.Left + (e.X - xClick); this.Top = this.Top + (e.Y - yClick); }
         }
         //Validaciones
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)

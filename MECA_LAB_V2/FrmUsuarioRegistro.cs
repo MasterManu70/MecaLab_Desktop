@@ -14,7 +14,6 @@ namespace MECA_LAB_V2
             InitializeComponent();
         }
         //Variables Publicas y Privadas
-        private int xClick = 0, yClick = 0;
         //Carga o cierra Formulario
         private void FrmUsuarioRegistro_Load(object sender, EventArgs e)
         {
@@ -81,13 +80,6 @@ namespace MECA_LAB_V2
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-        private void FrmUsuarioRegistro_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left)
-            { xClick = e.X; yClick = e.Y; }
-            else
-            { this.Left = this.Left + (e.X - xClick); this.Top = this.Top + (e.Y - yClick); }
         }
         //Validaciones
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)

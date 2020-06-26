@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAsignaturaRegistro));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -40,6 +41,8 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
+            this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +59,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNombre.Location = new System.Drawing.Point(87, 72);
             this.txtNombre.MaxLength = 60;
             this.txtNombre.Name = "txtNombre";
@@ -168,11 +172,23 @@
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // Curva
+            // 
+            this.Curva.ElipseRadius = 25;
+            this.Curva.TargetControl = this;
+            // 
+            // MoverForm
+            // 
+            this.MoverForm.Fixed = true;
+            this.MoverForm.Horizontal = true;
+            this.MoverForm.TargetControl = this;
+            this.MoverForm.Vertical = true;
+            // 
             // FrmAsignaturaRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(570, 309);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
@@ -193,7 +209,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAsignaturaDatos";
             this.Load += new System.EventHandler(this.FrmAsignaturaRegistro_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmAsignaturaDatos_MouseMove);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -214,5 +229,7 @@
         public System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
+        private Bunifu.Framework.UI.BunifuElipse Curva;
+        private Bunifu.Framework.UI.BunifuDragControl MoverForm;
     }
 }
