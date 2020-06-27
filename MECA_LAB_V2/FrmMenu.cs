@@ -155,10 +155,12 @@ namespace MECA_LAB_V2
             if (this.WindowState == FormWindowState.Normal)
             {
                 this.WindowState = FormWindowState.Maximized;
+                Curva.ElipseRadius = 0;
             }
             else
             {
                 this.WindowState = FormWindowState.Normal;
+                Curva.ElipseRadius = 5;
             }
         }
         private void btnMinimizar_Click(object sender, EventArgs e)

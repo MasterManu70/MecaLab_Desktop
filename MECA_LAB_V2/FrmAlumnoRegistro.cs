@@ -79,55 +79,57 @@ namespace MECA_LAB_V2
                 var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
-                    if(Funciones.Insert("alumnos", valores))
-                    {
-                        for (int i = 1; i < valores.Count; i++)
-                        {
-                            if (valores[i].Replace("'",String.Empty) != registro[i] && valores[i] != "NOW()" && (registro[i] != "True" || registro[i] != "False"))
-                            {
-                                List<string> movimiento = new List<string>();
-                                movimiento.Add("0");
-                                movimiento.Add(FrmMenu.usuarioID.ToString());
-                                movimiento.Add(id.ToString());
-                                movimiento.Add("'alumnos'");
-                                movimiento.Add("'" + columnas[i].ToString() + "'");
-                                movimiento.Add("'" + valores[i] + "'");
-                                movimiento.Add("'" + registro[i] + "'");
-                                movimiento.Add("'MODIFICACIÓN'");
-                                movimiento.Add("NOW()");
-                                movimiento.Add("NOW()");
-                                movimiento.Add("1");
-                                movimientos.Add(movimiento);
-                            }
-                        }
+                    Funciones.Insert("alumnos", valores);
+                    //if ()
+                    //{
+                    //    for (int i = 1; i < valores.Count; i++)
+                    //    {
+                    //        if (valores[i].Replace("'",String.Empty) != registro[i] && valores[i] != "NOW()" && (registro[i] != "True" || registro[i] != "False"))
+                    //        {
+                    //            List<string> movimiento = new List<string>();
+                    //            movimiento.Add("0");
+                    //            movimiento.Add(FrmMenu.usuarioID.ToString());
+                    //            movimiento.Add(id.ToString());
+                    //            movimiento.Add("'alumnos'");
+                    //            movimiento.Add("'" + columnas[i].ToString() + "'");
+                    //            movimiento.Add("'" + valores[i] + "'");
+                    //            movimiento.Add("'" + registro[i] + "'");
+                    //            movimiento.Add("'MODIFICACIÓN'");
+                    //            movimiento.Add("NOW()");
+                    //            movimiento.Add("NOW()");
+                    //            movimiento.Add("1");
+                    //            movimientos.Add(movimiento);
+                    //        }
+                    //    }
 
-                        foreach (List<string> item in movimientos)
-                        {
-                            Funciones.Insert("movimientos",item);
-                        }
-                        this.Close();
-                    }
+                    //    foreach (List<string> item in movimientos)
+                    //    {
+                    //        Funciones.Insert("movimientos",item);
+                    //    }
+                    //}
+                    this.Close();
                 }
             }
             else
             {
-                if(Funciones.Insert("alumnos", valores))
-                {
-                    ds = Conexion.MySQL("SELECT Last_Insert_ID();");
-                    movimiento.Add("0");
-                    movimiento.Add(FrmMenu.usuarioID.ToString());
-                    movimiento.Add(ds.Tables["tabla"].Rows[0][0].ToString());
-                    movimiento.Add("'alumnos'");
-                    movimiento.Add("' '");
-                    movimiento.Add("' '");
-                    movimiento.Add("' '");
-                    movimiento.Add("'INSERCIÓN'");
-                    movimiento.Add("NOW()");
-                    movimiento.Add("NOW()");
-                    movimiento.Add("1");
-                    Funciones.Insert("movimientos",movimiento);
-                    this.Close();
-                }
+                Funciones.Insert("alumnos", valores);
+                //if ()
+                //{
+                //    ds = Conexion.MySQL("SELECT Last_Insert_ID();");
+                //    movimiento.Add("0");
+                //    movimiento.Add(FrmMenu.usuarioID.ToString());
+                //    movimiento.Add(ds.Tables["tabla"].Rows[0][0].ToString());
+                //    movimiento.Add("'alumnos'");
+                //    movimiento.Add("' '");
+                //    movimiento.Add("' '");
+                //    movimiento.Add("' '");
+                //    movimiento.Add("'INSERCIÓN'");
+                //    movimiento.Add("NOW()");
+                //    movimiento.Add("NOW()");
+                //    movimiento.Add("1");
+                //    Funciones.Insert("movimientos",movimiento);
+                //}
+                this.Close();
             }
         }
         private void btnEliminar_Click(object sender, EventArgs e)

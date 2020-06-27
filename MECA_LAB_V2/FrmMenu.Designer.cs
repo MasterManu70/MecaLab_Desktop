@@ -616,7 +616,7 @@
             // 
             // Curva
             // 
-            this.Curva.ElipseRadius = 25;
+            this.Curva.ElipseRadius = 0;
             this.Curva.TargetControl = this;
             // 
             // MoverForm
