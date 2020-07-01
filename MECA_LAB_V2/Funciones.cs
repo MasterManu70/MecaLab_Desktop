@@ -19,7 +19,7 @@ namespace MECA_LAB_V2
 
             try
             {
-                ds = Conexion.MySQL("select distinct * from " + tabla + ";");
+                ds = Conexion.MySQL(GetQuery(tabla));
             }
             catch (MySqlException ex)
             {
@@ -119,7 +119,6 @@ namespace MECA_LAB_V2
             }
             return query;
         }
-
 
         //Método Insert: Inserta o actualiza los registros de una tabla dependiendo de qué tabla se le cargue al ser llamado.
         // - tabla      : Nombre de la tabla

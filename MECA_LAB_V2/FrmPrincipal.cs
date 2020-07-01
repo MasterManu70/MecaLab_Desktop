@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,6 +7,12 @@ namespace MECA_LAB_V2
 {
     public partial class FrmPrincipal : Form
     {
+        //Listas de llaves primarias correspondiente a cada registro
+        public static List<int> maestros = new List<int>();
+        public static List<int> asignaturas = new List<int>();
+        public static List<int> laboratorios = new List<int>();
+
+        int codigo = 0;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -14,19 +21,14 @@ namespace MECA_LAB_V2
         //Formulario carga o cierra
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            cmbAsignatura.SelectedIndex = 0;
-            cmbLaboratorio.SelectedIndex = 0;
-            cmbMaestro.SelectedIndex = 0;
+            Funciones.TableToCombo(cmbMaestro, maestros, "maestros");
+            Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas");
+            Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios");
 
             dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSteelBlue;
 
-            dataGridView1.Columns.Add("id", "ID");
-            dataGridView1.Columns.Add("nombre", "Nombre");
-            dataGridView1.Columns.Add("comentario", "Comentario");
 
-            dataGridView1.Rows.Add("0001","Piston", "Esta muy bien");
-            dataGridView1.Rows.Add("0002","Tubos", "Bien entubados");
         }
         //Desarrollo
         private void button1_Click(object sender, EventArgs e)
@@ -73,6 +75,15 @@ namespace MECA_LAB_V2
             txtComentario.Clear();
             dataGridView1.Rows.Clear();
             txtCodigo.Focus();
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            if (!Int32.TryParse(txtCodigo.Text, out codigo))
+            {
+                txtCodigo.Clear();
+                return;
+            }
         }
     }
 }
