@@ -15,6 +15,9 @@ namespace MECA_LAB_V2
         //Método TableToCombo: Se trae consigo todos los registros de una tabla y a su vez sus llaves primarias.
         public static void TableToCombo(ComboBox cmb, List<int> llaves, string tabla)
         {
+            cmb.Items.Clear();
+            llaves.Clear();
+
             DataSet ds;
 
             try
@@ -101,22 +104,36 @@ namespace MECA_LAB_V2
         }
 
         //Método GetQuery: Devuelve la consulta correspondiente dependiendo del nombre de la tabla que se envíe al ser llamado el método.
-        public static string GetQuery(string tabla)
+        public static string GetQuery(string tabla, int id = 0, int status = 1)
         {
             string query = "";
             tabla = tabla.ToLower();
             switch(tabla)
             {
-                case "alumnos":         query = "SELECT alumnos.id as ID, alumnos.matricula as Matrícula, alumnos.nombre as Nombre, alumnos.apellidop as Paterno, alumnos.apellidom as Materno, carreras.carrera as Carrera, alumnos.correo as Correo, alumnos.telefono as Teléfono, alumnos.created_at as Creado, alumnos.updated_at as Actualizado, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id;"; break;
-                case "articulos":       query = "SELECT id as ID, articulo as Artículo, comentario as Comentario, disponible as Disponible, created_at as Creado, updated_at as Actualizado, status FROM articulos;"; break;
-                case "asignaturas":     query = "SELECT id as ID, asignatura as Asignatura, created_at as Creado, updated_at as Actualizado, status FROM asignaturas;"; break;
-                case "carreras":        query = "SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras;";  break;
-                case "laboratorios":    query = "SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios;"; break;
+                case "alumnos":         query = "SELECT * FROM (SELECT alumnos.id as ID, alumnos.matricula as Matrícula, alumnos.nombre as Nombre, alumnos.apellidop as Paterno, alumnos.apellidom as Materno, carreras.carrera as Carrera, alumnos.correo as Correo, alumnos.telefono as Teléfono, alumnos.created_at as Creado, alumnos.updated_at as Actualizado, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id) as Estudiante"; break;
+                case "articulos":       query = "SELECT id as ID, articulo as Artículo, comentario as Comentario, disponible as Disponible, created_at as Creado, updated_at as Actualizado, status FROM articulos"; break;
+                case "asignaturas":     query = "SELECT id as ID, asignatura as Asignatura, created_at as Creado, updated_at as Actualizado, status FROM asignaturas"; break;
+                case "carreras":        query = "SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras";  break;
+                case "laboratorios":    query = "SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios"; break;
                 //No me sirvio nomas por el keys.space da error igual no tiene nada de malo poner ''   case "maestros":        query = "SELECT id as ID, concat(nombre," + Keys.Space + ",apellidop," + Keys.Space + ",apellidom) as Maestro,created_at as Creado, updated_at as Actualizado, status FROM maestros;"; break;
-                case "maestros":        query = "SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros;"; break;
-                case "usuarios":        query = "SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios;"; break;
-                case "movimientos":     query = "SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id;"; break;
+                case "maestros":        query = "SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros"; break;
+                case "usuarios":        query = "SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios"; break;
+                case "movimientos":     query = "SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id"; break;
             }
+
+            if (id != 0) 
+            { 
+                query += " WHERE ID = " + id;
+                if (status == 1 || status == 0) query += " AND status = " + status;
+            }
+
+            if (id == 0)
+            {
+                if (status == 1 || status == 0) query += " WHERE status = " + status;
+            }
+
+            query += ";";
+
             return query;
         }
 

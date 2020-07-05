@@ -58,6 +58,10 @@ namespace MECA_LAB_V2
             AbrirFormEnPanel(frmPrincipal);
             frmPrincipal.txtCodigo.Focus();
 
+            Funciones.TableToCombo(frmPrincipal.cmbMaestro, FrmPrincipal.maestros, "maestros");
+            Funciones.TableToCombo(frmPrincipal.cmbAsignatura, FrmPrincipal.asignaturas, "asignaturas");
+            Funciones.TableToCombo(frmPrincipal.cmbLaboratorio, FrmPrincipal.laboratorios, "laboratorios");
+
         }
         private void btnArticulos_Click(object sender, EventArgs e)
         {

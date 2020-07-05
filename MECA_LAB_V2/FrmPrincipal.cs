@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,12 +8,21 @@ namespace MECA_LAB_V2
 {
     public partial class FrmPrincipal : Form
     {
+        //IDs necesarios para llevar a cabo el préstamo
+        int prestamoID = 0;
+        int alumnoID = 0;
+
         //Listas de llaves primarias correspondiente a cada registro
         public static List<int> maestros = new List<int>();
         public static List<int> asignaturas = new List<int>();
         public static List<int> laboratorios = new List<int>();
 
+        //Lista de llaves primarias de cada artículo en la lista
+        public static List<int> articulos = new List<int>();
+
         int codigo = 0;
+        int matricula = 0;
+
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -28,7 +38,9 @@ namespace MECA_LAB_V2
             dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSteelBlue;
 
-
+            dataGridView1.Columns.Add("ID","ID");
+            dataGridView1.Columns.Add("Artículo", "Articulo");
+            dataGridView1.Columns.Add("Comentario", "Comentario");
         }
         //Desarrollo
         private void button1_Click(object sender, EventArgs e)
@@ -79,10 +91,43 @@ namespace MECA_LAB_V2
 
         private void txtCodigo_TextChanged(object sender, EventArgs e)
         {
+            DataSet ds;
             if (!Int32.TryParse(txtCodigo.Text, out codigo))
             {
                 txtCodigo.Clear();
                 return;
+            }
+
+            if (txtCodigo.Text.Length == 4)
+            {
+                ds = Conexion.MySQL("SELECT id,articulo,comentario FROM articulos WHERE id = " + codigo + ";");
+
+                if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
+
+                dataGridView1.Rows.Add();
+                int row = dataGridView1.RowCount - 1;
+                dataGridView1.Rows[row].Cells[0].Value = ds.Tables["tabla"].Rows[0][0].ToString();
+                dataGridView1.Rows[row].Cells[1].Value = ds.Tables["tabla"].Rows[0][1].ToString();
+                dataGridView1.Rows[row].Cells[2].Value = ds.Tables["tabla"].Rows[0][2].ToString();
+                txtCodigo.Clear();
+            }
+        }
+
+        private void txtMatricula_TextChanged(object sender, EventArgs e)
+        {
+            DataSet ds;
+            if (!Int32.TryParse(txtMatricula.Text, out matricula))
+            {
+                txtMatricula.Clear();
+                return;
+            }
+
+            if (txtMatricula.Text.Length == 8)
+            {
+                ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom, ' ') from alumnos where matricula = " + matricula + ";");
+
+                alumnoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
+                txtAlumno.Text = ds.Tables["tabla"].Rows[0][1].ToString();
             }
         }
     }

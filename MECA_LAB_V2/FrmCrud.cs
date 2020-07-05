@@ -33,6 +33,7 @@ namespace MECA_LAB_V2
         {
             //DISEÑO
             labelTitle.Text = tabla;
+            cmbMostrar.Text = "Alta";
 
             panelTitle.BackColor = color;
             btnBuscar.BackColor = color;
@@ -47,7 +48,7 @@ namespace MECA_LAB_V2
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
-            string query = Funciones.GetQuery(tabla);
+            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = Conexion.MySQL(query); 
             dataGridView1.DataMember = "tabla";
