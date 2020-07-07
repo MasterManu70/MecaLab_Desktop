@@ -91,6 +91,7 @@ namespace MECA_LAB_V2
 
         private void txtCodigo_TextChanged(object sender, EventArgs e)
         {
+            int rows = 0;
             DataSet ds;
             if (!Int32.TryParse(txtCodigo.Text, out codigo))
             {
@@ -100,6 +101,17 @@ namespace MECA_LAB_V2
 
             if (txtCodigo.Text.Length == 4)
             {
+                rows = dataGridView1.Rows.Count;
+                for (int i = 0; i < rows; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == Convert.ToString(codigo))
+                    {
+                        MessageBox.Show("El artículo ya existe en la lista.");
+                        txtCodigo.Clear();
+                        return;
+                    }
+                }
+
                 ds = Conexion.MySQL("SELECT id,articulo,comentario FROM articulos WHERE id = " + codigo + ";");
 
                 if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
@@ -126,8 +138,18 @@ namespace MECA_LAB_V2
             {
                 ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom, ' ') from alumnos where matricula = " + matricula + ";");
 
+                //Validar si el estudiante está dado de alta o de baja
                 alumnoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
                 txtAlumno.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+            }
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var respuesta = MessageBox.Show("¿Está seguro de eliminar este artículo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (respuesta == DialogResult.Yes)
+            {
+                dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
             }
         }
     }

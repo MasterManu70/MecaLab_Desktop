@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,6 +11,8 @@ namespace MECA_LAB_V2
         public static int usuarioID = 0;
         public static int usuarioNivel = 0;
         public static bool showed = false;
+
+        public static DataSet ds;
         public FrmMenu()
         {
             InitializeComponent();
@@ -58,10 +61,14 @@ namespace MECA_LAB_V2
             AbrirFormEnPanel(frmPrincipal);
             frmPrincipal.txtCodigo.Focus();
 
-            Funciones.TableToCombo(frmPrincipal.cmbMaestro, FrmPrincipal.maestros, "maestros");
-            Funciones.TableToCombo(frmPrincipal.cmbAsignatura, FrmPrincipal.asignaturas, "asignaturas");
-            Funciones.TableToCombo(frmPrincipal.cmbLaboratorio, FrmPrincipal.laboratorios, "laboratorios");
+            ds = Conexion.MySQL("SELECT COUNT(id) FROM maestros WHERE status = 1;");
+            if (ds.Tables["tabla"].Rows[0][0].ToString() != frmPrincipal.cmbMaestro.Items.Count.ToString()) Funciones.TableToCombo(frmPrincipal.cmbMaestro, FrmPrincipal.maestros, "maestros");
 
+            ds = Conexion.MySQL("SELECT COUNT(id) FROM asignaturas WHERE status = 1;");
+            if (ds.Tables["tabla"].Rows[0][0].ToString() != frmPrincipal.cmbAsignatura.Items.Count.ToString()) Funciones.TableToCombo(frmPrincipal.cmbAsignatura, FrmPrincipal.asignaturas, "asignaturas");
+
+            ds = Conexion.MySQL("SELECT COUNT(id) FROM laboratorios WHERE status = 1;");
+            if (ds.Tables["tabla"].Rows[0][0].ToString() != frmPrincipal.cmbLaboratorio.Items.Count.ToString()) Funciones.TableToCombo(frmPrincipal.cmbLaboratorio, FrmPrincipal.laboratorios, "laboratorios");
         }
         private void btnArticulos_Click(object sender, EventArgs e)
         {
