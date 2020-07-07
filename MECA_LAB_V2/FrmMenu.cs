@@ -63,12 +63,48 @@ namespace MECA_LAB_V2
 
             ds = Conexion.MySQL("SELECT COUNT(id) FROM maestros WHERE status = 1;");
             if (ds.Tables["tabla"].Rows[0][0].ToString() != frmPrincipal.cmbMaestro.Items.Count.ToString()) Funciones.TableToCombo(frmPrincipal.cmbMaestro, FrmPrincipal.maestros, "maestros");
+            else
+            {
+                ds = Conexion.MySQL("SELECT id FROM maestros WHERE status = 1;");
+                for (int i = 0; i < FrmPrincipal.maestros.Count; i++)
+                {
+                    if (ds.Tables["tabla"].Rows[i][0].ToString() != FrmPrincipal.maestros[i].ToString())
+                    {
+                        Funciones.TableToCombo(frmPrincipal.cmbMaestro, FrmPrincipal.maestros, "maestros");
+                        return;
+                    }
+                }
+            }
 
             ds = Conexion.MySQL("SELECT COUNT(id) FROM asignaturas WHERE status = 1;");
             if (ds.Tables["tabla"].Rows[0][0].ToString() != frmPrincipal.cmbAsignatura.Items.Count.ToString()) Funciones.TableToCombo(frmPrincipal.cmbAsignatura, FrmPrincipal.asignaturas, "asignaturas");
+            else
+            {
+                ds = Conexion.MySQL("SELECT id FROM asignaturas WHERE status = 1;");
+                for (int i = 0; i < FrmPrincipal.asignaturas.Count; i++)
+                {
+                    if (ds.Tables["tabla"].Rows[i][0].ToString() != FrmPrincipal.asignaturas[i].ToString())
+                    {
+                        Funciones.TableToCombo(frmPrincipal.cmbAsignatura, FrmPrincipal.asignaturas, "asignaturas");
+                        return;
+                    }
+                }
+            }
 
             ds = Conexion.MySQL("SELECT COUNT(id) FROM laboratorios WHERE status = 1;");
             if (ds.Tables["tabla"].Rows[0][0].ToString() != frmPrincipal.cmbLaboratorio.Items.Count.ToString()) Funciones.TableToCombo(frmPrincipal.cmbLaboratorio, FrmPrincipal.laboratorios, "laboratorios");
+            else
+            {
+                ds = Conexion.MySQL("SELECT id FROM laboratorios WHERE status = 1;");
+                for (int i = 0; i < FrmPrincipal.laboratorios.Count; i++)
+                {
+                    if (ds.Tables["tabla"].Rows[i][0].ToString() != FrmPrincipal.laboratorios[i].ToString())
+                    {
+                        Funciones.TableToCombo(frmPrincipal.cmbLaboratorio, FrmPrincipal.laboratorios, "laboratorios");
+                        return;
+                    }
+                }
+            }
         }
         private void btnArticulos_Click(object sender, EventArgs e)
         {

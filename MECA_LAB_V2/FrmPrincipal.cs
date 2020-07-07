@@ -11,6 +11,7 @@ namespace MECA_LAB_V2
         //IDs necesarios para llevar a cabo el préstamo
         int prestamoID = 0;
         int alumnoID = 0;
+        string alumno = "";
 
         //Listas de llaves primarias correspondiente a cada registro
         public static List<int> maestros = new List<int>();
@@ -80,7 +81,7 @@ namespace MECA_LAB_V2
         void borrarContenido() {
             txtCodigo.Clear();
             txtMatricula.Clear();
-            txtProducto.Clear();
+            txtArticulo.Clear();
             cmbAsignatura.SelectedIndex = 0;
             cmbLaboratorio.SelectedIndex = 0;
             cmbMaestro.SelectedIndex = 0;
@@ -112,15 +113,24 @@ namespace MECA_LAB_V2
                     }
                 }
 
-                ds = Conexion.MySQL("SELECT id,articulo,comentario FROM articulos WHERE id = " + codigo + ";");
+                ds = Conexion.MySQL("SELECT id,articulo,comentario,status FROM articulos WHERE id = " + codigo + ";");
 
                 if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
+
+                if (ds.Tables["tabla"].Rows[0][3].ToString() == "False")
+                {
+                    MessageBox.Show("El artículo se encuentra dado de baja del sistema.");
+                    txtCodigo.Clear();
+                    return;
+                }
 
                 dataGridView1.Rows.Add();
                 int row = dataGridView1.RowCount - 1;
                 dataGridView1.Rows[row].Cells[0].Value = ds.Tables["tabla"].Rows[0][0].ToString();
                 dataGridView1.Rows[row].Cells[1].Value = ds.Tables["tabla"].Rows[0][1].ToString();
+                txtArticulo.Text = ds.Tables["tabla"].Rows[0][1].ToString();
                 dataGridView1.Rows[row].Cells[2].Value = ds.Tables["tabla"].Rows[0][2].ToString();
+                txtComentario.Text = ds.Tables["tabla"].Rows[0][2].ToString();
                 txtCodigo.Clear();
             }
         }
@@ -136,11 +146,17 @@ namespace MECA_LAB_V2
 
             if (txtMatricula.Text.Length == 8)
             {
-                ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom, ' ') from alumnos where matricula = " + matricula + ";");
+                ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom, ' '),status from alumnos where matricula = " + matricula + ";");
+
+                if (ds.Tables["tabla"].Rows[0][2].ToString() == "False")
+                {
+                    MessageBox.Show("El alumno se encuentra dado de baja del sistema.");
+                    return;
+                }
 
                 //Validar si el estudiante está dado de alta o de baja
                 alumnoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
-                txtAlumno.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+                txtAlumno.Text = alumno = ds.Tables["tabla"].Rows[0][1].ToString();
             }
         }
 
