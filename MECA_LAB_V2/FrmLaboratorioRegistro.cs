@@ -49,13 +49,13 @@ namespace MECA_LAB_V2
                 var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
-                    Funciones.Insert("asignaturas", valores);
+                    Funciones.Insert("laboratorios", valores);
                     this.Close();
                 }
             }
             else
             {
-                Funciones.Insert("asignaturas", valores);
+                Funciones.Insert("laboratorios", valores);
                 //Codigo Mysql
                 this.Close();
             }
