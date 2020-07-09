@@ -35,6 +35,7 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            DataSet ds;
             List<string> valores = new List<string>();
 
             if (txtUsuario.Text == "") { MessageBox.Show("Ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtUsuario.Focus(); return; }
@@ -44,13 +45,20 @@ namespace MECA_LAB_V2
             if (cmbNivel.Text == "") { MessageBox.Show("Seleccione el Nivel", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbNivel.Focus(); return; }
             if (txtContraseña.Text != txtContraseñaC.Text) { MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtContraseña.Focus(); return; }
 
+            string status = "1";
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("SELECT status FROM usuarios WHERE id = " + id + ";");
+                status = ds.Tables["tabla"].Rows[0][0].ToString();
+            }
+
             valores.Add(id.ToString());
             valores.Add("'" + txtUsuario.Text + "'");
             valores.Add("md5('" + txtContraseña.Text + "')");
             valores.Add("'" + cmbNivel.Text + "'");
             valores.Add("NOW()");
             valores.Add("NOW()");
-            valores.Add("1");
+            valores.Add(status);
 
             if (id != 0)
             {

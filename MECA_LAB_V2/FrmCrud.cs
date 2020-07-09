@@ -62,9 +62,16 @@ namespace MECA_LAB_V2
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-            btnRegistroForm = Rutas.GetForm(tabla,id);
-            btnRegistroForm.ShowDialog();
+            try
+            {
+                int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                btnRegistroForm = Rutas.GetForm(tabla, id);
+                btnRegistroForm.ShowDialog();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void FrmCrud_Activated(object sender, EventArgs e)

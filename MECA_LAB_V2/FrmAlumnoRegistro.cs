@@ -61,17 +61,24 @@ namespace MECA_LAB_V2
             if (txtCorreo.Text == "") { MessageBox.Show("Ingrese el correo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtCorreo.Focus(); return; }
             if (txtTelefono.Text == "") { MessageBox.Show("Ingrese el telefono", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtTelefono.Focus(); return; }
 
+            string status = "1";
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("SELECT status FROM alumnos WHERE id = " + id + ";");
+                status = ds.Tables["tabla"].Rows[0][0].ToString();
+            }
+
             valores.Add(id.ToString());
             valores.Add("'" + txtMatricula.Text + "'");
             valores.Add("'" + txtNombre.Text + "'");
             valores.Add("'" + txtPaterno.Text + "'");
             valores.Add("'" + txtMaterno.Text + "'");
-            valores.Add("" + llaves[cmbCarrera.SelectedIndex] + "");
+            valores.Add(llaves[cmbCarrera.SelectedIndex].ToString());
             valores.Add("'" + txtCorreo.Text + "'");
             valores.Add("'" + txtTelefono.Text + "'");
             valores.Add("NOW()");
             valores.Add("NOW()");
-            valores.Add("1");
+            valores.Add(status);
 
             if (id != 0)
             {

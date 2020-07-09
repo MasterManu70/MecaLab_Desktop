@@ -153,7 +153,7 @@ namespace MECA_LAB_V2
                 query = "UPDATE " + tabla + " SET ";
                 for (int i = 1; i < columnas.Count; i++)
                 {
-                    if (columnas[i].ToLower() == "created_at" || (columnas[i].ToLower() == "password" && valores[i].Length <= 7) || columnas[i].ToLower() == "disponible") continue;
+                    if (columnas[i].ToLower() == "created_at" || (columnas[i].ToLower() == "password" && valores[i].Length <= 7)) continue;
 
                     query += columnas[i] + "=" + valores[i];
 

@@ -37,16 +37,26 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            DataSet ds;
             List<string> valores = new List<string>();
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
-            
+
+            string disponible = "1";
+            string status = "1";
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("SELECT disponible, status FROM articulos WHERE id = " + id + ";");
+                disponible = ds.Tables["tabla"].Rows[0][0].ToString();
+                status = ds.Tables["tabla"].Rows[0][1].ToString();
+            }
+
             valores.Add(id.ToString());
             valores.Add("'" + txtNombre.Text + "'");
             valores.Add("'" + txtComentario.Text + "'");
-            valores.Add("'1'");
+            valores.Add(disponible);
             valores.Add("NOW()");
             valores.Add("NOW()");
-            valores.Add("1");
+            valores.Add(status);
 
             if (id != 0)
             {

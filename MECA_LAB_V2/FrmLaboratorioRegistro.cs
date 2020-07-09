@@ -35,14 +35,22 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            DataSet ds;
             List<string> valores = new List<string>();
             if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del laboratorio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
+
+            string status = "1";
+            if (id != 0)
+            {
+                ds = Conexion.MySQL("SELECT status FROM laboratorios WHERE id = " + id + ";");
+                status = ds.Tables["tabla"].Rows[0][0].ToString();
+            }
 
             valores.Add(id.ToString());
             valores.Add("'" + txtNombre.Text + "'");
             valores.Add("NOW()");
             valores.Add("NOW()");
-            valores.Add("1");
+            valores.Add(status);
 
             if (id != 0)
             {

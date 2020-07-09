@@ -46,20 +46,64 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void button1_Click(object sender, EventArgs e)
         {
+            DataSet ds;
             List<string> valores = new List<string>();
+            List<string> detalles = new List<string>();
+            List<string> articulo = new List<string>();
+
             if (txtMatricula.Text == "") { MessageBox.Show("Ingrese la matricula", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtMatricula.Focus(); return; }
             if (cmbMaestro.Text == "") { MessageBox.Show("Seleccione el nombre del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbMaestro.Focus(); return; }
             if (cmbAsignatura.Text == "") { MessageBox.Show("Seleccione la asignatura", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbAsignatura.Focus(); return; }
             if (cmbLaboratorio.Text == "") { MessageBox.Show("Seleccione laboratorio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbLaboratorio.Focus(); return; }
             if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Agregue artículos a la lista", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtCodigo.Focus(); return; }
-            var respuesta = MessageBox.Show("¿Desea realizar el siguiente prestamo?","Informacion",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+
+            ds = Conexion.MySQL("SELECT status FROM usuarios WHERE id = " + FrmMenu.usuarioID + ";");
+
+            if(ds.Tables["tabla"].Rows[0][0].ToString() == "False") { { MessageBox.Show("El usuario de la sesión se encuentra dado de baja en el sistema", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; } }
+
+            var respuesta = MessageBox.Show("¿Desea realizar el siguiente prestamo?","Información",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
             if (respuesta == DialogResult.Yes) {
-                valores.Add("NULL");
+                valores.Add("0");
                 valores.Add(alumnoID.ToString());
                 valores.Add(maestros[cmbMaestro.SelectedIndex].ToString());
                 valores.Add(laboratorios[cmbLaboratorio.SelectedIndex].ToString());
                 valores.Add(asignaturas[cmbAsignatura.SelectedIndex].ToString());
                 valores.Add(FrmMenu.usuarioID.ToString());
+                valores.Add("NOW()");
+                valores.Add("NOW()");
+                valores.Add("NOW()");
+                valores.Add("1");
+
+                Funciones.Insert("prestamos", valores);
+
+                ds = Conexion.MySQL("SELECT LAST_INSERT_ID();");
+
+                prestamoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    detalles.Clear();
+                    detalles.Add("0");
+                    detalles.Add(prestamoID.ToString());
+                    detalles.Add(row.Cells[0].Value.ToString());
+                    detalles.Add("NOW()");
+                    detalles.Add("NOW()");
+                    detalles.Add("1");
+
+                    Funciones.Insert("detalles", detalles);
+
+                    articulo.Clear();
+                    articulo.Add(row.Cells[0].Value.ToString());
+                    articulo.Add("'" + row.Cells[1].Value.ToString() + "'");
+                    articulo.Add("'" + row.Cells[2].Value.ToString() + "'");
+                    articulo.Add("0");
+                    articulo.Add("NOW()");
+                    articulo.Add("NOW()");
+                    articulo.Add("1");
+
+                    Funciones.Insert("articulos", articulo);
+                }
+
                 borrarContenido();
             }
         }
@@ -85,12 +129,17 @@ namespace MECA_LAB_V2
         }
         //Metodos
         void borrarContenido() {
+            prestamoID = 0;
+            alumnoID = 0;
+            alumno = "";
+
             txtCodigo.Clear();
             txtMatricula.Clear();
+            txtAlumno.Clear();
             txtArticulo.Clear();
-            cmbAsignatura.SelectedIndex = 0;
-            cmbLaboratorio.SelectedIndex = 0;
-            cmbMaestro.SelectedIndex = 0;
+            cmbAsignatura.Text = "";
+            cmbLaboratorio.Text = "";
+            cmbMaestro.Text = "";
             txtComentario.Clear();
             dataGridView1.Rows.Clear();
             txtCodigo.Focus();
