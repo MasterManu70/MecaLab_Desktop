@@ -114,7 +114,7 @@ namespace MECA_LAB_V2
             ocultarSubMenu(pnlSubMenuDatos2);
             viejaPosicion(btnConsultas, 31, 459);
             AbrirFormEnPanel(frmArticulos);
-            frmArticulos.textBox1.Focus();
+            frmArticulos.txtBuscar.Focus();
         }
         private void btnAlumnos_Click(object sender, EventArgs e)
         {
@@ -124,7 +124,7 @@ namespace MECA_LAB_V2
             ocultarSubMenu(pnlSubMenuDatos2);
             viejaPosicion(btnConsultas, 31, 459);
             AbrirFormEnPanel(frmAlumnos);
-            frmAlumnos.textBox1.Focus();
+            frmAlumnos.txtBuscar.Focus();
         }
         private void btnPrestamos_Click(object sender, EventArgs e)
         {
@@ -145,31 +145,31 @@ namespace MECA_LAB_V2
         {
             panelPosicion(pnlLado2,btnUsuarios,true);
             AbrirFormEnPanel(frmUsuarios);
-            frmUsuarios.textBox1.Focus();
+            frmUsuarios.txtBuscar.Focus();
         }
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
             panelPosicion(pnlLado2,btnAsignaturas,true);
             AbrirFormEnPanel(frmAsignaturas);
-            frmAsignaturas.textBox1.Focus();
+            frmAsignaturas.txtBuscar.Focus();
         }
         private void btnCarreras_Click(object sender, EventArgs e)
         {
             panelPosicion(pnlLado2,btnCarreras,true);
             AbrirFormEnPanel(frmCarreras);
-            frmCarreras.textBox1.Focus();
+            frmCarreras.txtBuscar.Focus();
         }
         private void btnLaboratorios_Click(object sender, EventArgs e)
         {
             panelPosicion(pnlLado2,btnLaboratorios,true);
             AbrirFormEnPanel(frmLaboratorios);
-            frmLaboratorios.textBox1.Focus();
+            frmLaboratorios.txtBuscar.Focus();
         }
         private void btnMaestros_Click(object sender, EventArgs e)
         {
             panelPosicion(pnlLado2, btnMaestros, true);
             AbrirFormEnPanel(frmMaestros);
-            frmMaestros.textBox1.Focus();
+            frmMaestros.txtBuscar.Focus();
         }
         private void btnConsultas_Click(object sender, EventArgs e)
         {
@@ -186,7 +186,7 @@ namespace MECA_LAB_V2
             frmMovimientos.lblFiltrar.Visible = false;
             frmMovimientos.cmbFiltro.Visible = false;
             frmMovimientos.btnRegistro.Visible = false;
-            frmMovimientos.textBox1.Focus();
+            frmMovimientos.txtBuscar.Focus();
         }
         private void btnReportes_Click(object sender, EventArgs e)
         {

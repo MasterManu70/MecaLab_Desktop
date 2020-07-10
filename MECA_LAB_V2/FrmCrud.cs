@@ -48,10 +48,9 @@ namespace MECA_LAB_V2
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
-            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex);
+            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,txtBuscar.Text);
             dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = Conexion.MySQL(query); 
-            dataGridView1.DataMember = "tabla";
+            dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)

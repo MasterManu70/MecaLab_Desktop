@@ -104,32 +104,75 @@ namespace MECA_LAB_V2
         }
 
         //Método GetQuery: Devuelve la consulta correspondiente dependiendo del nombre de la tabla que se envíe al ser llamado el método.
-        public static string GetQuery(string tabla, int id = 0, int status = 1)
+        public static string GetQuery(string tabla, int id = 0, int status = 1, string like = "")
         {
+            int result = 0;
             string query = "";
             tabla = tabla.ToLower();
+
+            //Base de la consulta
             switch(tabla)
             {
-                case "alumnos":         query = "SELECT * FROM (SELECT alumnos.id as ID, alumnos.matricula as Matrícula, alumnos.nombre as Nombre, alumnos.apellidop as Paterno, alumnos.apellidom as Materno, carreras.carrera as Carrera, alumnos.correo as Correo, alumnos.telefono as Teléfono, alumnos.created_at as Creado, alumnos.updated_at as Actualizado, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id) as Estudiante"; break;
-                case "articulos":       query = "SELECT id as ID, articulo as Artículo, comentario as Comentario, disponible as Disponible, created_at as Creado, updated_at as Actualizado, status FROM articulos"; break;
-                case "asignaturas":     query = "SELECT id as ID, asignatura as Asignatura, created_at as Creado, updated_at as Actualizado, status FROM asignaturas"; break;
-                case "carreras":        query = "SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras";  break;
-                case "laboratorios":    query = "SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios"; break;
-                //No me sirvio nomas por el keys.space da error igual no tiene nada de malo poner ''   case "maestros":        query = "SELECT id as ID, concat(nombre," + Keys.Space + ",apellidop," + Keys.Space + ",apellidom) as Maestro,created_at as Creado, updated_at as Actualizado, status FROM maestros;"; break;
-                case "maestros":        query = "SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros"; break;
-                case "usuarios":        query = "SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios"; break;
-                case "movimientos":     query = "SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id"; break;
+                case "alumnos":         query = "SELECT * FROM (SELECT alumnos.id as ID, alumnos.matricula as Matrícula, alumnos.nombre as Nombre, alumnos.apellidop as Paterno, alumnos.apellidom as Materno, carreras.carrera as Carrera, alumnos.correo as Correo, alumnos.telefono as Teléfono, alumnos.created_at as Creado, alumnos.updated_at as Actualizado, alumnos.status as status FROM alumnos INNER JOIN carreras ON alumnos.carrera = carreras.id) as Tabla"; break;
+                case "articulos":       query = "SELECT * FROM (SELECT id as ID, articulo as Artículo, comentario as Comentario, disponible as Disponible, created_at as Creado, updated_at as Actualizado, status FROM articulos) as Tabla"; break;
+                case "asignaturas":     query = "SELECT * FROM (SELECT id as ID, asignatura as Asignatura, created_at as Creado, updated_at as Actualizado, status FROM asignaturas) as Tabla"; break;
+                case "carreras":        query = "SELECT * FROM (SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras) as Tabla";  break;
+                case "laboratorios":    query = "SELECT * FROM (SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios) as Tabla"; break;
+                case "maestros":        query = "SELECT * FROM (SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros) as Tabla"; break;
+                case "usuarios":        query = "SELECT * FROM (SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios) as Tabla"; break;
+                case "movimientos":     query = "SELECT * FROM (SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id) as Tabla"; break;
             }
 
+            //Validaciones avanzadas
             if (id != 0) 
             { 
                 query += " WHERE ID = " + id;
                 if (status == 1 || status == 0) query += " AND status = " + status;
             }
 
-            if (id == 0)
+            if (id == 0 && (status == 1 || status == 0))
             {
-                if (status == 1 || status == 0) query += " WHERE status = " + status;
+                query += " WHERE status = " + status;
+            }
+
+            //Validación optimizada para búsqueda
+            if (like != "")
+            {
+                if (id != 0 || status == 1 || status == 0) query += " AND "; else query += " WHERE ";
+
+                switch (tabla)
+                {
+                    case "alumnos":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else if (int.TryParse(like, out result))                                query += " (Matrícula LIKE '%" + like + "%' OR Teléfono LIKE '%" + like + "%')";
+                        else if (like.Contains("@"))                                            query += " Correo LIKE '%" + like + "%'";
+                        else                                                                    query += " (Nombre LIKE '%" + like + "%' OR Paterno LIKE '%" + like + "%' OR Materno LIKE '%" + like + "%')";
+                        break;
+                    case "articulos":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else                                                                    query += " Artículo LIKE '%" + like + "%'";
+                        break;
+                    case "asignaturas":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else                                                                    query += " Asignatura LIKE '%" + like + "%'";
+                        break;
+                    case "carreras":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else                                                                    query += " Carrera LIKE '%" + like + "%'";
+                        break;
+                    case "laboratorios":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else                                                                    query += " Laboratorio LIKE '%" + like + "%'";
+                        break;
+                    case "maestros":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else                                                                    query += " Maestro LIKE '%" + like + "%'";
+                        break;
+                    case "usuarios":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        else                                                                    query += " Usuario LIKE '%" + like + "%'";
+                        break;
+                }
             }
 
             query += ";";
