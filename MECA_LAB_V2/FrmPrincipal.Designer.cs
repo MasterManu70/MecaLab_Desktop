@@ -56,6 +56,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnDevolver = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -353,6 +354,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.Controls.Add(this.btnDevolver);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -380,6 +382,24 @@
             this.label6.Size = new System.Drawing.Size(115, 30);
             this.label6.TabIndex = 0;
             this.label6.Text = "Principal";
+            // 
+            // btnDevolver
+            // 
+            this.btnDevolver.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDevolver.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnDevolver.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDevolver.FlatAppearance.BorderSize = 0;
+            this.btnDevolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDevolver.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDevolver.ForeColor = System.Drawing.Color.White;
+            this.btnDevolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDevolver.Location = new System.Drawing.Point(781, 6);
+            this.btnDevolver.Name = "btnDevolver";
+            this.btnDevolver.Size = new System.Drawing.Size(229, 49);
+            this.btnDevolver.TabIndex = 4;
+            this.btnDevolver.Text = "Devolver";
+            this.btnDevolver.UseVisualStyleBackColor = false;
+            this.btnDevolver.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
             // FrmPrincipal
             // 
@@ -446,5 +466,6 @@
         public System.Windows.Forms.ComboBox cmbMaestro;
         public System.Windows.Forms.ComboBox cmbLaboratorio;
         public System.Windows.Forms.ComboBox cmbAsignatura;
+        public System.Windows.Forms.Button btnDevolver;
     }
 }

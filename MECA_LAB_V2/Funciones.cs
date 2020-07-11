@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -226,6 +227,120 @@ namespace MECA_LAB_V2
                 return false;
             }
             return true;
+        }
+
+        public static void ReportPrint(string tabla, DataGridView dataGridView1)
+        {
+            string nombre = tabla.ToLower() + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".html";
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay registros para imprimir.");
+                return;
+            }
+            TextWriter writer = new StreamWriter(nombre);
+            writer.WriteLine(@"<!DOCTYPE html>
+                            <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <title>Sistema de Inventario y Prestamos MECALAB 2020 Universidad Tecnologica de Hermosillo</title>
+                            <style>
+                            * {
+                                font-family: century gothic;
+                            }
+
+                            .contenedor {
+                                clear: both;
+                                margin-left: auto;
+                                margin-right: auto;
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 10px;
+                                border: 1px solid whitesmoke;
+                                background-color: white;
+
+                            }
+
+                            #formularioTabla {
+                                width: 100%;
+                                margin: 5px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+
+                            table {
+                                width: 100%;
+                                margin: 5px;
+                                font-size: 16px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+
+                            th {
+                                font-size: 12px;
+                                border-bottom: 2px solid black;
+                                text-align: center;
+                                color: black;
+                                padding: 10px;
+                            }
+
+                            td {
+                                font-size: 12px;
+                                border-right: 1px solid black;
+                                border-bottom: 1px solid black;
+                                text-align: justify;
+                            }
+                            #linea-izq{
+                                border-left: 1px solid black;
+                            }
+                            </style>
+                            </head>");
+
+            writer.WriteLine(@"<body>
+    <div class='contenedor'>
+        <div class='row'>
+            <div id='formularioTabla'>
+                <table>");
+            writer.WriteLine("<tr><th colspan = '" + dataGridView1.Columns.Count + "' style = 'font-size: 24PX;'> REPORTE DE " + tabla.ToUpper() + " </th> </tr> ");
+
+            writer.WriteLine("<tr>");
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                writer.WriteLine("<th>" + column.HeaderText + "</th>");
+            }
+            writer.WriteLine("</tr>");
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                writer.WriteLine("<tr>");
+                bool especialito = true;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (especialito)
+                    {
+                        writer.WriteLine("<td id='linea-izq'>" + row.Cells[0].Value.ToString() + "</td>");
+                        especialito = !especialito;
+                        continue;
+                    }
+                    writer.WriteLine("<td>" + cell.Value + "</td>");
+                }
+                writer.WriteLine("</tr>");
+            }
+
+
+            writer.WriteLine("<tr>");
+            writer.WriteLine("<th colspan='" + dataGridView1.Columns.Count + "' style='font-size: 12PX;'>Sistema de Inventario y Prestamos MECALAB 2020</th>");
+            writer.WriteLine(@"</tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>");
+            writer.Close();
+
+            MessageBox.Show("Se generó el reporte con el nombre: " + nombre);
         }
     }
 }

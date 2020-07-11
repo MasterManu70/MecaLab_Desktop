@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,11 @@ namespace MECA_LAB_V2
 
         private void FrmCrud_Activated(object sender, EventArgs e)
         {
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Funciones.ReportPrint(tabla, dataGridView1);
         }
     }
 }

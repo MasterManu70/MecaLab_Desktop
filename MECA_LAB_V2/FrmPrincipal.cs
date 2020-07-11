@@ -8,6 +8,9 @@ namespace MECA_LAB_V2
 {
     public partial class FrmPrincipal : Form
     {
+        bool devolver = false;
+        Color devolucionColor = Color.DarkOrange;
+        Color principalColor = Color.MediumSeaGreen;
         //IDs necesarios para llevar a cabo el préstamo
         int prestamoID = 0;
         int alumnoID = 0;
@@ -17,6 +20,7 @@ namespace MECA_LAB_V2
         public static List<int> maestros = new List<int>();
         public static List<int> asignaturas = new List<int>();
         public static List<int> laboratorios = new List<int>();
+        public static List<int> devolucion = new List<int>();
 
         //Lista de llaves primarias de cada artículo en la lista
         public static List<int> articulos = new List<int>();
@@ -143,6 +147,10 @@ namespace MECA_LAB_V2
             txtComentario.Clear();
             dataGridView1.Rows.Clear();
             txtCodigo.Focus();
+
+            Funciones.TableToCombo(cmbMaestro, maestros, "maestros");
+            Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas");
+            Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios");
         }
 
         private void txtCodigo_TextChanged(object sender, EventArgs e)
@@ -192,12 +200,13 @@ namespace MECA_LAB_V2
 
         private void txtMatricula_TextChanged(object sender, EventArgs e)
         {
-            DataSet ds;
             if (!Int32.TryParse(txtMatricula.Text, out matricula))
             {
                 txtMatricula.Clear();
                 return;
             }
+
+            DataSet ds;
 
             if (txtMatricula.Text.Length == 8)
             {
@@ -213,6 +222,15 @@ namespace MECA_LAB_V2
                 alumnoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
                 txtAlumno.Text = alumno = ds.Tables["tabla"].Rows[0][1].ToString();
             }
+
+            if (devolver)
+            {
+                ds = Conexion.MySQL("SELECT id,articulo,comentario,status FROM articulos WHERE id = " + codigo + ";");
+
+                ds = Conexion.MySQL("SELECT id,articulo,comentario,status FROM articulos WHERE id = " + codigo + ";");
+
+                if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
+            }
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -221,6 +239,62 @@ namespace MECA_LAB_V2
             if (respuesta == DialogResult.Yes)
             {
                 dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
+            }
+        }
+
+        private void btnRegistro_Click(object sender, EventArgs e)
+        {
+            string texto = "";
+            if (dataGridView1.Rows.Count > 0)
+            {
+                if (!devolver) texto = "¿Desea cambiar al modo devolución?, el préstamo actual se cancelará."; else texto = "¿Desea cambiar al modo préstamo?, la devolución actual se cancelará.";
+                var respuesta = MessageBox.Show(texto, "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.No) return;
+            }
+            
+            colorChange();
+            borrarContenido();
+        }
+
+        public void colorChange()
+        {
+            devolver = !devolver;
+
+            if (devolver)
+            {
+                panel1.BackColor = devolucionColor;
+                btnDevolver.BackColor = devolucionColor;
+                pictureBox1.BackColor = devolucionColor;
+                button1.BackColor = devolucionColor;
+
+                dataGridView1.DefaultCellStyle.BackColor = Color.White;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = devolucionColor;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = devolucionColor;
+                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = devolucionColor;
+
+                cmbAsignatura.Enabled = false;
+                cmbLaboratorio.Enabled = false;
+                cmbMaestro.Enabled = false;
+
+                btnDevolver.Text = "Prestar";
+            }
+            else
+            {
+                panel1.BackColor = principalColor;
+                btnDevolver.BackColor = principalColor;
+                pictureBox1.BackColor = principalColor;
+                button1.BackColor = principalColor;
+
+                dataGridView1.DefaultCellStyle.BackColor = Color.White;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = principalColor;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = principalColor;
+                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = principalColor;
+
+                cmbAsignatura.Enabled = true;
+                cmbLaboratorio.Enabled = true;
+                cmbMaestro.Enabled = true;
+
+                btnDevolver.Text = "Devolver";
             }
         }
     }
