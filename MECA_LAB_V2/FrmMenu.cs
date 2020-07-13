@@ -22,14 +22,15 @@ namespace MECA_LAB_V2
         private FrmPrincipal frmPrincipal =  new FrmPrincipal();
 
         //CRUDs
-        private FrmCrud frmArticulos =       new FrmCrud("Articulos",Color.SteelBlue);
-        private FrmCrud frmAlumnos =         new FrmCrud("Alumnos", Color.SteelBlue);
-        private FrmCrud frmUsuarios =        new FrmCrud("Usuarios", Color.Crimson);
-        private FrmCrud frmMaestros =        new FrmCrud("Maestros", Color.Crimson);
-        private FrmCrud frmCarreras =        new FrmCrud("Carreras", Color.Crimson);
-        private FrmCrud frmLaboratorios =    new FrmCrud("Laboratorios", Color.Crimson);
-        private FrmCrud frmAsignaturas =     new FrmCrud("Asignaturas", Color.Crimson);
-        private FrmCrud frmMovimientos =     new FrmCrud("Movimientos", Color.DarkOrange);
+        private FrmCrud frmArticulos =          new FrmCrud("Articulos",Color.SteelBlue);
+        private FrmCrud frmAlumnos =            new FrmCrud("Alumnos", Color.SteelBlue);
+        private FrmCrud frmUsuarios =           new FrmCrud("Usuarios", Color.Crimson);
+        private FrmCrud frmMaestros =           new FrmCrud("Maestros", Color.Crimson);
+        private FrmCrud frmCarreras =           new FrmCrud("Carreras", Color.Crimson);
+        private FrmCrud frmPrestamos =          new FrmCrud("Prestamos", Color.SteelBlue);
+        private FrmCrud frmLaboratorios =       new FrmCrud("Laboratorios", Color.Crimson);
+        private FrmCrud frmAsignaturas =        new FrmCrud("Asignaturas", Color.Crimson);
+        private FrmCrud frmMovimientos =        new FrmCrud("Movimientos", Color.DarkOrange);
 
         //Formulario carga o cierra
         private void FrmMenu_Load(object sender, EventArgs e) { 
@@ -131,6 +132,7 @@ namespace MECA_LAB_V2
             panelPosicion(pnlLado,btnPrestamos,true);
             ocultarSubMenu(pnlSubMenuDatos);
             viejaPosicion(btnConsultas,31, 459);
+            AbrirFormEnPanel(frmPrestamos);
             pnlLado2.Visible = false;
         }
         private void btnDatos_Click(object sender, EventArgs e)

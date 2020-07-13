@@ -122,7 +122,7 @@ namespace MECA_LAB_V2
                 case "maestros":        query = "SELECT * FROM (SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros) as Tabla"; break;
                 case "movimientos":     query = "SELECT * FROM (SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id) as Tabla"; break;
                 case "prestamos":       query = @"SELECT * FROM (SELECT prestamos.id ID, CONCAT(alumnos.nombre,' ',alumnos.apellidop,' ', alumnos.apellidom) Alumno, CONCAT(maestros.nombre,' ',maestros.apellidop,' ', maestros.apellidom) Maestro, laboratorios.laboratorio Laboratorio,
-                                                asignaturas.asignatura Asignaturas,usuarios.usuario Usuario,prestamos.fecha_fin Entrega,prestamos.created_at Creado,prestamos.updated_at Actualizado, prestamos.status status FROM prestamos
+                                                asignaturas.asignatura Asignatura,usuarios.usuario Usuario,prestamos.fecha_fin Entrega,prestamos.created_at Creado,prestamos.updated_at Actualizado, prestamos.status status FROM prestamos
                                                 INNER JOIN alumnos ON prestamos.alumno = alumnos.id INNER JOIN maestros ON prestamos.maestro = maestros.id INNER JOIN laboratorios ON prestamos.laboratorio = laboratorios.id
                                                 INNER JOIN asignaturas ON prestamos.asignatura = asignaturas.id INNER JOIN usuarios ON prestamos.usuario = usuarios.id) as Tabla"; break;
                 case "usuarios":        query = "SELECT * FROM (SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios) as Tabla"; break;
@@ -148,33 +148,45 @@ namespace MECA_LAB_V2
                 switch (tabla)
                 {
                     case "alumnos":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else if (int.TryParse(like, out result))                                query += " (Matrícula LIKE '%" + like + "%' OR Teléfono LIKE '%" + like + "%')";
                         else if (like.Contains("@"))                                            query += " Correo LIKE '%" + like + "%'";
                         else                                                                    query += " (Nombre LIKE '%" + like + "%' OR Paterno LIKE '%" + like + "%' OR Materno LIKE '%" + like + "%')";
                         break;
                     case "articulos":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Artículo LIKE '%" + like + "%'";
                         break;
                     case "asignaturas":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Asignatura LIKE '%" + like + "%'";
                         break;
                     case "carreras":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Carrera LIKE '%" + like + "%'";
                         break;
                     case "laboratorios":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Laboratorio LIKE '%" + like + "%'";
                         break;
                     case "maestros":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Maestro LIKE '%" + like + "%'";
                         break;
+                    case "prestamos":
+                        DataSet ds;
+                        if (int.TryParse(like, out result) && result > 0)
+                        {
+                            ds = Conexion.MySQL("SELECT CONCAT(nombre, ' ', apellidop, ' ', apellidom) as Alumno FROM alumnos WHERE matricula LIKE '%" + result + "%';");
+                            if (ds.Tables["tabla"].Rows.Count != 0)
+                            {
+                                query += " Alumno LIKE '%" + ds.Tables["tabla"].Rows[0][0].ToString() + "%'";
+                            }
+                        }
+                        else                                                                    query += " Maestro LIKE '%" + like + "%' OR Laboratorio LIKE '%" + like + "%' OR Asignatura LIKE '%" + like + "%' OR Usuario LIKE '%" + like + "%'";
+                        break;
                     case "usuarios":
-                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + ";";
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Usuario LIKE '%" + like + "%'";
                         break;
                 }
