@@ -120,8 +120,12 @@ namespace MECA_LAB_V2
                 case "carreras":        query = "SELECT * FROM (SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras) as Tabla";  break;
                 case "laboratorios":    query = "SELECT * FROM (SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios) as Tabla"; break;
                 case "maestros":        query = "SELECT * FROM (SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros) as Tabla"; break;
-                case "usuarios":        query = "SELECT * FROM (SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios) as Tabla"; break;
                 case "movimientos":     query = "SELECT * FROM (SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id) as Tabla"; break;
+                case "prestamos":       query = @"SELECT * FROM (SELECT prestamos.id ID, CONCAT(alumnos.nombre,' ',alumnos.apellidop,' ', alumnos.apellidom) Alumno, CONCAT(maestros.nombre,' ',maestros.apellidop,' ', maestros.apellidom) Maestro, laboratorios.laboratorio Laboratorio,
+                                                asignaturas.asignatura Asignaturas,usuarios.usuario Usuario,prestamos.fecha_fin Entrega,prestamos.created_at Creado,prestamos.updated_at Actualizado, prestamos.status status FROM prestamos
+                                                INNER JOIN alumnos ON prestamos.alumno = alumnos.id INNER JOIN maestros ON prestamos.maestro = maestros.id INNER JOIN laboratorios ON prestamos.laboratorio = laboratorios.id
+                                                INNER JOIN asignaturas ON prestamos.asignatura = asignaturas.id INNER JOIN usuarios ON prestamos.usuario = usuarios.id) as Tabla"; break;
+                case "usuarios":        query = "SELECT * FROM (SELECT id as ID, usuario as Usuario, nivel as Nivel, created_at as Creado, updated_at as Actualizado, status from usuarios) as Tabla"; break;
             }
 
             //Validaciones avanzadas

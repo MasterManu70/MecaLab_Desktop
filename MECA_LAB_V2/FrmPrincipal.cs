@@ -51,9 +51,6 @@ namespace MECA_LAB_V2
         private void button1_Click(object sender, EventArgs e)
         {
             DataSet ds;
-            List<string> valores = new List<string>();
-            List<string> detalles = new List<string>();
-            List<string> articulo = new List<string>();
 
             if (txtMatricula.Text == "") { MessageBox.Show("Ingrese la matricula", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtMatricula.Focus(); return; }
             if (cmbMaestro.Text == "") { MessageBox.Show("Seleccione el nombre del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbMaestro.Focus(); return; }
@@ -61,54 +58,101 @@ namespace MECA_LAB_V2
             if (cmbLaboratorio.Text == "") { MessageBox.Show("Seleccione laboratorio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbLaboratorio.Focus(); return; }
             if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Agregue artículos a la lista", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtCodigo.Focus(); return; }
 
-            ds = Conexion.MySQL("SELECT status FROM usuarios WHERE id = " + FrmMenu.usuarioID + ";");
+            if (!devolver)
+            {
+                List<string> valores = new List<string>();
+                List<string> detalles = new List<string>();
+                List<string> articulo = new List<string>();
 
-            if(ds.Tables["tabla"].Rows[0][0].ToString() == "False") { { MessageBox.Show("El usuario de la sesión se encuentra dado de baja en el sistema", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; } }
+                ds = Conexion.MySQL("SELECT status FROM usuarios WHERE id = " + FrmMenu.usuarioID + ";");
 
-            var respuesta = MessageBox.Show("¿Desea realizar el siguiente prestamo?","Información",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
-            if (respuesta == DialogResult.Yes) {
-                valores.Add("0");
-                valores.Add(alumnoID.ToString());
-                valores.Add(maestros[cmbMaestro.SelectedIndex].ToString());
-                valores.Add(laboratorios[cmbLaboratorio.SelectedIndex].ToString());
-                valores.Add(asignaturas[cmbAsignatura.SelectedIndex].ToString());
-                valores.Add(FrmMenu.usuarioID.ToString());
-                valores.Add("NOW()");
-                valores.Add("NOW()");
-                valores.Add("NOW()");
-                valores.Add("1");
+                if (ds.Tables["tabla"].Rows[0][0].ToString() == "False") { { MessageBox.Show("El usuario de la sesión se encuentra dado de baja en el sistema", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; } }
 
-                Funciones.Insert("prestamos", valores);
-
-                ds = Conexion.MySQL("SELECT LAST_INSERT_ID();");
-
-                prestamoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                var respuesta = MessageBox.Show("¿Desea realizar el siguiente prestamo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
                 {
-                    detalles.Clear();
-                    detalles.Add("0");
-                    detalles.Add(prestamoID.ToString());
-                    detalles.Add(row.Cells[0].Value.ToString());
-                    detalles.Add("NOW()");
-                    detalles.Add("NOW()");
-                    detalles.Add("1");
+                    valores.Add("0");
+                    valores.Add(alumnoID.ToString());
+                    valores.Add(maestros[cmbMaestro.SelectedIndex].ToString());
+                    valores.Add(laboratorios[cmbLaboratorio.SelectedIndex].ToString());
+                    valores.Add(asignaturas[cmbAsignatura.SelectedIndex].ToString());
+                    valores.Add(FrmMenu.usuarioID.ToString());
+                    valores.Add("NOW()");
+                    valores.Add("NOW()");
+                    valores.Add("NOW()");
+                    valores.Add("1");
 
-                    Funciones.Insert("detalles", detalles);
+                    Funciones.Insert("prestamos", valores);
 
-                    articulo.Clear();
-                    articulo.Add(row.Cells[0].Value.ToString());
-                    articulo.Add("'" + row.Cells[1].Value.ToString() + "'");
-                    articulo.Add("'" + row.Cells[2].Value.ToString() + "'");
-                    articulo.Add("0");
-                    articulo.Add("NOW()");
-                    articulo.Add("NOW()");
-                    articulo.Add("1");
+                    ds = Conexion.MySQL("SELECT LAST_INSERT_ID();");
 
-                    Funciones.Insert("articulos", articulo);
+                    prestamoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        detalles.Clear();
+                        detalles.Add("0");
+                        detalles.Add(prestamoID.ToString());
+                        detalles.Add(row.Cells[0].Value.ToString());
+                        detalles.Add("NOW()");
+                        detalles.Add("NOW()");
+                        detalles.Add("1");
+
+                        Funciones.Insert("detalles", detalles);
+
+                        articulo.Clear();
+                        articulo.Add(row.Cells[0].Value.ToString());
+                        articulo.Add("'" + row.Cells[1].Value.ToString() + "'");
+                        articulo.Add("'" + row.Cells[2].Value.ToString() + "'");
+                        articulo.Add("0");
+                        articulo.Add("NOW()");
+                        articulo.Add("NOW()");
+                        articulo.Add("1");
+
+                        Funciones.Insert("articulos", articulo);
+                    }
+
+                    borrarContenido();
+                }
+            }
+            else
+            {
+                string texto;
+                int rowColorCount = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++) if (dataGridView1.Rows[i].DefaultCellStyle.ForeColor == Color.Red) rowColorCount++;
+
+                if (rowColorCount == dataGridView1.Rows.Count)
+                {
+                    MessageBox.Show("No se ha devuelto ningún artículo.\nFavor de devolver al menos uno a la lista");
+                    return;
+                }
+                else if (rowColorCount != 0)
+                {
+                    texto = "Hay artículos faltantes\nLos artículos faltantes serán registrados como no entregados\n¿Desea realizar la siguiente devolución?";
+                }
+                else
+                {
+                    texto = "¿Desea realizar la siguiente devolución?";
                 }
 
-                borrarContenido();
+                var respuesta = MessageBox.Show(texto, "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Conexion.MySQL("UPDATE prestamos SET status = '0' WHERE prestamos.id = " + prestamoID + ";");
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.DefaultCellStyle.ForeColor == Color.Black)
+                        {
+                            Conexion.MySQL("UPDATE detalles SET status = '0' WHERE detalles.prestamo = " + prestamoID + " AND detalles.articulo = " + row.Cells[0].Value.ToString() + ";");
+                        }
+                    }
+                    txtCodigo.Enabled = false;
+                    txtMatricula.Enabled = true;
+                    txtMatricula.Focus();
+                    MessageBox.Show("La devolución se ha realizado correctamente.");
+                    borrarContenido();
+                }
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -145,8 +189,10 @@ namespace MECA_LAB_V2
             cmbLaboratorio.Text = "";
             cmbMaestro.Text = "";
             txtComentario.Clear();
-            dataGridView1.Rows.Clear();
             txtCodigo.Focus();
+
+            int rows = dataGridView1.Rows.Count - 1;
+            for (int i = rows; i >= 0; i--) dataGridView1.Rows.RemoveAt(i);
 
             Funciones.TableToCombo(cmbMaestro, maestros, "maestros");
             Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas");
@@ -163,7 +209,7 @@ namespace MECA_LAB_V2
                 return;
             }
 
-            if (txtCodigo.Text.Length == 4)
+            if (txtCodigo.Text.Length == 4 && !devolver)
             {
                 rows = dataGridView1.Rows.Count;
                 for (int i = 0; i < rows; i++)
@@ -196,6 +242,16 @@ namespace MECA_LAB_V2
                 txtComentario.Text = ds.Tables["tabla"].Rows[0][2].ToString();
                 txtCodigo.Clear();
             }
+            else if (txtCodigo.Text.Length == 4 && devolver)
+            {
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == codigo.ToString()) 
+                        dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                }
+                txtMatricula.Enabled = false;
+                txtCodigo.Clear();
+            }
         }
 
         private void txtMatricula_TextChanged(object sender, EventArgs e)
@@ -212,24 +268,68 @@ namespace MECA_LAB_V2
             {
                 ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom, ' '),status from alumnos where matricula = " + matricula + ";");
 
+                //Validar si el estudiante está dado de alta o de baja
                 if (ds.Tables["tabla"].Rows[0][2].ToString() == "False")
                 {
                     MessageBox.Show("El alumno se encuentra dado de baja del sistema.");
                     return;
                 }
 
-                //Validar si el estudiante está dado de alta o de baja
                 alumnoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
                 txtAlumno.Text = alumno = ds.Tables["tabla"].Rows[0][1].ToString();
-            }
 
-            if (devolver)
-            {
-                ds = Conexion.MySQL("SELECT id,articulo,comentario,status FROM articulos WHERE id = " + codigo + ";");
+                if (devolver)
+                {
+                    ds = Conexion.MySQL(@"SELECT * FROM (SELECT prestamos.id ID, prestamos.alumno Alumno, 
+                                        CONCAT(maestros.nombre,' ',maestros.apellidop,' ', maestros.apellidom) Maestro, 
+                                        laboratorios.laboratorio Laboratorio, asignaturas.asignatura Asignaturas,
+                                        usuarios.usuario Usuario,prestamos.fecha_fin Entrega,prestamos.created_at Creado,
+                                        prestamos.updated_at Actualizado, prestamos.status status FROM prestamos 
+                                        INNER JOIN alumnos ON prestamos.alumno = alumnos.id 
+                                        INNER JOIN maestros ON prestamos.maestro = maestros.id 
+                                        INNER JOIN laboratorios ON prestamos.laboratorio = laboratorios.id 
+                                        INNER JOIN asignaturas ON prestamos.asignatura = asignaturas.id 
+                                        INNER JOIN usuarios ON prestamos.usuario = usuarios.id) as Tabla WHERE Alumno = " + alumnoID + " and status = 1;");
 
-                ds = Conexion.MySQL("SELECT id,articulo,comentario,status FROM articulos WHERE id = " + codigo + ";");
+                    if (ds.Tables["tabla"].Rows.Count == 0)
+                    {
+                        MessageBox.Show("El alumno no cuenta con préstamos activos.");
+                        return;
+                    }
 
-                if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
+                    prestamoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
+                    cmbMaestro.Text = ds.Tables["tabla"].Rows[0][2].ToString();
+                    cmbLaboratorio.Text = ds.Tables["tabla"].Rows[0][3].ToString();
+                    cmbAsignatura.Text = ds.Tables["tabla"].Rows[0][4].ToString();
+
+                    ds = Conexion.MySQL(@"SELECT
+                                        detalles.articulo ID,
+                                        articulos.articulo Artículo,
+                                        articulos.comentario Comentario
+                                        FROM
+                                        detalles
+                                        INNER JOIN
+                                        articulos
+                                        on
+                                        detalles.articulo = articulos.id
+                                        WHERE
+                                        detalles.prestamo = " + prestamoID + "; ");
+
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = ds.Tables["tabla"];
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Red;
+                    }
+
+                    dataGridView1.Enabled = false;
+                    dataGridView1.ClearSelection();
+                    txtCodigo.Enabled = true;
+                    txtCodigo.Focus();
+
+                    if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
+                }
             }
         }
 
@@ -251,9 +351,15 @@ namespace MECA_LAB_V2
                 var respuesta = MessageBox.Show(texto, "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.No) return;
             }
+
+            int rows = dataGridView1.Rows.Count - 1;
+
+            for (int i = rows; i >= 0; i--) dataGridView1.Rows.RemoveAt(i);
             
             colorChange();
             borrarContenido();
+
+            if (devolver) txtMatricula.Focus(); else txtCodigo.Focus();
         }
 
         public void colorChange()
@@ -275,6 +381,7 @@ namespace MECA_LAB_V2
                 cmbAsignatura.Enabled = false;
                 cmbLaboratorio.Enabled = false;
                 cmbMaestro.Enabled = false;
+                txtCodigo.Enabled = false;
 
                 btnDevolver.Text = "Prestar";
             }
@@ -293,6 +400,8 @@ namespace MECA_LAB_V2
                 cmbAsignatura.Enabled = true;
                 cmbLaboratorio.Enabled = true;
                 cmbMaestro.Enabled = true;
+                txtCodigo.Enabled = true;
+                dataGridView1.Enabled = true;
 
                 btnDevolver.Text = "Devolver";
             }
