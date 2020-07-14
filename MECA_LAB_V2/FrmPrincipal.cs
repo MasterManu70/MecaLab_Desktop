@@ -145,6 +145,7 @@ namespace MECA_LAB_V2
                         if (row.DefaultCellStyle.ForeColor == Color.Black)
                         {
                             Conexion.MySQL("UPDATE detalles SET status = '0' WHERE detalles.prestamo = " + prestamoID + " AND detalles.articulo = " + row.Cells[0].Value.ToString() + ";");
+                            Conexion.MySQL("UPDATE articulos SET disponible = '1' WHERE articulos.id = " + row.Cells[0].Value.ToString() + ";");
                         }
                     }
                     txtCodigo.Enabled = false;
