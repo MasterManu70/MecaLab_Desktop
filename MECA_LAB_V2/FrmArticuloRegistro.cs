@@ -17,6 +17,14 @@ namespace MECA_LAB_V2
         private void FrmArticuloRegistro_Load(object sender, EventArgs e)
         {
             DataSet ds;
+
+            ds = Conexion.MySQL("SELECT DISTINCT articulo FROM articulos");
+
+            for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
+            {
+                cmbArticulo.Items.Add(ds.Tables["tabla"].Rows[i][0].ToString());
+            }
+
             if (id != 0)
             {
                 ds = Conexion.MySQL("select * from articulos where id=" + id + ";");
@@ -27,7 +35,7 @@ namespace MECA_LAB_V2
                 btnEliminar.Visible = true;
                 btnActualizar.Text = "Actualizar";
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
-                txtNombre.Text = ds.Tables["tabla"].Rows[0][1].ToString();
+                cmbArticulo.Text = ds.Tables["tabla"].Rows[0][1].ToString();
                 txtComentario.Text = ds.Tables["tabla"].Rows[0][2].ToString();
             }
         }
@@ -39,7 +47,7 @@ namespace MECA_LAB_V2
         {
             DataSet ds;
             List<string> valores = new List<string>();
-            if (txtNombre.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtNombre.Focus(); return; }
+            if (cmbArticulo.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbArticulo.Focus(); return; }
 
             string disponible = "1";
             string status = "1";
@@ -51,7 +59,7 @@ namespace MECA_LAB_V2
             }
 
             valores.Add(id.ToString());
-            valores.Add("'" + txtNombre.Text + "'");
+            valores.Add("'" + cmbArticulo.Text + "'");
             valores.Add("'" + txtComentario.Text + "'");
             valores.Add(disponible);
             valores.Add("NOW()");

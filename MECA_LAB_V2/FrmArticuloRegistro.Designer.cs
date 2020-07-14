@@ -34,7 +34,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtComentario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnActualizar = new System.Windows.Forms.Button();
@@ -45,6 +44,7 @@
             this.btnCerrar = new System.Windows.Forms.Label();
             this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.cmbArticulo = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,9 +61,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbArticulo);
             this.groupBox2.Controls.Add(this.txtComentario);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtNombre);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(74, 80);
             this.groupBox2.Name = "groupBox2";
@@ -90,16 +90,6 @@
             this.label2.Size = new System.Drawing.Size(104, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "Comentario";
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtNombre.Location = new System.Drawing.Point(117, 40);
-            this.txtNombre.MaxLength = 60;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(258, 27);
-            this.txtNombre.TabIndex = 1;
-            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // label1
             // 
@@ -207,6 +197,14 @@
             this.MoverForm.TargetControl = this;
             this.MoverForm.Vertical = true;
             // 
+            // cmbArticulo
+            // 
+            this.cmbArticulo.FormattingEnabled = true;
+            this.cmbArticulo.Location = new System.Drawing.Point(117, 43);
+            this.cmbArticulo.Name = "cmbArticulo";
+            this.cmbArticulo.Size = new System.Drawing.Size(258, 29);
+            this.cmbArticulo.TabIndex = 4;
+            // 
             // FrmArticuloRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -250,10 +248,10 @@
         private System.Windows.Forms.Button btnEliminar;
         public System.Windows.Forms.TextBox txtId;
         public System.Windows.Forms.TextBox txtComentario;
-        public System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
         private Bunifu.Framework.UI.BunifuElipse Curva;
         private Bunifu.Framework.UI.BunifuDragControl MoverForm;
+        private System.Windows.Forms.ComboBox cmbArticulo;
     }
 }
