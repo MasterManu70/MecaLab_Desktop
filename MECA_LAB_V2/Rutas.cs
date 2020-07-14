@@ -32,6 +32,9 @@ namespace MECA_LAB_V2
         //CARRERAS
         public static FrmCarreraRegistro frmCarreraRegistro;
 
+        //DETALLES
+        public static FrmPrestamoDetalles frmPrestamoDetalles;
+
         //LABORATORIOS
         public static FrmLaboratorioRegistro frmLaboratorioRegistro;
 
@@ -49,13 +52,14 @@ namespace MECA_LAB_V2
             //Con el Switch principal (tabla) vamos a diferenciar los diferentes CRUD por cada una de las tablas que podemos llamar mediante el enrutamiento
             switch (tabla)
             {
-                case "Alumnos":         return frmAlumnoRegistro = new FrmAlumnoRegistro(id);
-                case "Articulos":       return frmArticuloRegistro = new FrmArticuloRegistro(id);
-                case "Asignaturas":     return frmAsignaturaRegistro = new FrmAsignaturaRegistro(id);
-                case "Carreras":        return frmCarreraRegistro = new FrmCarreraRegistro(id);
-                case "Laboratorios":    return frmLaboratorioRegistro = new FrmLaboratorioRegistro(id);
-                case "Maestros":        return frmMaestroRegistro = new FrmMaestroRegistro(id);
-                case "Usuarios":        return frmUsuarioRegistro = new FrmUsuarioRegistro(id);
+                case "Alumnos":         return frmAlumnoRegistro        = new FrmAlumnoRegistro(id);
+                case "Articulos":       return frmArticuloRegistro      = new FrmArticuloRegistro(id);
+                case "Asignaturas":     return frmAsignaturaRegistro    = new FrmAsignaturaRegistro(id);
+                case "Carreras":        return frmCarreraRegistro       = new FrmCarreraRegistro(id);
+                case "Prestamos":       return frmPrestamoDetalles      = new FrmPrestamoDetalles(id);
+                case "Laboratorios":    return frmLaboratorioRegistro   = new FrmLaboratorioRegistro(id);
+                case "Maestros":        return frmMaestroRegistro       = new FrmMaestroRegistro(id);
+                case "Usuarios":        return frmUsuarioRegistro       = new FrmUsuarioRegistro(id);
             }
             frmCrud = new FrmCrud("Alumnos",Color.Orange);
             return frmCrud;

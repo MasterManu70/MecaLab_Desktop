@@ -42,9 +42,11 @@ namespace MECA_LAB_V2
             btnImprimir.BackColor = color;
 
             dataGridView1.DefaultCellStyle.BackColor = Color.White;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = color;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(223, 223, 223);
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = color;
             dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = color;
+
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(196, 208, 220);
         }
 
         public void btnBuscar_Click(object sender, EventArgs e)
