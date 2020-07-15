@@ -316,8 +316,13 @@ namespace MECA_LAB_V2
                                         WHERE
                                         detalles.prestamo = " + prestamoID + "; ");
 
-                    dataGridView1.Columns.Clear();
-                    dataGridView1.DataSource = ds.Tables["tabla"];
+                    for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1.Rows[i].Cells[0].Value = ds.Tables["tabla"].Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = ds.Tables["tabla"].Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = ds.Tables["tabla"].Rows[i][2].ToString();
+                    }
 
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
