@@ -22,6 +22,13 @@ namespace MECA_LAB_V2
         Color color;            //Objeto de tipo color el cual se asignará a las propiedades del formulario.
         //List<string> columnas;  //Lista de los nombres de cada columna en la tabla especificada en al variable 'tabla'.
         //public static bool consultar = false; //Variable que se usa para validar si el formulario requiere actualizarse.
+        DataSet ds;
+        string like;
+        int status;
+        int pageLimit = 1;
+        int count;
+        int residuo;
+        int paginas;
 
         Form btnRegistroForm;   //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
         public FrmCrud(string tabla, Color color)
@@ -51,7 +58,39 @@ namespace MECA_LAB_V2
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
-            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,txtBuscar.Text);
+            pageLimit = int.Parse(numericUpDown2.Value.ToString());
+
+            ds = Conexion.MySQL("SELECT COUNT(ID) FROM (" + Funciones.GetQuery(tabla, 0, cmbMostrar.SelectedIndex, txtBuscar.Text).Replace(';',' ') + ") as TablaCount;");
+
+            count = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
+
+            if (count > pageLimit)
+            {
+                residuo = count % pageLimit;
+
+                paginas = (count - residuo) / pageLimit;
+
+                if (residuo != 0) paginas++;
+
+                lblPaginas.Text = Convert.ToString(paginas);
+                numericUpDown1.Maximum = paginas;
+                status = cmbMostrar.SelectedIndex;
+
+                label3.Visible = true;
+                label4.Visible = true;
+                numericUpDown1.Visible = true;
+                lblPaginas.Visible = true;
+            }
+            else
+            {
+                label3.Visible = false;
+                label4.Visible = false;
+                numericUpDown1.Visible = false;
+                lblPaginas.Visible = false;
+            }
+            
+            like = txtBuscar.Text;
+            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,like,pageLimit,0);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
         }
@@ -83,6 +122,21 @@ namespace MECA_LAB_V2
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             Funciones.ReportPrint(tabla, dataGridView1);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            string query = Funciones.GetQuery(tabla, 0, status, like, pageLimit, (int.Parse(numericUpDown1.Value.ToString()) * pageLimit) - pageLimit);
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
+        }
+
+        private void numericUpDown1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                numericUpDown1_ValueChanged(sender, e);
+            }
         }
     }
 }

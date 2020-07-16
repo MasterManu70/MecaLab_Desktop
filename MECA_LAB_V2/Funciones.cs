@@ -105,7 +105,7 @@ namespace MECA_LAB_V2
         }
 
         //Método GetQuery: Devuelve la consulta correspondiente dependiendo del nombre de la tabla que se envíe al ser llamado el método.
-        public static string GetQuery(string tabla, int id = 0, int status = 1, string like = "")
+        public static string GetQuery(string tabla, int id = 0, int status = 1, string like = "", int limite = 0, int indice = 1)
         {
             int result = 0;
             string query = "";
@@ -191,6 +191,9 @@ namespace MECA_LAB_V2
                         break;
                 }
             }
+
+            //Límite para la paginación
+            if (limite != 0 ) query += " LIMIT " + indice + "," + limite;
 
             query += ";";
 

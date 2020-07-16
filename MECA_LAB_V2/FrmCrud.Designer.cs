@@ -45,10 +45,18 @@
             this.btnImprimir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbMostrar = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblPaginas = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitle
@@ -200,7 +208,7 @@
             this.lblFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFiltrar.AutoSize = true;
             this.lblFiltrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltrar.Location = new System.Drawing.Point(674, 92);
+            this.lblFiltrar.Location = new System.Drawing.Point(833, 92);
             this.lblFiltrar.Name = "lblFiltrar";
             this.lblFiltrar.Size = new System.Drawing.Size(82, 21);
             this.lblFiltrar.TabIndex = 15;
@@ -213,9 +221,9 @@
             this.cmbFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFiltro.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFiltro.FormattingEnabled = true;
-            this.cmbFiltro.Location = new System.Drawing.Point(762, 90);
+            this.cmbFiltro.Location = new System.Drawing.Point(921, 90);
             this.cmbFiltro.Name = "cmbFiltro";
-            this.cmbFiltro.Size = new System.Drawing.Size(223, 29);
+            this.cmbFiltro.Size = new System.Drawing.Size(64, 29);
             this.cmbFiltro.TabIndex = 16;
             // 
             // btnImprimir
@@ -263,6 +271,90 @@
             this.cmbMostrar.Size = new System.Drawing.Size(94, 29);
             this.cmbMostrar.TabIndex = 16;
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(43, 811);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 21);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Página";
+            this.label3.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(178, 811);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 21);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "de";
+            this.label4.Visible = false;
+            // 
+            // lblPaginas
+            // 
+            this.lblPaginas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPaginas.AutoSize = true;
+            this.lblPaginas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaginas.Location = new System.Drawing.Point(205, 812);
+            this.lblPaginas.Name = "lblPaginas";
+            this.lblPaginas.Size = new System.Drawing.Size(19, 21);
+            this.lblPaginas.TabIndex = 21;
+            this.lblPaginas.Text = "0";
+            this.lblPaginas.Visible = false;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.numericUpDown1.Location = new System.Drawing.Point(114, 812);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(58, 20);
+            this.numericUpDown1.TabIndex = 22;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Visible = false;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numericUpDown1_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(674, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 21);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Registros";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(758, 94);
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(58, 20);
+            this.numericUpDown2.TabIndex = 24;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
             // FrmCrud
             // 
             this.AcceptButton = this.btnBuscar;
@@ -270,6 +362,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1022, 862);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.lblPaginas);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.cmbMostrar);
             this.Controls.Add(this.label1);
@@ -290,6 +388,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,5 +411,11 @@
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cmbMostrar;
         public System.Windows.Forms.Button btnBuscar;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label lblPaginas;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        public System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
     }
 }
