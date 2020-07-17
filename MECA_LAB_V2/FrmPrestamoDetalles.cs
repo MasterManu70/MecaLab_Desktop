@@ -13,6 +13,8 @@ namespace MECA_LAB_V2
     public partial class FrmPrestamoDetalles : Form
     {
         int id;
+        List<int> noEntregadoID = new List<int>();
+        DataSet ds;
         public FrmPrestamoDetalles(int id = 0)
         {
             this.id = id;
@@ -40,8 +42,6 @@ namespace MECA_LAB_V2
 
             if (id != 0)
             {
-                DataSet ds;
-
                 ds = Conexion.MySQL(Funciones.GetQuery("Prestamos",id,2));
 
                 txtAlumno.Text = ds.Tables["tabla"].Rows[0][1].ToString();
@@ -55,6 +55,47 @@ namespace MECA_LAB_V2
 
                 ds = Conexion.MySQL("SELECT detalles.articulo ID, articulos.articulo Artículo, articulos.comentario Comentario FROM detalles INNER JOIN articulos ON articulos.id = detalles.articulo WHERE detalles.prestamo = " + id + ";");
                 dataGridView1.DataSource = ds.Tables["tabla"];
+                dataGridView1.ClearSelection();
+
+                ds = Conexion.MySQL("SELECT articulos.id FROM detalles INNER JOIN articulos ON detalles.articulo = articulos.id WHERE detalles.prestamo = " + id + " AND detalles.status = 1;");
+
+                if (ds.Tables["tabla"].Rows.Count != 0)
+                {
+                    for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
+                    {
+                        noEntregadoID.Add(int.Parse(ds.Tables["tabla"].Rows[i][0].ToString()));
+                    }
+
+                    foreach (int item in noEntregadoID)
+                    {
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+                            if (item == Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value.ToString()))
+                            {
+                                dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                                dataGridView1.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (noEntregadoID.Contains(int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString())))
+            {
+                var respuesta = MessageBox.Show("¿Desea marcar como devuelto este artículo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Conexion.MySQL("UPDATE detalles SET status = 0 WHERE articulo = " + int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()) + " AND prestamo = " + id + ";");
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
+                }
+            }
+            else
+            {
+                MessageBox.Show("El artículo seleccionado ya ha sido devuelto.");
             }
         }
     }

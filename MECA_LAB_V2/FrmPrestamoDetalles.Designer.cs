@@ -41,14 +41,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtAsignatura = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtLaboratorio = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMaestro = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtAlumno = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtActualizado = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -57,6 +49,14 @@
             this.txtEntrega = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtAsignatura = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtLaboratorio = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtMaestro = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtAlumno = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -164,6 +164,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(442, 477);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
             // groupBox1
             // 
@@ -189,74 +190,6 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del prestamo";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 126);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 21);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Asignatura";
-            // 
-            // txtAsignatura
-            // 
-            this.txtAsignatura.Location = new System.Drawing.Point(125, 123);
-            this.txtAsignatura.Name = "txtAsignatura";
-            this.txtAsignatura.ReadOnly = true;
-            this.txtAsignatura.Size = new System.Drawing.Size(253, 27);
-            this.txtAsignatura.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 21);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Laboratorio";
-            // 
-            // txtLaboratorio
-            // 
-            this.txtLaboratorio.Location = new System.Drawing.Point(125, 90);
-            this.txtLaboratorio.Name = "txtLaboratorio";
-            this.txtLaboratorio.ReadOnly = true;
-            this.txtLaboratorio.Size = new System.Drawing.Size(253, 27);
-            this.txtLaboratorio.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Maestro";
-            // 
-            // txtMaestro
-            // 
-            this.txtMaestro.Location = new System.Drawing.Point(125, 56);
-            this.txtMaestro.Name = "txtMaestro";
-            this.txtMaestro.ReadOnly = true;
-            this.txtMaestro.Size = new System.Drawing.Size(253, 27);
-            this.txtMaestro.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Alumno";
-            // 
-            // txtAlumno
-            // 
-            this.txtAlumno.Location = new System.Drawing.Point(125, 23);
-            this.txtAlumno.Name = "txtAlumno";
-            this.txtAlumno.ReadOnly = true;
-            this.txtAlumno.Size = new System.Drawing.Size(253, 27);
-            this.txtAlumno.TabIndex = 0;
             // 
             // label9
             // 
@@ -325,6 +258,74 @@
             this.txtUsuario.ReadOnly = true;
             this.txtUsuario.Size = new System.Drawing.Size(253, 27);
             this.txtUsuario.TabIndex = 16;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 126);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 21);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Asignatura";
+            // 
+            // txtAsignatura
+            // 
+            this.txtAsignatura.Location = new System.Drawing.Point(125, 123);
+            this.txtAsignatura.Name = "txtAsignatura";
+            this.txtAsignatura.ReadOnly = true;
+            this.txtAsignatura.Size = new System.Drawing.Size(253, 27);
+            this.txtAsignatura.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 21);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Laboratorio";
+            // 
+            // txtLaboratorio
+            // 
+            this.txtLaboratorio.Location = new System.Drawing.Point(125, 90);
+            this.txtLaboratorio.Name = "txtLaboratorio";
+            this.txtLaboratorio.ReadOnly = true;
+            this.txtLaboratorio.Size = new System.Drawing.Size(253, 27);
+            this.txtLaboratorio.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Maestro";
+            // 
+            // txtMaestro
+            // 
+            this.txtMaestro.Location = new System.Drawing.Point(125, 56);
+            this.txtMaestro.Name = "txtMaestro";
+            this.txtMaestro.ReadOnly = true;
+            this.txtMaestro.Size = new System.Drawing.Size(253, 27);
+            this.txtMaestro.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 21);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Alumno";
+            // 
+            // txtAlumno
+            // 
+            this.txtAlumno.Location = new System.Drawing.Point(125, 23);
+            this.txtAlumno.Name = "txtAlumno";
+            this.txtAlumno.ReadOnly = true;
+            this.txtAlumno.Size = new System.Drawing.Size(253, 27);
+            this.txtAlumno.TabIndex = 0;
             // 
             // FrmPrestamoDetalles
             // 
