@@ -39,12 +39,11 @@ namespace MECA_LAB_V2
 
         //Formulario carga o cierra
         private void FrmMenu_Load(object sender, EventArgs e) { 
-            this.Show();
+            //this.Show();
             AbrirFormEnPanel(frmPrincipal);
             viejaPosicion(btnConsultas, 31, 459);
             timer1.Enabled = true;
             DialogResult res = FrmLogin.ShowDialog();
-
             if (res == DialogResult.OK && usuarioNivel != 0)
             {
                 if (usuarioNivel == 1)

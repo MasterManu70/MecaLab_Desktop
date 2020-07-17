@@ -235,6 +235,7 @@
             // 
             this.btnSalir.BackColor = System.Drawing.Color.Gainsboro;
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Black;

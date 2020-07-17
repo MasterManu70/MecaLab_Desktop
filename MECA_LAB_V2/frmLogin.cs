@@ -64,6 +64,5 @@ namespace MECA_LAB_V2
         {
             Validar.SoloLetrasONumeros(e);
         }
-        //Metodos
     }
 }

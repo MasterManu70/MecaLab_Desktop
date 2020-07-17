@@ -8,6 +8,7 @@ namespace MECA_LAB_V2
 {
     public partial class FrmPrincipal : Form
     {
+        DataSet ds;
         bool devolver = false;
         Color devolucionColor = Color.DarkOrange;
         Color principalColor = Color.MediumSeaGreen;
@@ -50,8 +51,6 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void button1_Click(object sender, EventArgs e)
         {
-            DataSet ds;
-
             if (txtMatricula.Text == "") { MessageBox.Show("Ingrese la matricula", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtMatricula.Focus(); return; }
             if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Agregue artículos a la lista", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); txtCodigo.Focus(); return; }
             if (cmbMaestro.Text == "") { MessageBox.Show("Seleccione el nombre del maestro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbMaestro.Focus(); return; }
@@ -192,6 +191,7 @@ namespace MECA_LAB_V2
             txtComentario.Clear();
             txtUsuario.Clear();
             dateTimePickerFin.ResetText();
+            lblRegistro.Visible = false;
             txtCodigo.Focus();
 
             int rows = dataGridView1.Rows.Count - 1;
@@ -225,11 +225,18 @@ namespace MECA_LAB_V2
                     }
                 }
 
-                ds = Conexion.MySQL("SELECT id,articulo,comentario,status FROM articulos WHERE id = " + codigo + ";");
+                ds = Conexion.MySQL("SELECT id,articulo,comentario,disponible, status FROM articulos WHERE id = " + codigo + ";");
 
                 if (ds.Tables["tabla"].Rows.Count == 0) { txtCodigo.Clear(); return; }
 
                 if (ds.Tables["tabla"].Rows[0][3].ToString() == "False")
+                {
+                    MessageBox.Show("El artículo no se encuentra disponible o está registrado en algún préstamo no devuelto.");
+                    txtCodigo.Clear();
+                    return;
+                }
+
+                if (ds.Tables["tabla"].Rows[0][4].ToString() == "False")
                 {
                     MessageBox.Show("El artículo se encuentra dado de baja del sistema.");
                     txtCodigo.Clear();
@@ -269,7 +276,15 @@ namespace MECA_LAB_V2
 
             if (txtMatricula.Text.Length == 8)
             {
-                ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom, ' '),status from alumnos where matricula = " + matricula + ";");
+                ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom),status from alumnos where matricula = " + matricula + ";");
+
+                if (ds.Tables["tabla"].Rows.Count == 0 && !devolver)
+                {
+                    lblRegistro.Text = "X";
+                    lblRegistro.ForeColor = Color.Red;
+                    lblRegistro.Visible = true;
+                    return;
+                }
 
                 //Validar si el estudiante está dado de alta o de baja
                 if (ds.Tables["tabla"].Rows[0][2].ToString() == "False")
@@ -280,6 +295,13 @@ namespace MECA_LAB_V2
 
                 alumnoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
                 txtAlumno.Text = alumno = ds.Tables["tabla"].Rows[0][1].ToString();
+
+                if (!devolver)
+                {
+                    lblRegistro.Text = "✓";
+                    lblRegistro.ForeColor = Color.Green;
+                    lblRegistro.Visible = true;
+                }
 
                 if (devolver)
                 {
@@ -394,6 +416,8 @@ namespace MECA_LAB_V2
                 txtCodigo.Enabled = false;
                 dateTimePickerFin.Enabled = false;
 
+                lblRegistro.Visible = false;
+
                 btnDevolver.Text = "Prestar";
                 txtUsuario.Clear();
             }
@@ -416,6 +440,8 @@ namespace MECA_LAB_V2
                 dataGridView1.Enabled = true;
                 dateTimePickerFin.Enabled = true;
 
+                lblRegistro.Visible = false;
+
                 btnDevolver.Text = "Devolver";
                 txtUsuario.Clear();
             }
@@ -425,6 +451,29 @@ namespace MECA_LAB_V2
         {
             txtArticulo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtComentario.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void lblRegistro_Click(object sender, EventArgs e)
+        {
+            if (lblRegistro.Text == "X")
+            {
+                FrmAlumnoRegistro frm = new FrmAlumnoRegistro();
+                frm.txtMatricula.Text = txtMatricula.Text;
+                DialogResult res = frm.ShowDialog();
+
+                if (res == DialogResult.OK)
+                {
+                    ds = Conexion.MySQL("SELECT LAST_INSERT_ID();");
+                    alumnoID = Convert.ToInt32(ds.Tables["tabla"].Rows[0][0].ToString());
+                    ds = Conexion.MySQL("SELECT CONCAT(nombre,' ',apellidop,' ',apellidom),status FROM alumnos WHERE id = " + alumnoID + ";");
+                    alumno = ds.Tables["tabla"].Rows[0][0].ToString();
+                    txtAlumno.Text = alumno;
+                    lblRegistro.Text = "✓";
+                    lblRegistro.ForeColor = Color.Green;
+                    lblRegistro.Visible = true;
+                    MessageBox.Show("El alumno ha sido registrado con éxito.");
+                }
+            }
         }
     }
 }
