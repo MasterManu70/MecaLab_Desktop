@@ -34,6 +34,8 @@ namespace MECA_LAB_V2
         string fin = "";
         string query = "";
 
+        List<int> prestamosNoCompletos = new List<int>();
+
         Form btnRegistroForm;   //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
         public FrmCrud(string tabla, Color color)
         {
@@ -66,6 +68,50 @@ namespace MECA_LAB_V2
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (txtBuscar.Text.ToLower() == "!nocompletos" && tabla == "Prestamos")
+            {
+                ds = Conexion.MySQL(@"SELECT Tabla.ID,Tabla.Alumno,Tabla.Maestro,Tabla.Laboratorio,Tabla.Asignatura,Tabla.Usuario,Tabla.Entrega,Tabla.Creado,Tabla.Actualizado FROM 
+                                    (SELECT 
+                                    prestamos.id ID, 
+                                    CONCAT(alumnos.nombre,' ',alumnos.apellidop,' ', alumnos.apellidom) Alumno, 
+                                    CONCAT(maestros.nombre,' ',maestros.apellidop,' ', maestros.apellidom) Maestro, 
+                                    laboratorios.laboratorio Laboratorio,
+                                    asignaturas.asignatura Asignatura,
+                                    usuarios.usuario Usuario,
+                                    prestamos.fecha_fin Entrega,
+                                    prestamos.created_at Creado,
+                                    prestamos.updated_at Actualizado, 
+                                    prestamos.status
+                                    FROM 
+                                    prestamos
+                                    INNER JOIN alumnos ON prestamos.alumno = alumnos.id 
+                                    INNER JOIN maestros ON prestamos.maestro = maestros.id 
+                                    INNER JOIN laboratorios ON prestamos.laboratorio = laboratorios.id
+                                    INNER JOIN asignaturas ON prestamos.asignatura = asignaturas.id 
+                                    INNER JOIN usuarios ON prestamos.usuario = usuarios.id) as Tabla
+                                    INNER JOIN
+                                    (
+                                    SELECT 
+                                    DISTINCT(prestamos.id), 
+                                    prestamos.status AS statusPrestamos, 
+                                    detalles.status AS statusDetalles
+                                    FROM 
+                                    prestamos 
+                                    INNER JOIN 
+                                    detalles 
+                                    ON 
+                                    detalles.prestamo = prestamos.id 
+                                    WHERE prestamos.status = 0 AND detalles.status = 1   
+                                    ) AS Tabla2
+                                    ON
+                                    Tabla.ID = Tabla2.ID");
+
+                dataGridView1.DataSource = ds.Tables["tabla"];
+                RowsToRed();
+                dataGridView1.ClearSelection();
+                return;
+            }
+
             string prequery = "";
             if (FrmMenu.usuarioNivel != 1 && tabla != "Prestamos" && tabla != "Articulos" && tabla != "Alumnos")
             {
@@ -129,6 +175,11 @@ namespace MECA_LAB_V2
             dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
             lblError.Visible = false;
             dataGridView1.ClearSelection();
+
+            if (tabla == "Prestamos")
+            {
+                RowsToRed();
+            }
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
@@ -186,6 +237,29 @@ namespace MECA_LAB_V2
             if ((int)e.KeyChar == (int)Keys.Enter)
             {
                 numericUpDown1_ValueChanged(sender, e);
+            }
+        }
+
+        public void RowsToRed()
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                ds = Conexion.MySQL("SELECT DISTINCT(prestamos.id), prestamos.status, detalles.status FROM prestamos INNER JOIN detalles ON detalles.prestamo = prestamos.id WHERE prestamos.status = 0 AND detalles.status = 1;");
+                prestamosNoCompletos.Clear();
+
+                for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
+                {
+                    prestamosNoCompletos.Add(Convert.ToInt32(ds.Tables["tabla"].Rows[i][0].ToString()));
+                }
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (prestamosNoCompletos.Contains(Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value.ToString())))
+                    {
+                        dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                        dataGridView1.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Red;
+                    }
+                }
             }
         }
     }

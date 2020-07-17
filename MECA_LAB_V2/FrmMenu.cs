@@ -159,6 +159,7 @@ namespace MECA_LAB_V2
             ocultarSubMenu(pnlSubMenuDatos);
             viejaPosicion(btnConsultas,31, 459);
             AbrirFormEnPanel(frmPrestamos);
+            frmPrestamos.RowsToRed();
             pnlLado2.Visible = false;
         }
         private void btnDatos_Click(object sender, EventArgs e)
