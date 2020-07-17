@@ -226,21 +226,20 @@ namespace MECA_LAB_V2
                     if (parametro.Contains('='))
                     {
                         valores = parametro.Split('=').ToList<string>();
-                        if (!FrmMenu.columnas.Contains(valores[0])) return "¡Error¡ La columna '" + valores[0] + "' no existe.";
-                        query += " " + valores[0].Trim() + "= '" + valores[1].Trim() + "'";
+                        if (!FrmMenu.columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna '" + valores[0] + "' no existe.";
+
+                        if (FrmMenu.columnas.Contains(valores[1].Trim())) query += " " + valores[0].Trim() + "= " + valores[1].Trim(); else query += " " + valores[0].Trim() + "= '" + valores[1].Trim() + "'";
                     }
                     if (parametro.Contains('+'))
                     {
                         valores = parametro.Split('+').ToList<string>();
-                        valores = parametro.Split('=').ToList<string>();
-                        if (!FrmMenu.columnas.Contains(valores[0])) return "¡Error¡ La columna " + valores[0] + " no existe.";
+                        if (!FrmMenu.columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna " + valores[0] + " no existe.";
                         query += " " + valores[0].Trim() + " LIKE '%" + valores[1].Trim() + "%'";
                     }
                     if (parametro.Contains('-'))
                     {
                         valores = parametro.Split('-').ToList<string>();
-                        valores = parametro.Split('=').ToList<string>();
-                        if (!FrmMenu.columnas.Contains(valores[0])) return "¡Error¡ La columna " + valores[0] + " no existe.";
+                        if (!FrmMenu.columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna " + valores[0] + " no existe.";
                         query += " " + valores[0].Trim() + " NOT LIKE '%" + valores[1].Trim() + "%'";
                     }
                 }
