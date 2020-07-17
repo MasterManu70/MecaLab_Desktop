@@ -66,6 +66,7 @@ namespace MECA_LAB_V2
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
+            string prequery = "";
             if (FrmMenu.usuarioNivel != 1 && tabla != "Prestamos" && tabla != "Articulos" && tabla != "Alumnos")
             {
                 MessageBox.Show("Solo un usuario con nivel de administrador puede agregar o alterar registros.");
@@ -85,7 +86,15 @@ namespace MECA_LAB_V2
                 fin = "";
             }
 
-            ds = Conexion.MySQL("SELECT COUNT(ID) FROM (" + Funciones.GetQuery(tabla, 0, cmbMostrar.SelectedIndex, txtBuscar.Text, inicio: inicio, fin: fin).Replace(';',' ') + ") as TablaCount;");
+            prequery = Funciones.GetQuery(tabla, 0, cmbMostrar.SelectedIndex, txtBuscar.Text, inicio: inicio, fin: fin).Replace(';', ' ');
+            if (prequery[0] == '¡')
+            {
+                lblError.Text = prequery;
+                lblError.Visible = true;
+                return;
+            }
+
+            ds = Conexion.MySQL("SELECT COUNT(ID) FROM (" + prequery + ") as TablaCount;");
 
             count = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
 
@@ -118,6 +127,7 @@ namespace MECA_LAB_V2
             query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,like,pageLimit,0, inicio: inicio, fin: fin);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
+            lblError.Visible = false;
             dataGridView1.ClearSelection();
         }
 
@@ -151,7 +161,7 @@ namespace MECA_LAB_V2
             }
             catch (Exception)
             {
-                throw;
+                return;
             }
         }
 

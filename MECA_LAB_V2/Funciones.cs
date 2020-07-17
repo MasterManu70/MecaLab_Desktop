@@ -141,7 +141,7 @@ namespace MECA_LAB_V2
             }
 
             //Validación optimizada para búsqueda
-            if (like != "")
+            if (like != "" && !(like.Contains('=') || like.Contains('+') || like.Contains('-')))
             {
                 if (id != 0 || status == 1 || status == 0) query += " AND "; else query += " WHERE ";
 
@@ -189,6 +189,60 @@ namespace MECA_LAB_V2
                         if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Usuario LIKE '%" + like + "%'";
                         break;
+                }
+            }
+            //Búsqueda avanzada parametrizada
+            else if (like.Contains('=') || like.Contains('+') || like.Contains('-'))
+            {
+                bool where = true;
+                int operadores = 0;
+                List<string> parametros = new List<string>();
+                List<string> valores = new List<string>();
+
+                if (id != 0 || status == 1 || status == 0) where = false;
+
+                parametros = like.Trim().Split(',').ToList<string>();
+
+                foreach (string parametro in parametros)
+                {
+                    foreach (char operador in parametro)
+                    {
+                        if (operador == '+' || operador == '-' || operador == '=')
+                        {
+                            operadores++;
+                        }
+                    }
+                }
+
+                if (parametros.Count != operadores)
+                {
+                    return "¡Error! Cantidad no válida de operadores.";
+                }
+
+                foreach (string parametro in parametros)
+                {
+                    if (where) { query += " WHERE "; where = false; } else query += " AND ";
+
+                    if (parametro.Contains('='))
+                    {
+                        valores = parametro.Split('=').ToList<string>();
+                        if (!FrmMenu.columnas.Contains(valores[0])) return "¡Error¡ La columna '" + valores[0] + "' no existe.";
+                        query += " " + valores[0].Trim() + "= '" + valores[1].Trim() + "'";
+                    }
+                    if (parametro.Contains('+'))
+                    {
+                        valores = parametro.Split('+').ToList<string>();
+                        valores = parametro.Split('=').ToList<string>();
+                        if (!FrmMenu.columnas.Contains(valores[0])) return "¡Error¡ La columna " + valores[0] + " no existe.";
+                        query += " " + valores[0].Trim() + " LIKE '%" + valores[1].Trim() + "%'";
+                    }
+                    if (parametro.Contains('-'))
+                    {
+                        valores = parametro.Split('-').ToList<string>();
+                        valores = parametro.Split('=').ToList<string>();
+                        if (!FrmMenu.columnas.Contains(valores[0])) return "¡Error¡ La columna " + valores[0] + " no existe.";
+                        query += " " + valores[0].Trim() + " NOT LIKE '%" + valores[1].Trim() + "%'";
+                    }
                 }
             }
 
