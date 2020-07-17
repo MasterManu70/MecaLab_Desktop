@@ -22,6 +22,7 @@ namespace MECA_LAB_V2
         Color color;            //Objeto de tipo color el cual se asignará a las propiedades del formulario.
         //List<string> columnas;  //Lista de los nombres de cada columna en la tabla especificada en al variable 'tabla'.
         //public static bool consultar = false; //Variable que se usa para validar si el formulario requiere actualizarse.
+        
         DataSet ds;
         string like;
         int status;
@@ -31,6 +32,7 @@ namespace MECA_LAB_V2
         int paginas;
         string inicio = "";
         string fin = "";
+        string query = "";
 
         Form btnRegistroForm;   //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
         public FrmCrud(string tabla, Color color)
@@ -103,7 +105,7 @@ namespace MECA_LAB_V2
             }
             
             like = txtBuscar.Text;
-            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,like,pageLimit,0, inicio: inicio, fin: fin);
+            query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,like,pageLimit,0, inicio: inicio, fin: fin);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
             dataGridView1.ClearSelection();
@@ -121,7 +123,12 @@ namespace MECA_LAB_V2
             {
                 int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 btnRegistroForm = Rutas.GetForm(tabla, id);
-                btnRegistroForm.ShowDialog();
+                DialogResult res = btnRegistroForm.ShowDialog();
+
+                if (res == DialogResult.OK)
+                {
+                    dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
+                }
             }
             catch (Exception)
             {
@@ -140,7 +147,7 @@ namespace MECA_LAB_V2
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            string query = Funciones.GetQuery(tabla, 0, status, like, pageLimit, (int.Parse(numericUpDown1.Value.ToString()) * pageLimit) - pageLimit);
+            query = Funciones.GetQuery(tabla, 0, status, like, pageLimit, (int.Parse(numericUpDown1.Value.ToString()) * pageLimit) - pageLimit);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
         }

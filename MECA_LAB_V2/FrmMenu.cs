@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -7,10 +8,12 @@ namespace MECA_LAB_V2
 {
     public partial class FrmMenu : Form
     {
+        //Variables globales
         public static string usuario = "";
         public static int usuarioID = 0;
         public static int usuarioNivel = 0;
         public static bool showed = false;
+        public static List<string> actualizados = new List<string>();
 
         public static DataSet ds;
         public FrmMenu()
@@ -185,8 +188,6 @@ namespace MECA_LAB_V2
         {
             panelPosicion(pnlLado3,btnMovimientos,true);
             AbrirFormEnPanel(frmMovimientos);
-            frmMovimientos.lblFiltrar.Visible = false;
-            frmMovimientos.cmbFiltro.Visible = false;
             frmMovimientos.btnRegistro.Visible = false;
             frmMovimientos.txtBuscar.Focus();
         }

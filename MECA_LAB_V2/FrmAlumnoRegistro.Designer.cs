@@ -275,6 +275,7 @@
             // 
             this.btnActualizar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnActualizar.FlatAppearance.BorderSize = 0;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
@@ -304,6 +305,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
@@ -352,6 +354,7 @@
             this.Name = "FrmAlumnoRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAlumnoDatos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAlumnoRegistro_FormClosing);
             this.Load += new System.EventHandler(this.FrmAlumnoRegistro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

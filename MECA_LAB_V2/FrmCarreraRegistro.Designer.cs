@@ -59,6 +59,7 @@
             // 
             this.btnActualizar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnActualizar.FlatAppearance.BorderSize = 0;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
@@ -117,6 +118,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;

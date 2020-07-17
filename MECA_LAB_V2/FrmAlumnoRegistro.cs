@@ -12,6 +12,7 @@ namespace MECA_LAB_V2
         List<int> llaves = new List<int>();
         List<string> registro = new List<string>();     //Registro tomado de la base de datos.
         List<string> valores = new List<string>();      //Registro que se actualizará/insertará en la base de datos.
+        public static List<string> actualizados = new List<string>();
 
         List<List<string>> movimientos = new List<List<string>>();
         List<string> movimiento = new List<string>();   //Registro que se insertará en la tabla movimientos.
@@ -182,6 +183,11 @@ namespace MECA_LAB_V2
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.SoloNumeros(e);
+        }
+
+        private void FrmAlumnoRegistro_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }
