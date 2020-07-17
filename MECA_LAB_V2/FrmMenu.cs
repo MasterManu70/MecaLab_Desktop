@@ -43,24 +43,19 @@ namespace MECA_LAB_V2
             AbrirFormEnPanel(frmPrincipal);
             viejaPosicion(btnConsultas, 31, 459);
             timer1.Enabled = true;
-            DialogResult res = FrmLogin.ShowDialog();
-            if (res == DialogResult.OK && usuarioNivel != 0)
-            {
-                if (usuarioNivel == 1)
-                {
-                    btnDatos.Visible = true;
-                    btnConsultas.Visible = true;
-                }
-            }
-            else if (intentos < 3)
-            {
-                FrmMenu_Load(sender, e);
-            }
-            else if (intentos == 3)
-            {
-                Application.Exit();
-            }
+            FrmLogin.ShowDialog();
 
+            //if (res == DialogResult.OK && usuarioNivel != 0)
+            //{
+            //}
+            //else if (intentos < 3)
+            //{
+            //    FrmMenu_Load(sender, e);
+            //}
+            //else if (intentos == 3)
+            //{
+            //    Application.Exit();
+            //}
         }
         //Desarollo
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -284,6 +279,12 @@ namespace MECA_LAB_V2
                 label6.Visible = true;
                 if (usuarioNivel == 1) lblNivel.Text = "Administrador"; else lblNivel.Text = "Usuario";
                 lblNivel.Visible = true;
+
+                if (usuarioNivel == 1)
+                {
+                    btnDatos.Visible = true;
+                    btnConsultas.Visible = true;
+                }
             }
         }
         private void panelPosicion(Panel pnl, Button btn, Boolean bol)

@@ -194,7 +194,6 @@
             // 
             this.btnlogin.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnlogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnlogin.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnlogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlogin.ForeColor = System.Drawing.Color.White;
             this.btnlogin.Location = new System.Drawing.Point(347, 283);
@@ -235,7 +234,6 @@
             // 
             this.btnSalir.BackColor = System.Drawing.Color.Gainsboro;
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Black;

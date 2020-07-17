@@ -675,13 +675,11 @@
         private System.Windows.Forms.Panel pnlContenedor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnDatos;
         private System.Windows.Forms.Button btnAlumnos;
         private System.Windows.Forms.Label btnMaximizar;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Button btnPrestamos;
-        private System.Windows.Forms.Button btnConsultas;
         private System.Windows.Forms.Panel pnlSubMenuDatos;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnLaboratorios;
@@ -701,5 +699,7 @@
         private System.Windows.Forms.Button btnMovimientos;
         private System.Windows.Forms.Panel pnlLado3;
         private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Button btnDatos;
+        public System.Windows.Forms.Button btnConsultas;
     }
 }

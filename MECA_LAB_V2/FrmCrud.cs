@@ -195,7 +195,7 @@ namespace MECA_LAB_V2
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (FrmMenu.usuarioNivel != 1)
+            if (FrmMenu.usuarioNivel != 1 && tabla != "Prestamos")
             {
                 MessageBox.Show("Solo un usuario con nivel de administrador puede agregar o alterar registros.");
                 return;

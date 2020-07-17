@@ -38,7 +38,7 @@ namespace MECA_LAB_V2
             FrmMenu.usuarioNivel = int.Parse(ds.Tables["tabla"].Rows[0][1].ToString());
 
             FrmMenu.showed = true;
-       
+
             this.Close();
         }
         private void btnSalir_Click(object sender, EventArgs e)
