@@ -194,6 +194,7 @@
             // 
             this.btnlogin.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnlogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnlogin.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnlogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlogin.ForeColor = System.Drawing.Color.White;
             this.btnlogin.Location = new System.Drawing.Point(347, 283);

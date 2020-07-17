@@ -40,6 +40,10 @@ namespace MECA_LAB_V2
             this.tabla = tabla;
             this.color = color;
             InitializeComponent();
+            if (tabla == "Prestamos")
+            {
+                btnRegistro.Visible = false;
+            }
         }
         private void FrmCrud_Load(object sender, EventArgs e)
         {
@@ -62,6 +66,12 @@ namespace MECA_LAB_V2
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (FrmMenu.usuarioNivel != 1 && tabla != "Prestamos" && tabla != "Articulos" && tabla != "Alumnos")
+            {
+                MessageBox.Show("Solo un usuario con nivel de administrador puede agregar o alterar registros.");
+                return;
+            }
+
             pageLimit = int.Parse(numericUpDown2.Value.ToString());
 
             if (checkBoxFecha.Checked)
@@ -113,18 +123,27 @@ namespace MECA_LAB_V2
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
+            if (FrmMenu.usuarioNivel != 1)
+            {
+                MessageBox.Show("Solo un usuario con nivel de administrador puede agregar o alterar registros.");
+                return;
+            }
             btnRegistroForm = Rutas.GetForm(tabla);
             btnRegistroForm.ShowDialog();
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (FrmMenu.usuarioNivel != 1)
+            {
+                MessageBox.Show("Solo un usuario con nivel de administrador puede agregar o alterar registros.");
+                return;
+            }
             try
             {
                 int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 btnRegistroForm = Rutas.GetForm(tabla, id);
                 DialogResult res = btnRegistroForm.ShowDialog();
-
                 if (res == DialogResult.OK)
                 {
                     dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];

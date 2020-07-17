@@ -13,6 +13,7 @@ namespace MECA_LAB_V2
         public static int usuarioID = 0;
         public static int usuarioNivel = 0;
         public static bool showed = false;
+        public static int intentos = 0;
         public static List<string> actualizados = new List<string>();
 
         public static DataSet ds;
@@ -41,18 +42,40 @@ namespace MECA_LAB_V2
             AbrirFormEnPanel(frmPrincipal);
             viejaPosicion(btnConsultas, 31, 459);
             timer1.Enabled = true;
-            FrmLogin.ShowDialog();
+            DialogResult res = FrmLogin.ShowDialog();
+
+            if (res == DialogResult.OK && usuarioNivel != 0)
+            {
+                if (usuarioNivel == 1)
+                {
+                    btnDatos.Visible = true;
+                    btnConsultas.Visible = true;
+                }
+            }
+            else if (intentos < 3)
+            {
+                FrmMenu_Load(sender, e);
+            }
+            else if (intentos == 3)
+            {
+                Application.Exit();
+            }
+
         }
         //Desarollo
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            panelPosicion(pnlLado,btnPrincipal,true);
-            ocultarSubMenu(pnlSubMenuDatos);
-            ocultarSubMenu(pnlSubMenuDatos2);
-            viejaPosicion(btnConsultas, 31, 459);
-            AbrirFormEnPanel(frmPrincipal);
-            FrmLogin.ShowDialog();
-            frmPrincipal.txtCodigo.Focus();
+            //panelPosicion(pnlLado,btnPrincipal,true);
+            //ocultarSubMenu(pnlSubMenuDatos);
+            //ocultarSubMenu(pnlSubMenuDatos2);
+            //viejaPosicion(btnConsultas, 31, 459);
+            //AbrirFormEnPanel(frmPrincipal);
+            //btnDatos.Visible = false;
+            //btnConsultas.Visible = false;
+            //frmPrincipal.borrarContenido();
+            //FrmLogin.ShowDialog();
+            //frmPrincipal.txtCodigo.Focus();
+            Application.Restart();
         }
         //Rutas
         private void btnPrincipal_Click(object sender, EventArgs e)

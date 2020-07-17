@@ -6,7 +6,7 @@ namespace MECA_LAB_V2
 {
     public partial class FrmLogin : Form
     {
-        int intentos = 0;
+        
         public FrmLogin()
         {
             InitializeComponent();
@@ -28,8 +28,8 @@ namespace MECA_LAB_V2
             if (count == 0) 
             { 
                 MessageBox.Show("El usuario o la contraseña son incorrectos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); textBox2.Focus();
-                intentos++;
-                if (intentos == 3) Application.Exit();
+                FrmMenu.intentos++;
+                if (FrmMenu.intentos == 3) Application.Exit();
                 return;
             }
 
@@ -40,8 +40,6 @@ namespace MECA_LAB_V2
             FrmMenu.showed = true;
        
             this.Close();
-            textBox1.Clear();
-            textBox2.Clear();
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {

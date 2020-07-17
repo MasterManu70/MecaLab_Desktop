@@ -176,6 +176,7 @@
             this.btnConsultas.TabIndex = 12;
             this.btnConsultas.Text = "Consultas";
             this.btnConsultas.UseVisualStyleBackColor = false;
+            this.btnConsultas.Visible = false;
             this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
             // pnlSubMenuDatos
@@ -375,6 +376,7 @@
             this.btnDatos.TabIndex = 9;
             this.btnDatos.Text = "Datos";
             this.btnDatos.UseVisualStyleBackColor = false;
+            this.btnDatos.Visible = false;
             this.btnDatos.Click += new System.EventHandler(this.btnDatos_Click);
             // 
             // label1

@@ -177,7 +177,7 @@ namespace MECA_LAB_V2
             Validar.SoloNumeros(e);
         }
         //Metodos
-        void borrarContenido() {
+        public void borrarContenido() {
             prestamoID = 0;
             alumnoID = 0;
             alumno = "";
