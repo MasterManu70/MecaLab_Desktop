@@ -77,7 +77,7 @@ namespace MECA_LAB_V2
                     valores.Add(laboratorios[cmbLaboratorio.SelectedIndex].ToString());
                     valores.Add(asignaturas[cmbAsignatura.SelectedIndex].ToString());
                     valores.Add(FrmMenu.usuarioID.ToString());
-                    valores.Add("NOW()");
+                    valores.Add("'" + dateTimePickerFin.Value.ToString().Substring(6, 4) + "-" + dateTimePickerFin.Value.ToString().Substring(3, 2) + "-" + dateTimePickerFin.Value.ToString().Substring(0, 2) + "'");
                     valores.Add("NOW()");
                     valores.Add("NOW()");
                     valores.Add("1");
@@ -190,6 +190,8 @@ namespace MECA_LAB_V2
             cmbLaboratorio.Text = "";
             cmbMaestro.Text = "";
             txtComentario.Clear();
+            txtUsuario.Clear();
+            dateTimePickerFin.ResetText();
             txtCodigo.Focus();
 
             int rows = dataGridView1.Rows.Count - 1;
@@ -302,6 +304,8 @@ namespace MECA_LAB_V2
                     cmbMaestro.Text = ds.Tables["tabla"].Rows[0][2].ToString();
                     cmbLaboratorio.Text = ds.Tables["tabla"].Rows[0][3].ToString();
                     cmbAsignatura.Text = ds.Tables["tabla"].Rows[0][4].ToString();
+                    txtUsuario.Text = ds.Tables["tabla"].Rows[0][5].ToString();
+                    dateTimePickerFin.Value = Convert.ToDateTime(ds.Tables["tabla"].Rows[0][6].ToString());
 
                     ds = Conexion.MySQL(@"SELECT
                                         detalles.articulo ID,
@@ -388,8 +392,10 @@ namespace MECA_LAB_V2
                 cmbLaboratorio.Enabled = false;
                 cmbMaestro.Enabled = false;
                 txtCodigo.Enabled = false;
+                dateTimePickerFin.Enabled = false;
 
                 btnDevolver.Text = "Prestar";
+                txtUsuario.Clear();
             }
             else
             {
@@ -408,9 +414,17 @@ namespace MECA_LAB_V2
                 cmbMaestro.Enabled = true;
                 txtCodigo.Enabled = true;
                 dataGridView1.Enabled = true;
+                dateTimePickerFin.Enabled = true;
 
                 btnDevolver.Text = "Devolver";
+                txtUsuario.Clear();
             }
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txtArticulo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtComentario.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
     }
 }
