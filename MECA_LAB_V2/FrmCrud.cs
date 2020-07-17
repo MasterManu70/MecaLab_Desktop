@@ -29,6 +29,8 @@ namespace MECA_LAB_V2
         int count;
         int residuo;
         int paginas;
+        string inicio = "";
+        string fin = "";
 
         Form btnRegistroForm;   //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
         public FrmCrud(string tabla, Color color)
@@ -60,7 +62,18 @@ namespace MECA_LAB_V2
         {
             pageLimit = int.Parse(numericUpDown2.Value.ToString());
 
-            ds = Conexion.MySQL("SELECT COUNT(ID) FROM (" + Funciones.GetQuery(tabla, 0, cmbMostrar.SelectedIndex, txtBuscar.Text).Replace(';',' ') + ") as TablaCount;");
+            if (checkBoxFecha.Checked)
+            {
+                inicio = dateTimePickerInicio.Value.ToString().Substring(6, 4) + "-" + dateTimePickerInicio.Value.ToString().Substring(3, 2) + "-" + dateTimePickerInicio.Value.ToString().Substring(0, 2);
+                fin = dateTimePickerFin.Value.ToString().Substring(6, 4) + "-" + dateTimePickerFin.Value.ToString().Substring(3, 2) + "-" + dateTimePickerFin.Value.ToString().Substring(0, 2);
+            }
+            else
+            {
+                inicio = "";
+                fin = "";
+            }
+
+            ds = Conexion.MySQL("SELECT COUNT(ID) FROM (" + Funciones.GetQuery(tabla, 0, cmbMostrar.SelectedIndex, txtBuscar.Text, inicio: inicio, fin: fin).Replace(';',' ') + ") as TablaCount;");
 
             count = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
 
@@ -90,9 +103,10 @@ namespace MECA_LAB_V2
             }
             
             like = txtBuscar.Text;
-            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,like,pageLimit,0);
+            string query = Funciones.GetQuery(tabla,0,cmbMostrar.SelectedIndex,like,pageLimit,0, inicio: inicio, fin: fin);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = Conexion.MySQL(query).Tables["tabla"];
+            dataGridView1.ClearSelection();
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)

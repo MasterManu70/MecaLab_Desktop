@@ -105,7 +105,7 @@ namespace MECA_LAB_V2
         }
 
         //Método GetQuery: Devuelve la consulta correspondiente dependiendo del nombre de la tabla que se envíe al ser llamado el método.
-        public static string GetQuery(string tabla, int id = 0, int status = 1, string like = "", int limite = 0, int indice = 1)
+        public static string GetQuery(string tabla, int id = 0, int status = 1, string like = "", int limite = 0, int indice = 1, string inicio = "", string fin = "")
         {
             int result = 0;
             string query = "";
@@ -190,6 +190,13 @@ namespace MECA_LAB_V2
                         else                                                                    query += " Usuario LIKE '%" + like + "%'";
                         break;
                 }
+            }
+
+            //Búsqueda por fecha
+            if (inicio != "")
+            {
+                if (id != 0 || status == 1 || status == 0 || like != "") query += " AND "; else query += " WHERE ";
+                query += " Creado BETWEEN '" + inicio + " 00:00:00' AND '" + fin + " 23:59:59'";
             }
 
             //Límite para la paginación
