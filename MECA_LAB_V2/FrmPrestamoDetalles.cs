@@ -14,6 +14,7 @@ namespace MECA_LAB_V2
     {
         int id;
         List<int> noEntregadoID = new List<int>();
+        string status;
         DataSet ds;
         public FrmPrestamoDetalles(int id = 0)
         {
@@ -78,24 +79,31 @@ namespace MECA_LAB_V2
                         }
                     }
                 }
+
+                ds = Conexion.MySQL("SELECT status FROM prestamos WHERE id = " + id + ";");
+                status = ds.Tables["tabla"].Rows[0][0].ToString();
             }
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (noEntregadoID.Contains(int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString())))
+            if (status == "False")
             {
-                var respuesta = MessageBox.Show("¿Desea marcar como devuelto este artículo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (respuesta == DialogResult.Yes)
+                if (noEntregadoID.Contains(int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString())))
                 {
-                    Conexion.MySQL("UPDATE detalles SET status = 0 WHERE articulo = " + int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()) + " AND prestamo = " + id + ";");
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    var respuesta = MessageBox.Show("¿Desea marcar como devuelto este artículo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        Conexion.MySQL("UPDATE detalles SET status = 0 WHERE articulo = " + int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()) + " AND prestamo = " + id + ";");
+                        Conexion.MySQL("UPDATE articulos SET disponible = 1 WHERE id = " + int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()) + ";");
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("El artículo seleccionado ya ha sido devuelto.");
+                else
+                {
+                    MessageBox.Show("El artículo seleccionado ya ha sido devuelto.");
+                }
             }
         }
     }
