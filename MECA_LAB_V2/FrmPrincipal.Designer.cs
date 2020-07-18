@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -41,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lblRegistro = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,7 +63,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dateTimePickerFin = new System.Windows.Forms.DateTimePicker();
-            this.lblRegistro = new System.Windows.Forms.Label();
+            this.picBuscar = new System.Windows.Forms.PictureBox();
+            this.picNotificacion = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -71,6 +73,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNotificacion)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -94,24 +98,24 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.MediumSeaGreen;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.MediumSeaGreen;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.MediumSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
@@ -206,6 +210,7 @@
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.picBuscar);
             this.groupBox5.Controls.Add(this.lblRegistro);
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.txtUsuario);
@@ -225,6 +230,20 @@
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Datos del préstamo";
+            // 
+            // lblRegistro
+            // 
+            this.lblRegistro.AutoSize = true;
+            this.lblRegistro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblRegistro.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistro.ForeColor = System.Drawing.Color.Red;
+            this.lblRegistro.Location = new System.Drawing.Point(373, 29);
+            this.lblRegistro.Name = "lblRegistro";
+            this.lblRegistro.Size = new System.Drawing.Size(20, 19);
+            this.lblRegistro.TabIndex = 10;
+            this.lblRegistro.Text = "X";
+            this.lblRegistro.Visible = false;
+            this.lblRegistro.Click += new System.EventHandler(this.lblRegistro_Click);
             // 
             // label10
             // 
@@ -385,6 +404,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.Controls.Add(this.picNotificacion);
             this.panel1.Controls.Add(this.btnDevolver);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label6);
@@ -463,19 +483,25 @@
             this.dateTimePickerFin.Size = new System.Drawing.Size(261, 23);
             this.dateTimePickerFin.TabIndex = 27;
             // 
-            // lblRegistro
+            // picBuscar
             // 
-            this.lblRegistro.AutoSize = true;
-            this.lblRegistro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRegistro.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistro.ForeColor = System.Drawing.Color.Red;
-            this.lblRegistro.Location = new System.Drawing.Point(373, 29);
-            this.lblRegistro.Name = "lblRegistro";
-            this.lblRegistro.Size = new System.Drawing.Size(20, 19);
-            this.lblRegistro.TabIndex = 10;
-            this.lblRegistro.Text = "X";
-            this.lblRegistro.Visible = false;
-            this.lblRegistro.Click += new System.EventHandler(this.lblRegistro_Click);
+            this.picBuscar.Image = ((System.Drawing.Image)(resources.GetObject("picBuscar.Image")));
+            this.picBuscar.Location = new System.Drawing.Point(370, 59);
+            this.picBuscar.Name = "picBuscar";
+            this.picBuscar.Size = new System.Drawing.Size(28, 27);
+            this.picBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBuscar.TabIndex = 11;
+            this.picBuscar.TabStop = false;
+            // 
+            // picNotificacion
+            // 
+            this.picNotificacion.Image = global::MECA_LAB_V2.Properties.Resources.campana;
+            this.picNotificacion.Location = new System.Drawing.Point(198, 17);
+            this.picNotificacion.Name = "picNotificacion";
+            this.picNotificacion.Size = new System.Drawing.Size(28, 27);
+            this.picNotificacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picNotificacion.TabIndex = 12;
+            this.picNotificacion.TabStop = false;
             // 
             // FrmPrincipal
             // 
@@ -515,6 +541,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNotificacion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -553,5 +581,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblRegistro;
+        private System.Windows.Forms.PictureBox picBuscar;
+        private System.Windows.Forms.PictureBox picNotificacion;
     }
 }
