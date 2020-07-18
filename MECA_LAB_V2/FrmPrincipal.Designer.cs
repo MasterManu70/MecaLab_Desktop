@@ -41,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.picBuscar = new System.Windows.Forms.PictureBox();
             this.lblRegistro = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -57,24 +58,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picNotificacion = new System.Windows.Forms.PictureBox();
             this.btnDevolver = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dateTimePickerFin = new System.Windows.Forms.DateTimePicker();
-            this.picBuscar = new System.Windows.Forms.PictureBox();
-            this.picNotificacion = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNotificacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNotificacion)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -230,6 +230,18 @@
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Datos del préstamo";
+            // 
+            // picBuscar
+            // 
+            this.picBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuscar.Image = ((System.Drawing.Image)(resources.GetObject("picBuscar.Image")));
+            this.picBuscar.Location = new System.Drawing.Point(370, 59);
+            this.picBuscar.Name = "picBuscar";
+            this.picBuscar.Size = new System.Drawing.Size(28, 27);
+            this.picBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBuscar.TabIndex = 11;
+            this.picBuscar.TabStop = false;
+            this.picBuscar.Click += new System.EventHandler(this.picBuscar_Click);
             // 
             // lblRegistro
             // 
@@ -413,6 +425,16 @@
             this.panel1.Size = new System.Drawing.Size(1022, 61);
             this.panel1.TabIndex = 6;
             // 
+            // picNotificacion
+            // 
+            this.picNotificacion.Image = global::MECA_LAB_V2.Properties.Resources.campana;
+            this.picNotificacion.Location = new System.Drawing.Point(188, 8);
+            this.picNotificacion.Name = "picNotificacion";
+            this.picNotificacion.Size = new System.Drawing.Size(40, 40);
+            this.picNotificacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picNotificacion.TabIndex = 12;
+            this.picNotificacion.TabStop = false;
+            // 
             // btnDevolver
             // 
             this.btnDevolver.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -483,26 +505,6 @@
             this.dateTimePickerFin.Size = new System.Drawing.Size(261, 23);
             this.dateTimePickerFin.TabIndex = 27;
             // 
-            // picBuscar
-            // 
-            this.picBuscar.Image = ((System.Drawing.Image)(resources.GetObject("picBuscar.Image")));
-            this.picBuscar.Location = new System.Drawing.Point(370, 59);
-            this.picBuscar.Name = "picBuscar";
-            this.picBuscar.Size = new System.Drawing.Size(28, 27);
-            this.picBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBuscar.TabIndex = 11;
-            this.picBuscar.TabStop = false;
-            // 
-            // picNotificacion
-            // 
-            this.picNotificacion.Image = global::MECA_LAB_V2.Properties.Resources.campana;
-            this.picNotificacion.Location = new System.Drawing.Point(198, 17);
-            this.picNotificacion.Name = "picNotificacion";
-            this.picNotificacion.Size = new System.Drawing.Size(28, 27);
-            this.picNotificacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picNotificacion.TabIndex = 12;
-            this.picNotificacion.TabStop = false;
-            // 
             // FrmPrincipal
             // 
             this.AcceptButton = this.button1;
@@ -536,13 +538,13 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNotificacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNotificacion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -557,7 +559,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtMatricula;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
@@ -583,5 +584,6 @@
         private System.Windows.Forms.Label lblRegistro;
         private System.Windows.Forms.PictureBox picBuscar;
         private System.Windows.Forms.PictureBox picNotificacion;
+        public System.Windows.Forms.TextBox txtMatricula;
     }
 }

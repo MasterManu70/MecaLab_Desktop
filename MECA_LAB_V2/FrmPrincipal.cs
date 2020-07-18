@@ -17,6 +17,8 @@ namespace MECA_LAB_V2
         int alumnoID = 0;
         string alumno = "";
 
+        FrmAlumnoBusqueda frmAlumnoBusqueda;
+
         //Listas de llaves primarias correspondiente a cada registro
         public static List<int> maestros = new List<int>();
         public static List<int> asignaturas = new List<int>();
@@ -342,6 +344,11 @@ namespace MECA_LAB_V2
                                         WHERE
                                         detalles.prestamo = " + prestamoID + "; ");
 
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.RemoveAt(i);
+                    }
+
                     for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
                     {
                         dataGridView1.Rows.Add();
@@ -474,6 +481,12 @@ namespace MECA_LAB_V2
                     MessageBox.Show("El alumno ha sido registrado con éxito.");
                 }
             }
+        }
+
+        private void picBuscar_Click(object sender, EventArgs e)
+        {
+            frmAlumnoBusqueda = new FrmAlumnoBusqueda();
+            frmAlumnoBusqueda.ShowDialog();
         }
     }
 }

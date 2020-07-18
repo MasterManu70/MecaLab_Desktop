@@ -24,7 +24,7 @@ namespace MECA_LAB_V2
         }
         //Variables Publicas y Privadas
         private FrmLogin FrmLogin = new FrmLogin();
-        private FrmPrincipal frmPrincipal =  new FrmPrincipal();
+        public static FrmPrincipal frmPrincipal =  new FrmPrincipal();
 
         //CRUDs
         private FrmCrud frmArticulos =          new FrmCrud("Articulos",Color.SteelBlue);
