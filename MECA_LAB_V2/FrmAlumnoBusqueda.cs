@@ -37,7 +37,14 @@ namespace MECA_LAB_V2
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            FrmMenu.frmPrincipal.txtMatricula.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            try
+            {
+                FrmMenu.frmPrincipal.txtMatricula.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+            catch (Exception)
+            {
+                return;
+            }
             this.Close();
         }
     }

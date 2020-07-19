@@ -50,7 +50,7 @@ namespace MECA_LAB_V2
                 txtLaboratorio.Text = ds.Tables["tabla"].Rows[0][3].ToString();
                 txtAsignatura.Text = ds.Tables["tabla"].Rows[0][4].ToString();
                 txtUsuario.Text = ds.Tables["tabla"].Rows[0][5].ToString();
-                txtEntrega.Text = ds.Tables["tabla"].Rows[0][6].ToString();
+                txtEntrega.Text = ds.Tables["tabla"].Rows[0][6].ToString().Substring(0,10);
                 txtCreado.Text = ds.Tables["tabla"].Rows[0][7].ToString();
                 txtActualizado.Text = ds.Tables["tabla"].Rows[0][8].ToString();
 

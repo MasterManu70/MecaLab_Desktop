@@ -262,5 +262,10 @@ namespace MECA_LAB_V2
                 }
             }
         }
+
+        private void dateTimePickerInicio_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerFin.MaxDate = dateTimePickerInicio.Value;
+        }
     }
 }

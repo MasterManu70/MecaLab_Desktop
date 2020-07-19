@@ -16,8 +16,10 @@ namespace MECA_LAB_V2
         int prestamoID = 0;
         int alumnoID = 0;
         string alumno = "";
+        string fecha;
 
         FrmAlumnoBusqueda frmAlumnoBusqueda;
+        FrmNotificaciones frmNotificaciones;
 
         //Listas de llaves primarias correspondiente a cada registro
         public static List<int> maestros = new List<int>();
@@ -72,13 +74,22 @@ namespace MECA_LAB_V2
                 var respuesta = MessageBox.Show("¿Desea realizar el siguiente prestamo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
+                    if (DateTime.Now.ToString().Substring(0, 10) == dateTimePickerFin.Value.ToString().Substring(0, 10))
+                    {
+                        fecha = "NOW()";
+                    }
+                    else
+                    {
+                        fecha = "'" + dateTimePickerFin.Value.ToString().Substring(6, 4) + "-" + dateTimePickerFin.Value.ToString().Substring(3, 2) + "-" + dateTimePickerFin.Value.ToString().Substring(0, 2) + "'";
+                    }
+
                     valores.Add("0");
                     valores.Add(alumnoID.ToString());
                     valores.Add(maestros[cmbMaestro.SelectedIndex].ToString());
                     valores.Add(laboratorios[cmbLaboratorio.SelectedIndex].ToString());
                     valores.Add(asignaturas[cmbAsignatura.SelectedIndex].ToString());
                     valores.Add(FrmMenu.usuarioID.ToString());
-                    valores.Add("'" + dateTimePickerFin.Value.ToString().Substring(6, 4) + "-" + dateTimePickerFin.Value.ToString().Substring(3, 2) + "-" + dateTimePickerFin.Value.ToString().Substring(0, 2) + "'");
+                    valores.Add(fecha);
                     valores.Add("NOW()");
                     valores.Add("NOW()");
                     valores.Add("1");
@@ -156,6 +167,7 @@ namespace MECA_LAB_V2
                     borrarContenido();
                 }
             }
+            NotificationsUpdate();
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -425,6 +437,8 @@ namespace MECA_LAB_V2
 
                 lblRegistro.Visible = false;
 
+                dateTimePickerFin.MinDate = DateTime.Parse("01/01/2020");
+
                 btnDevolver.Text = "Prestar";
                 txtUsuario.Clear();
             }
@@ -448,6 +462,8 @@ namespace MECA_LAB_V2
                 dateTimePickerFin.Enabled = true;
 
                 lblRegistro.Visible = false;
+
+                dateTimePickerFin.MinDate = DateTime.Now;
 
                 btnDevolver.Text = "Devolver";
                 txtUsuario.Clear();
@@ -487,6 +503,30 @@ namespace MECA_LAB_V2
         {
             frmAlumnoBusqueda = new FrmAlumnoBusqueda();
             frmAlumnoBusqueda.ShowDialog();
+        }
+
+        private void dateTimePickerFin_MouseEnter(object sender, EventArgs e)
+        {
+            dateTimePickerFin.MinDate = DateTime.Now;
+        }
+
+        private void picNotificacion_Click(object sender, EventArgs e)
+        {
+            frmNotificaciones = new FrmNotificaciones();
+            frmNotificaciones.ShowDialog();
+        }
+
+        public void NotificationsUpdate()
+        {
+            ds = Conexion.MySQL("SELECT COUNT(ID) FROM (SELECT prestamos.id ID FROM prestamos INNER JOIN alumnos ON prestamos.alumno = alumnos.id WHERE prestamos.fecha_fin < NOW() AND prestamos.status = 1 AND prestamos.fecha_fin != prestamos.created_at) as Tabla;");
+            if (ds.Tables["tabla"].Rows[0][0].ToString() != "0")
+            {
+                picNotificacion.Image = Properties.Resources.campana_ciruclo_roojo;
+            }
+            else
+            {
+                picNotificacion.Image = Properties.Resources.campana;
+            }
         }
     }
 }

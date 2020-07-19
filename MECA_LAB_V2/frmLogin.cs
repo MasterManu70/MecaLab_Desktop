@@ -36,6 +36,7 @@ namespace MECA_LAB_V2
             FrmMenu.usuarioID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
             FrmMenu.usuario = textBox1.Text;
             FrmMenu.usuarioNivel = int.Parse(ds.Tables["tabla"].Rows[0][1].ToString());
+            FrmMenu.frmPrincipal.NotificationsUpdate();
 
             FrmMenu.showed = true;
 
