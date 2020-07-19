@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,6 +31,7 @@ namespace MECA_LAB_V2
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (Validar.Validate(txtBuscar.Text, letras: true)) lblError.Visible = false; else { lblError.Visible = true; lblError.Text = "¡Error! Solo letras en el campo de texto."; return; }
             ds = Conexion.MySQL("SELECT Matrícula, Alumno FROM (SELECT matricula as Matrícula, CONCAT(nombre, ' ', apellidop, ' ', apellidom) AS Alumno, status FROM alumnos) AS Tabla WHERE status = 1 AND Alumno LIKE '%" + txtBuscar.Text + "%';");
             dataGridView1.DataSource = ds.Tables["tabla"];
             dataGridView1.ClearSelection();
@@ -46,6 +48,11 @@ namespace MECA_LAB_V2
                 return;
             }
             this.Close();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (Validar.Validate(txtBuscar.Text,letras: true)) lblError.Visible = false; else { lblError.Visible = true; lblError.Text = "¡Error! Solo letras en el campo de texto."; }
         }
     }
 }

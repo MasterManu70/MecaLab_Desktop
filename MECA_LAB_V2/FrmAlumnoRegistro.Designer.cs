@@ -55,6 +55,13 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.lblErrorMatricula = new System.Windows.Forms.Label();
+            this.lblErrorNombre = new System.Windows.Forms.Label();
+            this.lblErrorPaterno = new System.Windows.Forms.Label();
+            this.lblErrorMaterno = new System.Windows.Forms.Label();
+            this.lblErrorCarrera = new System.Windows.Forms.Label();
+            this.lblErrorCorreo = new System.Windows.Forms.Label();
+            this.lblErrorTelefono = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,6 +109,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblErrorTelefono);
+            this.groupBox1.Controls.Add(this.lblErrorCorreo);
+            this.groupBox1.Controls.Add(this.lblErrorCarrera);
+            this.groupBox1.Controls.Add(this.lblErrorMaterno);
+            this.groupBox1.Controls.Add(this.lblErrorPaterno);
+            this.groupBox1.Controls.Add(this.lblErrorNombre);
+            this.groupBox1.Controls.Add(this.lblErrorMatricula);
             this.groupBox1.Controls.Add(this.txtTelefono);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtCorreo);
@@ -116,9 +130,9 @@
             this.groupBox1.Controls.Add(this.txtMatricula);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(80, 96);
+            this.groupBox1.Location = new System.Drawing.Point(41, 96);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 445);
+            this.groupBox1.Size = new System.Drawing.Size(473, 445);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los siguientes Datos";
@@ -126,18 +140,20 @@
             // txtTelefono
             // 
             this.txtTelefono.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTelefono.Location = new System.Drawing.Point(84, 385);
+            this.txtTelefono.Location = new System.Drawing.Point(112, 385);
             this.txtTelefono.MaxLength = 10;
             this.txtTelefono.Multiline = true;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(238, 27);
             this.txtTelefono.TabIndex = 13;
+            this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
+            this.txtTelefono.Leave += new System.EventHandler(this.txtTelefono_Leave);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(80, 361);
+            this.label9.Location = new System.Drawing.Point(108, 361);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 21);
             this.label9.TabIndex = 12;
@@ -146,17 +162,19 @@
             // txtCorreo
             // 
             this.txtCorreo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtCorreo.Location = new System.Drawing.Point(84, 331);
+            this.txtCorreo.Location = new System.Drawing.Point(112, 331);
             this.txtCorreo.MaxLength = 255;
             this.txtCorreo.Multiline = true;
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(238, 27);
             this.txtCorreo.TabIndex = 11;
+            this.txtCorreo.TextChanged += new System.EventHandler(this.txtCorreo_TextChanged);
+            this.txtCorreo.Leave += new System.EventHandler(this.txtCorreo_Leave);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(80, 307);
+            this.label8.Location = new System.Drawing.Point(108, 307);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 21);
             this.label8.TabIndex = 10;
@@ -165,7 +183,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(80, 251);
+            this.label6.Location = new System.Drawing.Point(108, 251);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 21);
             this.label6.TabIndex = 8;
@@ -175,7 +193,7 @@
             // 
             this.cmbCarrera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCarrera.FormattingEnabled = true;
-            this.cmbCarrera.Location = new System.Drawing.Point(84, 275);
+            this.cmbCarrera.Location = new System.Drawing.Point(112, 275);
             this.cmbCarrera.Name = "cmbCarrera";
             this.cmbCarrera.Size = new System.Drawing.Size(238, 29);
             this.cmbCarrera.TabIndex = 9;
@@ -183,18 +201,20 @@
             // txtMaterno
             // 
             this.txtMaterno.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMaterno.Location = new System.Drawing.Point(84, 220);
+            this.txtMaterno.Location = new System.Drawing.Point(112, 220);
             this.txtMaterno.MaxLength = 60;
             this.txtMaterno.Multiline = true;
             this.txtMaterno.Name = "txtMaterno";
             this.txtMaterno.Size = new System.Drawing.Size(238, 28);
             this.txtMaterno.TabIndex = 7;
+            this.txtMaterno.TextChanged += new System.EventHandler(this.txtMaterno_TextChanged);
             this.txtMaterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaterno_KeyPress);
+            this.txtMaterno.Leave += new System.EventHandler(this.txtMaterno_Leave);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(80, 196);
+            this.label5.Location = new System.Drawing.Point(108, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(146, 21);
             this.label5.TabIndex = 6;
@@ -203,18 +223,20 @@
             // txtPaterno
             // 
             this.txtPaterno.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtPaterno.Location = new System.Drawing.Point(84, 165);
+            this.txtPaterno.Location = new System.Drawing.Point(112, 165);
             this.txtPaterno.MaxLength = 60;
             this.txtPaterno.Multiline = true;
             this.txtPaterno.Name = "txtPaterno";
             this.txtPaterno.Size = new System.Drawing.Size(238, 28);
             this.txtPaterno.TabIndex = 5;
+            this.txtPaterno.TextChanged += new System.EventHandler(this.txtPaterno_TextChanged);
             this.txtPaterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPaterno_KeyPress);
+            this.txtPaterno.Leave += new System.EventHandler(this.txtPaterno_Leave);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(80, 141);
+            this.label4.Location = new System.Drawing.Point(108, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(140, 21);
             this.label4.TabIndex = 4;
@@ -223,29 +245,33 @@
             // txtNombre
             // 
             this.txtNombre.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtNombre.Location = new System.Drawing.Point(84, 110);
+            this.txtNombre.Location = new System.Drawing.Point(112, 110);
             this.txtNombre.MaxLength = 60;
             this.txtNombre.Multiline = true;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(238, 28);
             this.txtNombre.TabIndex = 3;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // txtMatricula
             // 
             this.txtMatricula.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMatricula.Location = new System.Drawing.Point(84, 56);
+            this.txtMatricula.Location = new System.Drawing.Point(112, 56);
             this.txtMatricula.MaxLength = 8;
             this.txtMatricula.Multiline = true;
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.Size = new System.Drawing.Size(238, 27);
             this.txtMatricula.TabIndex = 1;
+            this.txtMatricula.TextChanged += new System.EventHandler(this.txtMatricula_TextChanged);
             this.txtMatricula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatricula_KeyPress);
+            this.txtMatricula.Leave += new System.EventHandler(this.txtMatricula_Leave);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(80, 32);
+            this.label3.Location = new System.Drawing.Point(108, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 21);
             this.label3.TabIndex = 0;
@@ -254,7 +280,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(80, 86);
+            this.label2.Location = new System.Drawing.Point(108, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 21);
             this.label2.TabIndex = 2;
@@ -275,7 +301,6 @@
             // 
             this.btnActualizar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActualizar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnActualizar.FlatAppearance.BorderSize = 0;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
@@ -329,6 +354,90 @@
             this.MoverForm.Horizontal = true;
             this.MoverForm.TargetControl = this;
             this.MoverForm.Vertical = true;
+            // 
+            // lblErrorMatricula
+            // 
+            this.lblErrorMatricula.AutoSize = true;
+            this.lblErrorMatricula.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMatricula.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMatricula.Location = new System.Drawing.Point(356, 63);
+            this.lblErrorMatricula.Name = "lblErrorMatricula";
+            this.lblErrorMatricula.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorMatricula.TabIndex = 32;
+            this.lblErrorMatricula.Text = "Mensaje Error";
+            this.lblErrorMatricula.Visible = false;
+            // 
+            // lblErrorNombre
+            // 
+            this.lblErrorNombre.AutoSize = true;
+            this.lblErrorNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorNombre.Location = new System.Drawing.Point(356, 117);
+            this.lblErrorNombre.Name = "lblErrorNombre";
+            this.lblErrorNombre.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorNombre.TabIndex = 32;
+            this.lblErrorNombre.Text = "Mensaje Error";
+            this.lblErrorNombre.Visible = false;
+            // 
+            // lblErrorPaterno
+            // 
+            this.lblErrorPaterno.AutoSize = true;
+            this.lblErrorPaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorPaterno.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorPaterno.Location = new System.Drawing.Point(356, 172);
+            this.lblErrorPaterno.Name = "lblErrorPaterno";
+            this.lblErrorPaterno.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorPaterno.TabIndex = 32;
+            this.lblErrorPaterno.Text = "Mensaje Error";
+            this.lblErrorPaterno.Visible = false;
+            // 
+            // lblErrorMaterno
+            // 
+            this.lblErrorMaterno.AutoSize = true;
+            this.lblErrorMaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMaterno.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMaterno.Location = new System.Drawing.Point(356, 227);
+            this.lblErrorMaterno.Name = "lblErrorMaterno";
+            this.lblErrorMaterno.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorMaterno.TabIndex = 32;
+            this.lblErrorMaterno.Text = "Mensaje Error";
+            this.lblErrorMaterno.Visible = false;
+            // 
+            // lblErrorCarrera
+            // 
+            this.lblErrorCarrera.AutoSize = true;
+            this.lblErrorCarrera.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorCarrera.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorCarrera.Location = new System.Drawing.Point(356, 282);
+            this.lblErrorCarrera.Name = "lblErrorCarrera";
+            this.lblErrorCarrera.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorCarrera.TabIndex = 32;
+            this.lblErrorCarrera.Text = "Mensaje Error";
+            this.lblErrorCarrera.Visible = false;
+            // 
+            // lblErrorCorreo
+            // 
+            this.lblErrorCorreo.AutoSize = true;
+            this.lblErrorCorreo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorCorreo.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorCorreo.Location = new System.Drawing.Point(356, 338);
+            this.lblErrorCorreo.Name = "lblErrorCorreo";
+            this.lblErrorCorreo.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorCorreo.TabIndex = 32;
+            this.lblErrorCorreo.Text = "Mensaje Error";
+            this.lblErrorCorreo.Visible = false;
+            // 
+            // lblErrorTelefono
+            // 
+            this.lblErrorTelefono.AutoSize = true;
+            this.lblErrorTelefono.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorTelefono.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorTelefono.Location = new System.Drawing.Point(356, 392);
+            this.lblErrorTelefono.Name = "lblErrorTelefono";
+            this.lblErrorTelefono.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorTelefono.TabIndex = 32;
+            this.lblErrorTelefono.Text = "Mensaje Error";
+            this.lblErrorTelefono.Visible = false;
             // 
             // FrmAlumnoRegistro
             // 
@@ -390,5 +499,12 @@
         private System.Windows.Forms.Button btnEliminar;
         private Bunifu.Framework.UI.BunifuElipse Curva;
         private Bunifu.Framework.UI.BunifuDragControl MoverForm;
+        private System.Windows.Forms.Label lblErrorTelefono;
+        private System.Windows.Forms.Label lblErrorCorreo;
+        private System.Windows.Forms.Label lblErrorCarrera;
+        private System.Windows.Forms.Label lblErrorMaterno;
+        private System.Windows.Forms.Label lblErrorPaterno;
+        private System.Windows.Forms.Label lblErrorNombre;
+        private System.Windows.Forms.Label lblErrorMatricula;
     }
 }
