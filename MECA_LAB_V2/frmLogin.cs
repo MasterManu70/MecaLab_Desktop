@@ -6,7 +6,6 @@ namespace MECA_LAB_V2
 {
     public partial class FrmLogin : Form
     {
-        
         public FrmLogin()
         {
             InitializeComponent();

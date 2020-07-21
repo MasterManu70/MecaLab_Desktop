@@ -9,7 +9,7 @@ namespace MECA_LAB_V2
     public partial class FrmPrincipal : Form
     {
         DataSet ds;
-        bool devolver = false;
+        public static bool devolver = false;
         Color devolucionColor = Color.DarkOrange;
         Color principalColor = Color.MediumSeaGreen;
         //IDs necesarios para llevar a cabo el préstamo
@@ -20,6 +20,7 @@ namespace MECA_LAB_V2
 
         FrmAlumnoBusqueda frmAlumnoBusqueda;
         FrmNotificaciones frmNotificaciones;
+        FrmAlumnoRegistro frmAlumnoRegistro;
 
         //Listas de llaves primarias correspondiente a cada registro
         public static List<int> maestros = new List<int>();
@@ -211,15 +212,23 @@ namespace MECA_LAB_V2
             int rows = dataGridView1.Rows.Count - 1;
             for (int i = rows; i >= 0; i--) dataGridView1.Rows.RemoveAt(i);
 
-            Funciones.TableToCombo(cmbMaestro, maestros, "maestros");
-            Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas");
-            Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios");
+            if (!devolver)
+            {
+                Funciones.TableToCombo(cmbMaestro, maestros, "maestros");
+                Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas");
+                Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios");
+            }
+            else
+            {
+                Funciones.TableToCombo(cmbMaestro, maestros, "maestros", 2);
+                Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas", 2);
+                Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios", 2);
+            }
         }
 
         private void txtCodigo_TextChanged(object sender, EventArgs e)
         {
             int rows = 0;
-            DataSet ds;
             if (!Int32.TryParse(txtCodigo.Text, out codigo))
             {
                 txtCodigo.Clear();
@@ -285,8 +294,6 @@ namespace MECA_LAB_V2
                 txtMatricula.Clear();
                 return;
             }
-
-            DataSet ds;
 
             if (txtMatricula.Text.Length == 8)
             {
@@ -439,6 +446,10 @@ namespace MECA_LAB_V2
 
                 dateTimePickerFin.MinDate = DateTime.Parse("01/01/2020");
 
+                Funciones.TableToCombo(cmbMaestro, maestros, "maestros", 2);
+                Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas", 2);
+                Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios", 2);
+
                 btnDevolver.Text = "Prestar";
                 txtUsuario.Clear();
             }
@@ -465,6 +476,10 @@ namespace MECA_LAB_V2
 
                 dateTimePickerFin.MinDate = DateTime.Now;
 
+                Funciones.TableToCombo(cmbMaestro, maestros, "maestros");
+                Funciones.TableToCombo(cmbAsignatura, asignaturas, "asignaturas");
+                Funciones.TableToCombo(cmbLaboratorio, laboratorios, "laboratorios");
+
                 btnDevolver.Text = "Devolver";
                 txtUsuario.Clear();
             }
@@ -480,9 +495,9 @@ namespace MECA_LAB_V2
         {
             if (lblRegistro.Text == "X")
             {
-                FrmAlumnoRegistro frm = new FrmAlumnoRegistro();
-                frm.txtMatricula.Text = txtMatricula.Text;
-                DialogResult res = frm.ShowDialog();
+                frmAlumnoRegistro = new FrmAlumnoRegistro();
+                frmAlumnoRegistro.txtMatricula.Text = txtMatricula.Text;
+                DialogResult res = frmAlumnoRegistro.ShowDialog();
 
                 if (res == DialogResult.OK)
                 {

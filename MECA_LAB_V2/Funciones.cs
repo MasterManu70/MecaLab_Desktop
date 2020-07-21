@@ -14,7 +14,7 @@ namespace MECA_LAB_V2
     class Funciones
     {
         //Método TableToCombo: Se trae consigo todos los registros de una tabla y a su vez sus llaves primarias.
-        public static void TableToCombo(ComboBox cmb, List<int> llaves, string tabla)
+        public static void TableToCombo(ComboBox cmb, List<int> llaves, string tabla, int status = 1)
         {
             cmb.Items.Clear();
             llaves.Clear();
@@ -23,7 +23,7 @@ namespace MECA_LAB_V2
 
             try
             {
-                ds = Conexion.MySQL(GetQuery(tabla));
+                ds = Conexion.MySQL(GetQuery(tabla, status: status));
             }
             catch (MySqlException ex)
             {
