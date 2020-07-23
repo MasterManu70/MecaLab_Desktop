@@ -120,7 +120,7 @@ namespace MECA_LAB_V2
                 case "carreras":        query = "SELECT * FROM (SELECT id as ID, carrera as Carrera, created_at as Creado, updated_at as Actualizado, status FROM carreras) as Tabla";  break;
                 case "laboratorios":    query = "SELECT * FROM (SELECT id as ID, laboratorio as Laboratorio, created_at as Creado, updated_at as Actualizado, status FROM laboratorios) as Tabla"; break;
                 case "maestros":        query = "SELECT * FROM (SELECT id ID, CONCAT(nombre,' ', apellidop,' ', apellidom) Maestro, created_at Creado, updated_at Actualizado, status FROM maestros) as Tabla"; break;
-                case "movimientos":     query = "SELECT * FROM (SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id) as Tabla"; break;
+                case "movimientos":     query = "SELECT * FROM (SELECT movimientos.id ID,usuarios.usuario Usuario,movimientos.id_registro Registro,movimientos.tabla Tabla,movimientos.campo Campo,movimientos.nuevo Nuevo,movimientos.viejo Viejo,movimientos.descripcion Descripción,movimientos.created_at Creado, movimientos.status status FROM `movimientos` INNER JOIN usuarios ON movimientos.usuario = usuarios.id) as TablaVirtual"; break;
                 case "prestamos":       query = @"SELECT * FROM (SELECT prestamos.id ID, CONCAT(alumnos.nombre,' ',alumnos.apellidop,' ', alumnos.apellidom) Alumno, CONCAT(maestros.nombre,' ',maestros.apellidop,' ', maestros.apellidom) Maestro, laboratorios.laboratorio Laboratorio,
                                                 asignaturas.asignatura Asignatura,usuarios.usuario Usuario,prestamos.fecha_fin Entrega,prestamos.created_at Creado,prestamos.updated_at Actualizado, prestamos.status status FROM prestamos
                                                 INNER JOIN alumnos ON prestamos.alumno = alumnos.id INNER JOIN maestros ON prestamos.maestro = maestros.id INNER JOIN laboratorios ON prestamos.laboratorio = laboratorios.id
@@ -172,6 +172,10 @@ namespace MECA_LAB_V2
                     case "maestros":
                         if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Maestro LIKE '%" + like + "%'";
+                        break;
+                    case "movimientos":
+                        if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
+                        else                                                                    query += " (Usuario LIKE '%" + like + "%' OR Tabla LIKE '%" + like + "%' OR Campo LIKE '%" + like + "%' OR Nuevo LIKE '%" + like + "%' OR Viejo LIKE '%" + like + "%' OR Descripción LIKE '%" + like + "%')";
                         break;
                     case "prestamos":
                         DataSet ds;
@@ -252,8 +256,12 @@ namespace MECA_LAB_V2
                 query += " Creado BETWEEN '" + inicio + " 00:00:00' AND '" + fin + " 23:59:59'";
             }
 
+            //Orden descendiente para Movimientos
+            if (tabla == "movimientos") query += " ORDER BY Creado DESC";
+
             //Límite para la paginación
             if (limite != 0 ) query += " LIMIT " + indice + "," + limite;
+
 
             query += ";";
 

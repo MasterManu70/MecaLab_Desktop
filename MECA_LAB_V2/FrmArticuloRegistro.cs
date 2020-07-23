@@ -8,6 +8,15 @@ namespace MECA_LAB_V2
     public partial class FrmArticuloRegistro : Form
     {
         int id;
+        List<string> original = new List<string>();                 //Registro tomado de la base de datos.
+        List<string> nuevo = new List<string>();                    //Registro con los nuevos valores que se comparará con los originales
+        List<string> valores = new List<string>();                  //Registro que se actualizará/insertará en la base de datos.
+        List<string> movimiento = new List<string>();               //Registro que se insertará en la tabla movimientos.
+        string status;
+        string descripcion;
+        List<string> columnas = new List<string> { "Artículo", "Comentario"};
+
+        DataSet ds;
         public FrmArticuloRegistro(int id = 0)
         {
             this.id = id;
@@ -16,8 +25,6 @@ namespace MECA_LAB_V2
 
         private void FrmArticuloRegistro_Load(object sender, EventArgs e)
         {
-            DataSet ds;
-
             ds = Conexion.MySQL("SELECT DISTINCT articulo FROM articulos");
 
             for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
@@ -34,9 +41,14 @@ namespace MECA_LAB_V2
                 }
                 btnEliminar.Visible = true;
                 btnActualizar.Text = "Actualizar";
+                status = ds.Tables["tabla"].Rows[0]["status"].ToString();
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
-                cmbArticulo.Text = ds.Tables["tabla"].Rows[0][1].ToString();
-                txtComentario.Text = ds.Tables["tabla"].Rows[0][2].ToString();
+
+                original.Add(ds.Tables["tabla"].Rows[0][1].ToString());
+                original.Add(ds.Tables["tabla"].Rows[0][2].ToString());
+
+                cmbArticulo.Text = original[0];
+                txtComentario.Text = original[1];
             }
         }
 
@@ -45,7 +57,6 @@ namespace MECA_LAB_V2
         //Desarrollo
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            DataSet ds;
             List<string> valores = new List<string>();
             if (cmbArticulo.Text == "") { MessageBox.Show("Ingrese el nombre del articulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); cmbArticulo.Focus(); return; }
 
@@ -66,25 +77,86 @@ namespace MECA_LAB_V2
             valores.Add("NOW()");
             valores.Add(status);
 
+            nuevo.Add(cmbArticulo.Text);
+            nuevo.Add(txtComentario.Text);
+
             if (id != 0)
             {
                 var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
-                    Funciones.Insert("articulos", valores);
+                    if (Funciones.Insert("articulos", valores))
+                    {
+                        for (int i = 0; i < original.Count; i++)
+                        {
+                            if (original[i] != nuevo[i])
+                            {
+                                movimiento.Clear();
+                                movimiento.Add("0");
+                                movimiento.Add(FrmMenu.usuarioID.ToString());
+                                movimiento.Add(id.ToString());
+                                movimiento.Add("'Articulos'");
+                                movimiento.Add("'" + columnas[i] + "'");
+                                movimiento.Add("'" + nuevo[i] + "'");
+                                movimiento.Add("'" + original[i] + "'");
+                                movimiento.Add("'Modificó'");
+                                movimiento.Add("NOW()");
+                                movimiento.Add("NOW()");
+                                movimiento.Add("1");
+                                Funciones.Insert("movimientos", movimiento);
+                            }
+                        }
+                    }
                     this.Close();
                 }
             }
             else
             {
-                Funciones.Insert("articulos", valores);
+                if (Funciones.Insert("articulos", valores))
+                {
+                    ds = Conexion.MySQL("SELECT Last_Insert_ID();");
+                    movimiento.Clear();
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(ds.Tables["tabla"].Rows[0][0].ToString());
+                    movimiento.Add("'Articulos'");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("'Agregó'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos", movimiento);
+                }
                 this.Close();
             }
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (status == "True")
+            {
+                descripcion = "Baja";
+            }
+            else
+            {
+                descripcion = "Alta";
+            }
             if (Funciones.StatusUpdate("articulos", btnEliminar.Text, id))
             {
+                movimiento.Clear();
+                movimiento.Add("0");
+                movimiento.Add(FrmMenu.usuarioID.ToString());
+                movimiento.Add(id.ToString());
+                movimiento.Add("'Articulos'");
+                movimiento.Add("'status'");
+                movimiento.Add("NULL");
+                movimiento.Add("NULL");
+                movimiento.Add("'" + descripcion + "'");
+                movimiento.Add("NOW()");
+                movimiento.Add("NOW()");
+                movimiento.Add("1");
+                Funciones.Insert("movimientos", movimiento);
                 this.Close();
             }
         }

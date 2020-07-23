@@ -8,6 +8,15 @@ namespace MECA_LAB_V2
     public partial class FrmUsuarioRegistro : Form
     {
         int id;
+        List<string> original = new List<string>();     //Registro tomado de la base de datos.
+        List<string> nuevo = new List<string>();        //Registro con los nuevos valores que se comparará con los originales
+        List<string> valores = new List<string>();      //Registro que se actualizará/insertará en la base de datos.
+        List<string> movimiento = new List<string>();   //Registro que se insertará en la tabla movimientos.
+
+        string status;
+        string descripcion;
+
+        List<string> columnas = new List<string> { "Usuario", "Nivel"};
         public FrmUsuarioRegistro(int id = 0)
         {
             this.id = id;
@@ -27,9 +36,13 @@ namespace MECA_LAB_V2
                 }
                 btnEliminar.Visible = true;
                 btnActualizar.Text = "Actualizar";
+                status = ds.Tables["tabla"].Rows[0]["status"].ToString();
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
-                txtUsuario.Text = ds.Tables["tabla"].Rows[0][1].ToString();
-                cmbNivel.Text = ds.Tables["tabla"].Rows[0][2].ToString();
+                original.Add(ds.Tables["tabla"].Rows[0][1].ToString());
+                original.Add(ds.Tables["tabla"].Rows[0][2].ToString());
+
+                txtUsuario.Text = original[0];
+                cmbNivel.Text = original[1];
             }
         }
         //Desarrollo
@@ -60,18 +73,75 @@ namespace MECA_LAB_V2
             valores.Add("NOW()");
             valores.Add(status);
 
+            nuevo.Add(txtUsuario.Text);
+            nuevo.Add(cmbNivel.Text);
+
             if (id != 0)
             {
                 var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
-                    Funciones.Insert("usuarios", valores);
+                    if (Funciones.Insert("usuarios", valores))
+                    {
+                        for (int i = 0; i < original.Count; i++)
+                        {
+                            if (original[i] != nuevo[i])
+                            {
+                                movimiento.Clear();
+                                movimiento.Add("0");
+                                movimiento.Add(FrmMenu.usuarioID.ToString());
+                                movimiento.Add(id.ToString());
+                                movimiento.Add("'Usuarios'");
+                                movimiento.Add("'" + columnas[i] + "'");
+                                movimiento.Add("'" + nuevo[i] + "'");
+                                movimiento.Add("'" + original[i] + "'");
+                                movimiento.Add("'Modificó'");
+                                movimiento.Add("NOW()");
+                                movimiento.Add("NOW()");
+                                movimiento.Add("1");
+                                Funciones.Insert("movimientos", movimiento);
+                            }
+                        }
+
+                        if (txtContraseña.Text == txtContraseñaC.Text)
+                        {
+                            movimiento.Clear();
+                            movimiento.Add("0");
+                            movimiento.Add(FrmMenu.usuarioID.ToString());
+                            movimiento.Add(id.ToString());
+                            movimiento.Add("'Usuarios'");
+                            movimiento.Add("'Contraseña'");
+                            movimiento.Add("NULL");
+                            movimiento.Add("NULL");
+                            movimiento.Add("'Modificó'");
+                            movimiento.Add("NOW()");
+                            movimiento.Add("NOW()");
+                            movimiento.Add("1");
+                            Funciones.Insert("movimientos", movimiento);
+                        }
+                    }
                     this.Close();
                 }
             }
             else
             {
-                Funciones.Insert("usuarios", valores);
+                if (Funciones.Insert("usuarios", valores))
+                {
+                    ds = Conexion.MySQL("SELECT Last_Insert_ID();");
+                    movimiento.Clear();
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(ds.Tables["tabla"].Rows[0][0].ToString());
+                    movimiento.Add("'Usuarios'");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("'Agregó'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos", movimiento);
+                }
                 this.Close();
             }
         }
@@ -104,8 +174,29 @@ namespace MECA_LAB_V2
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (status == "True")
+            {
+                descripcion = "Baja";
+            }
+            else
+            {
+                descripcion = "Alta";
+            }
             if (Funciones.StatusUpdate("usuarios", btnEliminar.Text, id))
             {
+                movimiento.Clear();
+                movimiento.Add("0");
+                movimiento.Add(FrmMenu.usuarioID.ToString());
+                movimiento.Add(id.ToString());
+                movimiento.Add("'Usuarios'");
+                movimiento.Add("'status'");
+                movimiento.Add("NULL");
+                movimiento.Add("NULL");
+                movimiento.Add("'" + descripcion + "'");
+                movimiento.Add("NOW()");
+                movimiento.Add("NOW()");
+                movimiento.Add("1");
+                Funciones.Insert("movimientos", movimiento);
                 this.Close();
             }
         }

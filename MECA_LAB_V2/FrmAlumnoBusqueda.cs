@@ -41,6 +41,7 @@ namespace MECA_LAB_V2
         {
             try
             {
+                FrmMenu.frmPrincipal.txtMatricula.Clear();
                 FrmMenu.frmPrincipal.txtMatricula.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             }
             catch (Exception)

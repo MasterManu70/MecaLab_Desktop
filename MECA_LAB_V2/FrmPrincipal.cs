@@ -295,22 +295,17 @@ namespace MECA_LAB_V2
                 return;
             }
 
+            lblRegistro.Visible = false;
+
             if (txtMatricula.Text.Length == 8)
             {
                 ds = Conexion.MySQL("select id, concat(nombre,' ',apellidop,' ',apellidom),status from alumnos where matricula = " + matricula + ";");
 
-                if (ds.Tables["tabla"].Rows.Count == 0 && !devolver)
+                if (ds.Tables["tabla"].Rows.Count == 0)
                 {
                     lblRegistro.Text = "X";
                     lblRegistro.ForeColor = Color.Red;
                     lblRegistro.Visible = true;
-                    return;
-                }
-
-                //Validar si el estudiante está dado de alta o de baja
-                if (ds.Tables["tabla"].Rows[0][2].ToString() == "False")
-                {
-                    MessageBox.Show("El alumno se encuentra dado de baja del sistema.");
                     return;
                 }
 
@@ -322,6 +317,25 @@ namespace MECA_LAB_V2
                     lblRegistro.Text = "✓";
                     lblRegistro.ForeColor = Color.Green;
                     lblRegistro.Visible = true;
+                }
+
+                //Validar si el estudiante está dado de alta o de baja
+                if (ds.Tables["tabla"].Rows[0][2].ToString() == "False" && !devolver)
+                {
+                    MessageBox.Show("El alumno se encuentra dado de baja del sistema.");
+                    alumnoID = 0;
+                    txtAlumno.Clear();
+                    return;
+                }
+
+                ds = Conexion.MySQL("SELECT id FROM prestamos WHERE alumno = " + ds.Tables["tabla"].Rows[0][0].ToString() + " AND status = 1;");
+
+                if (ds.Tables["tabla"].Rows.Count > 0 && !devolver)
+                {
+                    MessageBox.Show("El alumno ya cuenta con un préstamo activo.");
+                    alumnoID = 0;
+                    txtAlumno.Clear();
+                    return;
                 }
 
                 if (devolver)

@@ -33,6 +33,7 @@ namespace MECA_LAB_V2
         string inicio = "";
         string fin = "";
         string query = "";
+        int id;
 
         List<int> prestamosNoCompletos = new List<int>();
 
@@ -202,8 +203,16 @@ namespace MECA_LAB_V2
             }
             try
             {
-                int id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                btnRegistroForm = Rutas.GetForm(tabla, id);
+                if (tabla != "Movimientos")
+                {
+                    id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    btnRegistroForm = Rutas.GetForm(tabla, id);
+                }
+                else
+                {
+                    id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    btnRegistroForm = Rutas.GetForm(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), id);
+                }
                 DialogResult res = btnRegistroForm.ShowDialog();
                 if (res == DialogResult.OK)
                 {
@@ -264,6 +273,11 @@ namespace MECA_LAB_V2
         }
 
         private void dateTimePickerInicio_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerFin.MinDate = dateTimePickerInicio.Value;
+        }
+
+        private void dateTimePickerInicio_KeyPress(object sender, KeyPressEventArgs e)
         {
             dateTimePickerFin.MinDate = dateTimePickerInicio.Value;
         }

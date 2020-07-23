@@ -15,7 +15,7 @@ namespace MECA_LAB_V2
         public static bool showed = false;
         public static int intentos = 0;
         public static List<string> actualizados = new List<string>();
-        public static List<string> columnas = new List<string>(){"ID","Alumno","Maestro","Laboratorio","Asignatura","Usuario","Entrega","Creado","Actualizado","status","Artículo","Comentario","Disponible","Matrícula","Nombre","Paterno","Materno","Carrera","Correo","Teléfono"};
+        public static List<string> columnas = new List<string>(){"ID","Alumno","Maestro","Laboratorio","Asignatura","Usuario","Entrega","Creado","Actualizado","status","Artículo","Comentario","Disponible","Matrícula","Nombre","Paterno","Materno","Carrera","Correo","Teléfono", "Registro", "Tabla", "Campo","Nuevo","Viejo","Descripción"};
 
         public static DataSet ds;
         public FrmMenu()

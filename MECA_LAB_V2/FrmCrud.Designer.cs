@@ -355,6 +355,7 @@
             this.dateTimePickerInicio.Size = new System.Drawing.Size(124, 27);
             this.dateTimePickerInicio.TabIndex = 25;
             this.dateTimePickerInicio.ValueChanged += new System.EventHandler(this.dateTimePickerInicio_ValueChanged);
+            this.dateTimePickerInicio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePickerInicio_KeyPress);
             // 
             // dateTimePickerFin
             // 
