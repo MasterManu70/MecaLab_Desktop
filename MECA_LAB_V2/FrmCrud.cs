@@ -208,6 +208,13 @@ namespace MECA_LAB_V2
                     id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                     btnRegistroForm = Rutas.GetForm(tabla, id);
                 }
+                else if (dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() == "Detalles")
+                {
+                    id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    ds = Conexion.MySQL("SELECT prestamo FROM detalles WHERE id = " + id + ";");
+                    id = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
+                    btnRegistroForm = Rutas.GetForm("Prestamos", id);
+                }
                 else
                 {
                     id = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
