@@ -412,8 +412,6 @@ namespace MECA_LAB_V2
                 }
                 writer.WriteLine("</tr>");
             }
-
-
             writer.WriteLine("<tr>");
             writer.WriteLine("<th colspan='" + dataGridView1.Columns.Count + "' style='font-size: 12PX;'>Sistema de Inventario y Prestamos MECALAB 2020</th>");
             writer.WriteLine(@"</tr>

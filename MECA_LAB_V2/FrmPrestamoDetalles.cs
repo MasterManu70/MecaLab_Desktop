@@ -94,6 +94,11 @@ namespace MECA_LAB_V2
                 {
                     txtCodigo.Enabled = true;
                     btnActualizar.Visible = true;
+                    txtEstado.Text = "Activo";
+                }
+                else
+                {
+                    txtEstado.Text = "Terminado";
                 }
             }
         }

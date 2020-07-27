@@ -12,6 +12,7 @@ namespace MECA_LAB_V2
         public static bool devolver = false;
         Color devolucionColor = Color.DarkOrange;
         Color principalColor = Color.MediumSeaGreen;
+        public static List<string> movimiento = new List<string>();
         //IDs necesarios para llevar a cabo el préstamo
         int prestamoID = 0;
         int alumnoID = 0;
@@ -101,6 +102,20 @@ namespace MECA_LAB_V2
 
                     prestamoID = int.Parse(ds.Tables["tabla"].Rows[0][0].ToString());
 
+                    movimiento.Clear();
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(prestamoID.ToString());
+                    movimiento.Add("'Prestamos'");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("'Prestó'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos", movimiento);
+
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         detalles.Clear();
@@ -124,7 +139,6 @@ namespace MECA_LAB_V2
 
                         Funciones.Insert("articulos", articulo);
                     }
-
                     borrarContenido();
                 }
             }
@@ -161,10 +175,26 @@ namespace MECA_LAB_V2
                             Conexion.MySQL("UPDATE articulos SET disponible = '1' WHERE articulos.id = " + row.Cells[0].Value.ToString() + ";");
                         }
                     }
+
                     txtCodigo.Enabled = false;
                     txtMatricula.Enabled = true;
                     txtMatricula.Focus();
                     MessageBox.Show("La devolución se ha realizado correctamente.");
+
+                    movimiento.Clear();
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(prestamoID.ToString());
+                    movimiento.Add("'Prestamos'");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("'Devolvió'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos", movimiento);
+
                     borrarContenido();
                 }
             }
