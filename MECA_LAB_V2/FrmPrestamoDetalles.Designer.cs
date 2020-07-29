@@ -41,6 +41,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtEstado = new System.Windows.Forms.TextBox();
+            this.txtActualizado = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtCreado = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtEntrega = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtAsignatura = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,16 +64,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtActualizado = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtCreado = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtEntrega = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtEstado = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -201,6 +201,91 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del prestamo";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(14, 287);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(64, 21);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Estado";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 257);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(106, 21);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "Actualizado";
+            // 
+            // txtEstado
+            // 
+            this.txtEstado.Location = new System.Drawing.Point(126, 287);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.ReadOnly = true;
+            this.txtEstado.Size = new System.Drawing.Size(253, 27);
+            this.txtEstado.TabIndex = 38;
+            // 
+            // txtActualizado
+            // 
+            this.txtActualizado.Location = new System.Drawing.Point(126, 254);
+            this.txtActualizado.Name = "txtActualizado";
+            this.txtActualizado.ReadOnly = true;
+            this.txtActualizado.Size = new System.Drawing.Size(253, 27);
+            this.txtActualizado.TabIndex = 38;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(14, 224);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 21);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Creado";
+            // 
+            // txtCreado
+            // 
+            this.txtCreado.Location = new System.Drawing.Point(125, 221);
+            this.txtCreado.Name = "txtCreado";
+            this.txtCreado.ReadOnly = true;
+            this.txtCreado.Size = new System.Drawing.Size(253, 27);
+            this.txtCreado.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(14, 191);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 21);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Entrega";
+            // 
+            // txtEntrega
+            // 
+            this.txtEntrega.Location = new System.Drawing.Point(125, 188);
+            this.txtEntrega.Name = "txtEntrega";
+            this.txtEntrega.ReadOnly = true;
+            this.txtEntrega.Size = new System.Drawing.Size(253, 27);
+            this.txtEntrega.TabIndex = 34;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(14, 158);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 21);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "Usuario";
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Location = new System.Drawing.Point(125, 155);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.ReadOnly = true;
+            this.txtUsuario.Size = new System.Drawing.Size(253, 27);
+            this.txtUsuario.TabIndex = 32;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -333,91 +418,6 @@
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Visible = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 257);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 21);
-            this.label9.TabIndex = 39;
-            this.label9.Text = "Actualizado";
-            // 
-            // txtActualizado
-            // 
-            this.txtActualizado.Location = new System.Drawing.Point(126, 254);
-            this.txtActualizado.Name = "txtActualizado";
-            this.txtActualizado.ReadOnly = true;
-            this.txtActualizado.Size = new System.Drawing.Size(253, 27);
-            this.txtActualizado.TabIndex = 38;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 224);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 21);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "Creado";
-            // 
-            // txtCreado
-            // 
-            this.txtCreado.Location = new System.Drawing.Point(125, 221);
-            this.txtCreado.Name = "txtCreado";
-            this.txtCreado.ReadOnly = true;
-            this.txtCreado.Size = new System.Drawing.Size(253, 27);
-            this.txtCreado.TabIndex = 36;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 191);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 21);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "Entrega";
-            // 
-            // txtEntrega
-            // 
-            this.txtEntrega.Location = new System.Drawing.Point(125, 188);
-            this.txtEntrega.Name = "txtEntrega";
-            this.txtEntrega.ReadOnly = true;
-            this.txtEntrega.Size = new System.Drawing.Size(253, 27);
-            this.txtEntrega.TabIndex = 34;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 158);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 21);
-            this.label8.TabIndex = 33;
-            this.label8.Text = "Usuario";
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(125, 155);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.ReadOnly = true;
-            this.txtUsuario.Size = new System.Drawing.Size(253, 27);
-            this.txtUsuario.TabIndex = 32;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(14, 287);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 21);
-            this.label12.TabIndex = 39;
-            this.label12.Text = "Estado";
-            // 
-            // txtEstado
-            // 
-            this.txtEstado.Location = new System.Drawing.Point(126, 287);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.ReadOnly = true;
-            this.txtEstado.Size = new System.Drawing.Size(253, 27);
-            this.txtEstado.TabIndex = 38;
             // 
             // FrmPrestamoDetalles
             // 

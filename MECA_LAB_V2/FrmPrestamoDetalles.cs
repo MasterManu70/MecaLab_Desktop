@@ -73,6 +73,7 @@ namespace MECA_LAB_V2
                     dataGridView1.Rows[i].Cells[2].Value = ds.Tables["tabla"].Rows[i][2].ToString();
 
                     if (ds.Tables["tabla"].Rows[i][3].ToString() == "True") { dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Red; dataGridView1.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Red; }
+                    else { dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black; dataGridView1.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Black; }
                 }
 
                 dataGridView1.ClearSelection();
@@ -245,6 +246,20 @@ namespace MECA_LAB_V2
             var respuesta = MessageBox.Show("¿Desea actualizar el préstamo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (respuesta == DialogResult.Yes)
             {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.DefaultCellStyle.ForeColor == Color.Red && !noEntregadoID.Contains(int.Parse(row.Cells[0].Value.ToString())))
+                    {
+                        ds = Conexion.MySQL("SELECT * FROM articulos WHERE id = " + row.Cells[0].Value.ToString() + " AND disponible = 1;");
+
+                        if (ds.Tables["tabla"].Rows.Count == 0)
+                        {
+                            MessageBox.Show("El artículo con el ID " + row.Cells[0].Value.ToString() + " se encuentra en otro préstamo activo.");
+                            return;
+                        }
+                    }
+                }
+
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.DefaultCellStyle.ForeColor == Color.LimeGreen)

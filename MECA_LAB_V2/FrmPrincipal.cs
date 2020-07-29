@@ -397,7 +397,8 @@ namespace MECA_LAB_V2
                     ds = Conexion.MySQL(@"SELECT
                                         detalles.articulo ID,
                                         articulos.articulo Artículo,
-                                        articulos.comentario Comentario
+                                        articulos.comentario Comentario,
+                                        detalles.status status
                                         FROM
                                         detalles
                                         INNER JOIN
@@ -407,10 +408,7 @@ namespace MECA_LAB_V2
                                         WHERE
                                         detalles.prestamo = " + prestamoID + "; ");
 
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                    {
-                        dataGridView1.Rows.RemoveAt(i);
-                    }
+                    dataGridView1.Rows.Clear();
 
                     for (int i = 0; i < ds.Tables["tabla"].Rows.Count; i++)
                     {
@@ -418,11 +416,15 @@ namespace MECA_LAB_V2
                         dataGridView1.Rows[i].Cells[0].Value = ds.Tables["tabla"].Rows[i][0].ToString();
                         dataGridView1.Rows[i].Cells[1].Value = ds.Tables["tabla"].Rows[i][1].ToString();
                         dataGridView1.Rows[i].Cells[2].Value = ds.Tables["tabla"].Rows[i][2].ToString();
-                    }
 
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        row.DefaultCellStyle.ForeColor = Color.Red;
+                        if (ds.Tables["tabla"].Rows[i][3].ToString() == "False")
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                        }
                     }
 
                     dataGridView1.Enabled = false;
