@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace MECA_LAB_V2
@@ -15,11 +17,14 @@ namespace MECA_LAB_V2
         string status;
         string descripcion;
         List<string> columnas = new List<string> { "Artículo", "Comentario"};
+        Panel pnl = new Panel();
 
         DataSet ds;
         public FrmArticuloRegistro(int id = 0)
         {
             this.id = id;
+            pnl.Width = 400;
+            pnl.Height = 100;
             InitializeComponent();
         }
 
@@ -49,6 +54,9 @@ namespace MECA_LAB_V2
 
                 cmbArticulo.Text = original[0];
                 txtComentario.Text = original[1];
+
+                btnImprimir.Visible = true;
+                btnGuardar.Visible = true;
             }
         }
 
@@ -179,6 +187,26 @@ namespace MECA_LAB_V2
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.SoloLetras(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BarcodeLib.Barcode Codigo = new BarcodeLib.Barcode();
+            Codigo.IncludeLabel = true;
+            Codigo.AlternateLabel = original[0] + " - " + id.ToString("0000");
+            pnl.BackgroundImage = Codigo.Encode(BarcodeLib.TYPE.CODE128, id.ToString("0000"), Color.Black, Color.Transparent, 400, 100);
+
+            Image imgFinal = (Image)pnl.BackgroundImage.Clone();
+            SaveFileDialog CajaDeDialogoGuardar = new SaveFileDialog();
+            CajaDeDialogoGuardar.FileName = id.ToString("0000");
+            CajaDeDialogoGuardar.AddExtension = true;
+            CajaDeDialogoGuardar.Filter = "Image PNG (*.png)|*.png";
+            CajaDeDialogoGuardar.ShowDialog();
+            if (!string.IsNullOrEmpty(CajaDeDialogoGuardar.FileName))
+            {
+                imgFinal.Save(CajaDeDialogoGuardar.FileName, ImageFormat.Png);
+            }
+            imgFinal.Dispose();
         }
 
         //Metodos

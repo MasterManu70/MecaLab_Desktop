@@ -318,14 +318,24 @@ namespace MECA_LAB_V2
 
         public static void ReportPrint(string tabla, DataGridView dataGridView1)
         {
-            string nombre = tabla.ToLower() + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".html";
             if (dataGridView1.Rows.Count == 0)
             {
                 MessageBox.Show("No hay registros para imprimir.");
                 return;
             }
-            TextWriter writer = new StreamWriter(nombre);
-            writer.WriteLine(@"<!DOCTYPE html>
+
+            SaveFileDialog CajaDeDialogoGuardar = new SaveFileDialog();
+            string nombre = tabla.ToLower() + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".html";
+
+            CajaDeDialogoGuardar.FileName = nombre;
+            CajaDeDialogoGuardar.AddExtension = true;
+            CajaDeDialogoGuardar.Filter = "Página web, completa (*.html)|*.html";
+            CajaDeDialogoGuardar.ShowDialog();
+
+            if (!string.IsNullOrEmpty(CajaDeDialogoGuardar.FileName))
+            {
+                TextWriter writer = new StreamWriter(CajaDeDialogoGuardar.FileName);
+                writer.WriteLine(@"<!DOCTYPE html>
                             <head>
                             <meta charset='UTF-8'>
                             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -382,39 +392,39 @@ namespace MECA_LAB_V2
                             </style>
                             </head>");
 
-            writer.WriteLine(@"<body>
+                writer.WriteLine(@"<body>
     <div class='contenedor'>
         <div class='row'>
             <div id='formularioTabla'>
                 <table>");
-            writer.WriteLine("<tr><th colspan = '" + dataGridView1.Columns.Count + "' style = 'font-size: 24PX;'> REPORTE DE " + tabla.ToUpper() + " </th> </tr> ");
+                writer.WriteLine("<tr><th colspan = '" + dataGridView1.Columns.Count + "' style = 'font-size: 24PX;'> REPORTE DE " + tabla.ToUpper() + " </th> </tr> ");
 
-            writer.WriteLine("<tr>");
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                writer.WriteLine("<th>" + column.HeaderText + "</th>");
-            }
-            writer.WriteLine("</tr>");
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
                 writer.WriteLine("<tr>");
-                bool especialito = true;
-                foreach (DataGridViewCell cell in row.Cells)
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
-                    if (especialito)
-                    {
-                        writer.WriteLine("<td id='linea-izq'>" + row.Cells[0].Value.ToString() + "</td>");
-                        especialito = !especialito;
-                        continue;
-                    }
-                    writer.WriteLine("<td>" + cell.Value + "</td>");
+                    writer.WriteLine("<th>" + column.HeaderText + "</th>");
                 }
                 writer.WriteLine("</tr>");
-            }
-            writer.WriteLine("<tr>");
-            writer.WriteLine("<th colspan='" + dataGridView1.Columns.Count + "' style='font-size: 12PX;'>Sistema de Inventario y Prestamos MECALAB 2020</th>");
-            writer.WriteLine(@"</tr>
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    writer.WriteLine("<tr>");
+                    bool especialito = true;
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (especialito)
+                        {
+                            writer.WriteLine("<td id='linea-izq'>" + row.Cells[0].Value.ToString() + "</td>");
+                            especialito = !especialito;
+                            continue;
+                        }
+                        writer.WriteLine("<td>" + cell.Value + "</td>");
+                    }
+                    writer.WriteLine("</tr>");
+                }
+                writer.WriteLine("<tr>");
+                writer.WriteLine("<th colspan='" + dataGridView1.Columns.Count + "' style='font-size: 12PX;'>Sistema de Inventario y Prestamos MECALAB 2020</th>");
+                writer.WriteLine(@"</tr>
                 </table>
             </div>
         </div>
@@ -423,9 +433,8 @@ namespace MECA_LAB_V2
 </body>
 
 </html>");
-            writer.Close();
-
-            MessageBox.Show("Se generó el reporte con el nombre: " + nombre);
+                writer.Close();
+            }
         }
     }
 }

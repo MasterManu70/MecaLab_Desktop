@@ -45,6 +45,8 @@
             this.btnCerrar = new System.Windows.Forms.Label();
             this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@
             this.label5.Location = new System.Drawing.Point(181, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(211, 36);
-            this.label5.TabIndex = 9;
+            this.label5.TabIndex = 7;
             this.label5.Text = "Datos Artículo";
             // 
             // groupBox2
@@ -68,7 +70,7 @@
             this.groupBox2.Location = new System.Drawing.Point(74, 80);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(416, 264);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ingrese los siguientes Datos";
             // 
@@ -78,7 +80,7 @@
             this.cmbArticulo.Location = new System.Drawing.Point(117, 43);
             this.cmbArticulo.Name = "cmbArticulo";
             this.cmbArticulo.Size = new System.Drawing.Size(258, 29);
-            this.cmbArticulo.TabIndex = 4;
+            this.cmbArticulo.TabIndex = 1;
             // 
             // txtComentario
             // 
@@ -114,7 +116,7 @@
             this.label7.Location = new System.Drawing.Point(-3, 51);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(578, 21);
-            this.label7.TabIndex = 13;
+            this.label7.TabIndex = 5;
             this.label7.Text = "_______________________________________________________________________";
             // 
             // btnActualizar
@@ -128,7 +130,7 @@
             this.btnActualizar.Location = new System.Drawing.Point(372, 360);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(159, 40);
-            this.btnActualizar.TabIndex = 14;
+            this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "Agregar";
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
@@ -142,7 +144,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(42, 360);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(159, 40);
-            this.btnCancelar.TabIndex = 16;
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -158,7 +160,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(207, 360);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(159, 40);
-            this.btnEliminar.TabIndex = 15;
+            this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Visible = false;
@@ -170,7 +172,7 @@
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(83, 27);
-            this.txtId.TabIndex = 17;
+            this.txtId.TabIndex = 6;
             this.txtId.Visible = false;
             // 
             // btnMinimizar
@@ -179,7 +181,7 @@
             this.btnMinimizar.Location = new System.Drawing.Point(490, 2);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(36, 30);
-            this.btnMinimizar.TabIndex = 18;
+            this.btnMinimizar.TabIndex = 8;
             this.btnMinimizar.Text = "-";
             this.btnMinimizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
@@ -190,7 +192,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(532, 2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(36, 30);
-            this.btnCerrar.TabIndex = 19;
+            this.btnCerrar.TabIndex = 9;
             this.btnCerrar.Text = "x";
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -207,12 +209,51 @@
             this.MoverForm.TargetControl = this;
             this.MoverForm.Vertical = true;
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImprimir.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.Location = new System.Drawing.Point(496, 311);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(35, 33);
+            this.btnImprimir.TabIndex = 4;
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Visible = false;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.Location = new System.Drawing.Point(496, 272);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(35, 33);
+            this.btnGuardar.TabIndex = 4;
+            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Visible = false;
+            this.btnGuardar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmArticuloRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(570, 418);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtId);
@@ -255,5 +296,7 @@
         private Bunifu.Framework.UI.BunifuElipse Curva;
         private Bunifu.Framework.UI.BunifuDragControl MoverForm;
         private System.Windows.Forms.ComboBox cmbArticulo;
+        public System.Windows.Forms.Button btnImprimir;
+        public System.Windows.Forms.Button btnGuardar;
     }
 }

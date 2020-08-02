@@ -238,6 +238,8 @@ namespace MECA_LAB_V2
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            //frmPrintConfig = new FrmPrintConfig(dataGridView1);
+            //frmPrintConfig.ShowDialog();
             Funciones.ReportPrint(tabla, dataGridView1);
         }
 
