@@ -646,7 +646,7 @@
             this.MinimumSize = new System.Drawing.Size(1280, 900);
             this.Name = "FrmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmMenu";
+            this.Text = "Meca-Lab";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FrmMenu_Activated);
             this.Load += new System.EventHandler(this.FrmMenu_Load);

@@ -209,7 +209,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmLaboratorioRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmLaboratorioDatos";
+            this.Text = "Datos Laboratorio";
             this.Load += new System.EventHandler(this.FrmLaboratorioRegistro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

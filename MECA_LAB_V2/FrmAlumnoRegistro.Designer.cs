@@ -35,6 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblErrorTelefono = new System.Windows.Forms.Label();
+            this.lblErrorCorreo = new System.Windows.Forms.Label();
+            this.lblErrorCarrera = new System.Windows.Forms.Label();
+            this.lblErrorMaterno = new System.Windows.Forms.Label();
+            this.lblErrorPaterno = new System.Windows.Forms.Label();
+            this.lblErrorNombre = new System.Windows.Forms.Label();
+            this.lblErrorMatricula = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtCorreo = new System.Windows.Forms.TextBox();
@@ -55,13 +62,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.Curva = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.lblErrorMatricula = new System.Windows.Forms.Label();
-            this.lblErrorNombre = new System.Windows.Forms.Label();
-            this.lblErrorPaterno = new System.Windows.Forms.Label();
-            this.lblErrorMaterno = new System.Windows.Forms.Label();
-            this.lblErrorCarrera = new System.Windows.Forms.Label();
-            this.lblErrorCorreo = new System.Windows.Forms.Label();
-            this.lblErrorTelefono = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,6 +136,90 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los siguientes Datos";
+            // 
+            // lblErrorTelefono
+            // 
+            this.lblErrorTelefono.AutoSize = true;
+            this.lblErrorTelefono.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorTelefono.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorTelefono.Location = new System.Drawing.Point(356, 392);
+            this.lblErrorTelefono.Name = "lblErrorTelefono";
+            this.lblErrorTelefono.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorTelefono.TabIndex = 32;
+            this.lblErrorTelefono.Text = "Mensaje Error";
+            this.lblErrorTelefono.Visible = false;
+            // 
+            // lblErrorCorreo
+            // 
+            this.lblErrorCorreo.AutoSize = true;
+            this.lblErrorCorreo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorCorreo.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorCorreo.Location = new System.Drawing.Point(356, 338);
+            this.lblErrorCorreo.Name = "lblErrorCorreo";
+            this.lblErrorCorreo.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorCorreo.TabIndex = 32;
+            this.lblErrorCorreo.Text = "Mensaje Error";
+            this.lblErrorCorreo.Visible = false;
+            // 
+            // lblErrorCarrera
+            // 
+            this.lblErrorCarrera.AutoSize = true;
+            this.lblErrorCarrera.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorCarrera.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorCarrera.Location = new System.Drawing.Point(356, 282);
+            this.lblErrorCarrera.Name = "lblErrorCarrera";
+            this.lblErrorCarrera.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorCarrera.TabIndex = 32;
+            this.lblErrorCarrera.Text = "Mensaje Error";
+            this.lblErrorCarrera.Visible = false;
+            // 
+            // lblErrorMaterno
+            // 
+            this.lblErrorMaterno.AutoSize = true;
+            this.lblErrorMaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMaterno.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMaterno.Location = new System.Drawing.Point(356, 227);
+            this.lblErrorMaterno.Name = "lblErrorMaterno";
+            this.lblErrorMaterno.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorMaterno.TabIndex = 32;
+            this.lblErrorMaterno.Text = "Mensaje Error";
+            this.lblErrorMaterno.Visible = false;
+            // 
+            // lblErrorPaterno
+            // 
+            this.lblErrorPaterno.AutoSize = true;
+            this.lblErrorPaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorPaterno.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorPaterno.Location = new System.Drawing.Point(356, 172);
+            this.lblErrorPaterno.Name = "lblErrorPaterno";
+            this.lblErrorPaterno.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorPaterno.TabIndex = 32;
+            this.lblErrorPaterno.Text = "Mensaje Error";
+            this.lblErrorPaterno.Visible = false;
+            // 
+            // lblErrorNombre
+            // 
+            this.lblErrorNombre.AutoSize = true;
+            this.lblErrorNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorNombre.Location = new System.Drawing.Point(356, 117);
+            this.lblErrorNombre.Name = "lblErrorNombre";
+            this.lblErrorNombre.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorNombre.TabIndex = 32;
+            this.lblErrorNombre.Text = "Mensaje Error";
+            this.lblErrorNombre.Visible = false;
+            // 
+            // lblErrorMatricula
+            // 
+            this.lblErrorMatricula.AutoSize = true;
+            this.lblErrorMatricula.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMatricula.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMatricula.Location = new System.Drawing.Point(356, 63);
+            this.lblErrorMatricula.Name = "lblErrorMatricula";
+            this.lblErrorMatricula.Size = new System.Drawing.Size(92, 17);
+            this.lblErrorMatricula.TabIndex = 32;
+            this.lblErrorMatricula.Text = "Mensaje Error";
+            this.lblErrorMatricula.Visible = false;
             // 
             // txtTelefono
             // 
@@ -355,90 +439,6 @@
             this.MoverForm.TargetControl = this;
             this.MoverForm.Vertical = true;
             // 
-            // lblErrorMatricula
-            // 
-            this.lblErrorMatricula.AutoSize = true;
-            this.lblErrorMatricula.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorMatricula.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMatricula.Location = new System.Drawing.Point(356, 63);
-            this.lblErrorMatricula.Name = "lblErrorMatricula";
-            this.lblErrorMatricula.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorMatricula.TabIndex = 32;
-            this.lblErrorMatricula.Text = "Mensaje Error";
-            this.lblErrorMatricula.Visible = false;
-            // 
-            // lblErrorNombre
-            // 
-            this.lblErrorNombre.AutoSize = true;
-            this.lblErrorNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNombre.Location = new System.Drawing.Point(356, 117);
-            this.lblErrorNombre.Name = "lblErrorNombre";
-            this.lblErrorNombre.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorNombre.TabIndex = 32;
-            this.lblErrorNombre.Text = "Mensaje Error";
-            this.lblErrorNombre.Visible = false;
-            // 
-            // lblErrorPaterno
-            // 
-            this.lblErrorPaterno.AutoSize = true;
-            this.lblErrorPaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorPaterno.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorPaterno.Location = new System.Drawing.Point(356, 172);
-            this.lblErrorPaterno.Name = "lblErrorPaterno";
-            this.lblErrorPaterno.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorPaterno.TabIndex = 32;
-            this.lblErrorPaterno.Text = "Mensaje Error";
-            this.lblErrorPaterno.Visible = false;
-            // 
-            // lblErrorMaterno
-            // 
-            this.lblErrorMaterno.AutoSize = true;
-            this.lblErrorMaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorMaterno.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMaterno.Location = new System.Drawing.Point(356, 227);
-            this.lblErrorMaterno.Name = "lblErrorMaterno";
-            this.lblErrorMaterno.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorMaterno.TabIndex = 32;
-            this.lblErrorMaterno.Text = "Mensaje Error";
-            this.lblErrorMaterno.Visible = false;
-            // 
-            // lblErrorCarrera
-            // 
-            this.lblErrorCarrera.AutoSize = true;
-            this.lblErrorCarrera.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorCarrera.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorCarrera.Location = new System.Drawing.Point(356, 282);
-            this.lblErrorCarrera.Name = "lblErrorCarrera";
-            this.lblErrorCarrera.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorCarrera.TabIndex = 32;
-            this.lblErrorCarrera.Text = "Mensaje Error";
-            this.lblErrorCarrera.Visible = false;
-            // 
-            // lblErrorCorreo
-            // 
-            this.lblErrorCorreo.AutoSize = true;
-            this.lblErrorCorreo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorCorreo.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorCorreo.Location = new System.Drawing.Point(356, 338);
-            this.lblErrorCorreo.Name = "lblErrorCorreo";
-            this.lblErrorCorreo.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorCorreo.TabIndex = 32;
-            this.lblErrorCorreo.Text = "Mensaje Error";
-            this.lblErrorCorreo.Visible = false;
-            // 
-            // lblErrorTelefono
-            // 
-            this.lblErrorTelefono.AutoSize = true;
-            this.lblErrorTelefono.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorTelefono.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorTelefono.Location = new System.Drawing.Point(356, 392);
-            this.lblErrorTelefono.Name = "lblErrorTelefono";
-            this.lblErrorTelefono.Size = new System.Drawing.Size(92, 17);
-            this.lblErrorTelefono.TabIndex = 32;
-            this.lblErrorTelefono.Text = "Mensaje Error";
-            this.lblErrorTelefono.Visible = false;
-            // 
             // FrmAlumnoRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -462,7 +462,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmAlumnoRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmAlumnoDatos";
+            this.Text = "Datos Alumno";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAlumnoRegistro_FormClosing);
             this.Load += new System.EventHandler(this.FrmAlumnoRegistro_Load);
             this.groupBox1.ResumeLayout(false);

@@ -252,7 +252,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FrmMaestroRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmMaestroDatos";
+            this.Text = "Datos Maestros";
             this.Load += new System.EventHandler(this.FrmMaestroRegistro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

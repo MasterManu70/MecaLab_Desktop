@@ -208,7 +208,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmCarreraRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCarreraDatos";
+            this.Text = "Datos Carrera";
             this.Load += new System.EventHandler(this.FrmCarreraRegistro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

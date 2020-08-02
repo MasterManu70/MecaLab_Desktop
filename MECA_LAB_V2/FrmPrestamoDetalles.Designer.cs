@@ -439,7 +439,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FrmPrestamoDetalles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Detalles";
+            this.Text = "Detalles del prestamo";
             this.Load += new System.EventHandler(this.FrmPrestamoDetalles_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

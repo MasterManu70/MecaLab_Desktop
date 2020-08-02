@@ -57,7 +57,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(165, 23);
+            this.label5.Location = new System.Drawing.Point(177, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(206, 36);
             this.label5.TabIndex = 4;
@@ -286,7 +286,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmUsuarioRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmRegistroUsuario";
+            this.Text = "Datos Usuario";
             this.Load += new System.EventHandler(this.FrmUsuarioRegistro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
