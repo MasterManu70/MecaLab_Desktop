@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace MECA_LAB_V2
@@ -39,12 +40,21 @@ namespace MECA_LAB_V2
 
             if (id != 0)
             {
-                ds = Conexion.MySQL("select * from articulos where id=" + id + ";");
-                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
+                ds = Conexion.MySQL("select * from articulos where id =" + id + ";");
+                
+                btnEliminar.Visible = true;
+
+                if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False" && ds.Tables["tabla"].Rows[0]["disponible"].ToString() == "False")
+                {
+                    btnReparar.BackColor = Color.SeaGreen;
+                    btnEliminar.Visible = false;
+                }
+                else if (ds.Tables["tabla"].Rows[0]["status"].ToString() == "False")
                 {
                     btnEliminar.Text = "Habilitar";
                 }
-                btnEliminar.Visible = true;
+                btnReparar.Visible = true;
+
                 btnActualizar.Text = "Actualizar";
                 status = ds.Tables["tabla"].Rows[0]["status"].ToString();
                 txtId.Text = ds.Tables["tabla"].Rows[0][0].ToString();
@@ -90,7 +100,7 @@ namespace MECA_LAB_V2
 
             if (id != 0)
             {
-                var respuesta = MessageBox.Show("¿Esta seguro de actualizar este registro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                var respuesta = MessageBox.Show("¿Está seguro de actualizar este registro?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (respuesta == DialogResult.Yes)
                 {
                     if (Funciones.Insert("articulos", valores))
@@ -142,6 +152,14 @@ namespace MECA_LAB_V2
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            ds = Conexion.MySQL("SELECT * FROM articulos WHERE id = " + id + ";");
+
+            if (ds.Tables["tabla"].Rows[0]["disponible"].ToString() == "False" && status == "True")
+            {
+                MessageBox.Show("El artículo se encuentra en un préstamo activo.\nPara ser dado de baja debe no estar en un préstamo activo.");
+                return;
+            }
+
             if (status == "True")
             {
                 descripcion = "Baja";
@@ -165,6 +183,7 @@ namespace MECA_LAB_V2
                 movimiento.Add("NOW()");
                 movimiento.Add("1");
                 Funciones.Insert("movimientos", movimiento);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
@@ -209,6 +228,95 @@ namespace MECA_LAB_V2
             imgFinal.Dispose();
         }
 
-        //Metodos
+        private void btnReparar_Click(object sender, EventArgs e)
+        {
+            if (btnReparar.BackColor == Color.Crimson)
+            {
+                var respuesta = MessageBox.Show("¿Está seguro de mandar a reparación este artículo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    ds = Conexion.MySQL("SELECT * FROM articulos WHERE id = " + id + ";");
+
+                    if (ds.Tables["tabla"].Rows[0]["disponible"].ToString() == "False")
+                    {
+                        MessageBox.Show("El artículo se encuentra en un préstamo activo.\nPara ser marcado como mandado a reparación debe no estar en un préstamo activo.");
+                        return;
+                    }
+
+                    Conexion.MySQL("UPDATE articulos SET disponible = 0, status = 0 WHERE id = " + id + ";");
+                    btnEliminar.Visible = false;
+                    btnReparar.BackColor = Color.SeaGreen;
+
+                    movimiento.Clear();
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(id.ToString());
+                    movimiento.Add("'Articulos'");
+                    movimiento.Add("'Reparación'");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("'Enviado'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos", movimiento);
+                }
+            }
+            else
+            {
+                var respuesta = MessageBox.Show("¿Está seguro de marcar como reparado este artículo?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Conexion.MySQL("UPDATE articulos SET disponible = 1, status = 1 WHERE id = " + id + ";");
+                    btnEliminar.Visible = true;
+                    btnReparar.BackColor = Color.Crimson;
+
+                    movimiento.Clear();
+                    movimiento.Add("0");
+                    movimiento.Add(FrmMenu.usuarioID.ToString());
+                    movimiento.Add(id.ToString());
+                    movimiento.Add("'Articulos'");
+                    movimiento.Add("'Reparación'");
+                    movimiento.Add("NULL");
+                    movimiento.Add("NULL");
+                    movimiento.Add("'Recibido'");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("NOW()");
+                    movimiento.Add("1");
+                    Funciones.Insert("movimientos", movimiento);
+                }
+            }
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            BarcodeLib.Barcode Codigo = new BarcodeLib.Barcode();
+            Codigo.IncludeLabel = true;
+            Codigo.AlternateLabel = original[0] + " - " + id.ToString("0000");
+            pnl.BackgroundImage = Codigo.Encode(BarcodeLib.TYPE.CODE128, id.ToString("0000"), Color.Black, Color.Transparent, 400, 100);
+
+            PrintDialog print = new PrintDialog();
+            PrintPreviewDialog preview = new PrintPreviewDialog();
+            PrintDocument pd = new PrintDocument();
+
+            pd.PrintPage += Doc_PrintPage;
+
+            preview.Document = pd;
+
+            if (preview.ShowDialog() == DialogResult.OK)
+            {
+                print.Document = pd;
+                if (print.ShowDialog() == DialogResult.OK)
+                {
+                    pd.Print();
+                }
+            }
+        }
+
+        private void Doc_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(pnl.BackgroundImage, 0, 0);
+            pnl.Dispose();
+        }
     }
 }

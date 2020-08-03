@@ -47,7 +47,7 @@
             this.MoverForm = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReparar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +154,6 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
@@ -227,6 +226,7 @@
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = false;
             this.btnImprimir.Visible = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnGuardar
             // 
@@ -247,23 +247,24 @@
             this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button1
+            // btnReparar
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.SteelBlue;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(496, 233);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(35, 33);
-            this.button1.TabIndex = 10;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
+            this.btnReparar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReparar.BackColor = System.Drawing.Color.Crimson;
+            this.btnReparar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReparar.FlatAppearance.BorderSize = 0;
+            this.btnReparar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReparar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReparar.ForeColor = System.Drawing.Color.White;
+            this.btnReparar.Image = ((System.Drawing.Image)(resources.GetObject("btnReparar.Image")));
+            this.btnReparar.Location = new System.Drawing.Point(496, 233);
+            this.btnReparar.Name = "btnReparar";
+            this.btnReparar.Size = new System.Drawing.Size(35, 33);
+            this.btnReparar.TabIndex = 10;
+            this.btnReparar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReparar.UseVisualStyleBackColor = false;
+            this.btnReparar.Visible = false;
+            this.btnReparar.Click += new System.EventHandler(this.btnReparar_Click);
             // 
             // FrmArticuloRegistro
             // 
@@ -271,7 +272,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(570, 418);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnReparar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnMinimizar);
@@ -318,6 +319,6 @@
         private System.Windows.Forms.ComboBox cmbArticulo;
         public System.Windows.Forms.Button btnImprimir;
         public System.Windows.Forms.Button btnGuardar;
-        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button btnReparar;
     }
 }
