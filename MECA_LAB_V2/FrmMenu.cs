@@ -25,6 +25,7 @@ namespace MECA_LAB_V2
         //Variables Publicas y Privadas
         private FrmLogin FrmLogin = new FrmLogin();
         public static FrmPrincipal frmPrincipal =  new FrmPrincipal();
+        private FrmReportes frmReportes = new FrmReportes();
 
         //CRUDs
         private FrmCrud frmArticulos =          new FrmCrud("Articulos",Color.SteelBlue);
@@ -216,6 +217,7 @@ namespace MECA_LAB_V2
         private void btnReportes_Click(object sender, EventArgs e)
         {
             panelPosicion(pnlLado3, btnReportes, true);
+            AbrirFormEnPanel(frmReportes);
         }
         //Formulario Maximiazar Minimizar, Cerrar y Diseño
         private void btnCerrar_Click(object sender, EventArgs e)

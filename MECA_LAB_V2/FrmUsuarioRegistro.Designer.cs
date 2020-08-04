@@ -97,7 +97,7 @@
             // 
             this.txtContraseñaC.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtContraseñaC.Location = new System.Drawing.Point(130, 143);
-            this.txtContraseñaC.MaxLength = 8;
+            this.txtContraseñaC.MaxLength = 255;
             this.txtContraseñaC.Name = "txtContraseñaC";
             this.txtContraseñaC.PasswordChar = '●';
             this.txtContraseñaC.Size = new System.Drawing.Size(273, 27);
@@ -140,7 +140,7 @@
             // 
             this.txtContraseña.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtContraseña.Location = new System.Drawing.Point(130, 100);
-            this.txtContraseña.MaxLength = 8;
+            this.txtContraseña.MaxLength = 255;
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '●';
             this.txtContraseña.Size = new System.Drawing.Size(273, 27);
