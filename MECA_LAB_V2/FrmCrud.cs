@@ -290,5 +290,50 @@ namespace MECA_LAB_V2
         {
             dateTimePickerFin.MinDate = dateTimePickerInicio.Value;
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "status")
+            {
+                if (e.Value.ToString() == "True")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                    e.CellStyle.SelectionBackColor = Color.DarkSeaGreen;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.OrangeRed;
+                    e.CellStyle.SelectionBackColor = Color.DarkSalmon;
+                }
+            }
+            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "Disponible")
+            {
+                if (e.Value.ToString() == "True")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                    e.CellStyle.SelectionBackColor = Color.DarkSeaGreen;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.OrangeRed;
+                    e.CellStyle.SelectionBackColor = Color.DarkSalmon;
+                }
+            }
+
+            if (e.ColumnIndex == dataGridView1.Columns.Count - 1)
+            {
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    if (dataGridView1.Columns[i].Name == "status" || dataGridView1.Columns[i].Name == "Disponible")
+                    {
+                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText(dataGridView1.Columns[i].Name, dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
+                    }
+                    else if (dataGridView1.Columns[i].Name == "ID")
+                    {
+                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
+                    }
+                }
+            }
+        }
     }
 }

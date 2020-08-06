@@ -487,6 +487,7 @@ namespace MECA_LAB_V2
                 cmbMaestro.Enabled = false;
                 txtCodigo.Enabled = false;
                 dateTimePickerFin.Enabled = false;
+                txtMatricula.Enabled = true;
 
                 lblRegistro.Visible = false;
 
@@ -517,6 +518,7 @@ namespace MECA_LAB_V2
                 txtCodigo.Enabled = true;
                 dataGridView1.Enabled = true;
                 dateTimePickerFin.Enabled = true;
+                txtMatricula.Enabled = true;
 
                 lblRegistro.Visible = false;
 
@@ -533,8 +535,14 @@ namespace MECA_LAB_V2
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            txtArticulo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtComentario.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            try
+            {
+                txtArticulo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtComentario.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void lblRegistro_Click(object sender, EventArgs e)
