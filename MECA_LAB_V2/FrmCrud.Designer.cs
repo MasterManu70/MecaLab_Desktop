@@ -79,8 +79,9 @@
             this.panelTitle.Controls.Add(this.labelTitle);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
+            this.panelTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelTitle.Name = "panelTitle";
-            this.panelTitle.Size = new System.Drawing.Size(1022, 61);
+            this.panelTitle.Size = new System.Drawing.Size(1278, 76);
             this.panelTitle.TabIndex = 10;
             // 
             // btnRegistro
@@ -94,9 +95,10 @@
             this.btnRegistro.ForeColor = System.Drawing.Color.White;
             this.btnRegistro.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistro.Image")));
             this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.Location = new System.Drawing.Point(781, 6);
+            this.btnRegistro.Location = new System.Drawing.Point(976, 8);
+            this.btnRegistro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.Size = new System.Drawing.Size(229, 49);
+            this.btnRegistro.Size = new System.Drawing.Size(286, 61);
             this.btnRegistro.TabIndex = 1;
             this.btnRegistro.Text = "Nuevo Registro";
             this.btnRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -107,9 +109,10 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 9);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 42);
+            this.pictureBox1.Size = new System.Drawing.Size(60, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -120,9 +123,10 @@
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ForeColor = System.Drawing.Color.White;
-            this.labelTitle.Location = new System.Drawing.Point(71, 12);
+            this.labelTitle.Location = new System.Drawing.Point(89, 15);
+            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(83, 30);
+            this.labelTitle.Size = new System.Drawing.Size(103, 37);
             this.labelTitle.TabIndex = 1;
             this.labelTitle.Text = "TABLA";
             // 
@@ -132,9 +136,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(37, 139);
+            this.groupBox1.Location = new System.Drawing.Point(46, 174);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(951, 672);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1189, 362);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             // 
@@ -167,13 +173,15 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 19);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(945, 653);
+            this.dataGridView1.Size = new System.Drawing.Size(1181, 339);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
@@ -182,20 +190,22 @@
             // 
             this.txtBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscar.Location = new System.Drawing.Point(107, 86);
+            this.txtBuscar.Location = new System.Drawing.Point(134, 108);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBuscar.MaxLength = 255;
             this.txtBuscar.Multiline = true;
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(261, 33);
+            this.txtBuscar.Size = new System.Drawing.Size(325, 40);
             this.txtBuscar.TabIndex = 12;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(33, 92);
+            this.label2.Location = new System.Drawing.Point(41, 115);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 21);
+            this.label2.Size = new System.Drawing.Size(90, 23);
             this.label2.TabIndex = 11;
             this.label2.Text = "Nombre";
             // 
@@ -210,9 +220,10 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(374, 86);
+            this.btnBuscar.Location = new System.Drawing.Point(468, 108);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(119, 33);
+            this.btnBuscar.Size = new System.Drawing.Size(149, 41);
             this.btnBuscar.TabIndex = 13;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -230,9 +241,10 @@
             this.btnImprimir.ForeColor = System.Drawing.Color.White;
             this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(858, 817);
+            this.btnImprimir.Location = new System.Drawing.Point(1072, 543);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(130, 33);
+            this.btnImprimir.Size = new System.Drawing.Size(162, 41);
             this.btnImprimir.TabIndex = 17;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -244,9 +256,10 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(499, 92);
+            this.label1.Location = new System.Drawing.Point(624, 115);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 21);
+            this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 15;
             this.label1.Text = "Mostrar";
             // 
@@ -261,9 +274,10 @@
             "Baja",
             "Alta",
             "Ambos"});
-            this.cmbMostrar.Location = new System.Drawing.Point(574, 89);
+            this.cmbMostrar.Location = new System.Drawing.Point(718, 111);
+            this.cmbMostrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbMostrar.Name = "cmbMostrar";
-            this.cmbMostrar.Size = new System.Drawing.Size(94, 29);
+            this.cmbMostrar.Size = new System.Drawing.Size(116, 31);
             this.cmbMostrar.TabIndex = 16;
             // 
             // label3
@@ -271,9 +285,10 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(36, 813);
+            this.label3.Location = new System.Drawing.Point(45, 538);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 21);
+            this.label3.Size = new System.Drawing.Size(78, 23);
             this.label3.TabIndex = 18;
             this.label3.Text = "Página";
             this.label3.Visible = false;
@@ -283,9 +298,10 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(171, 813);
+            this.label4.Location = new System.Drawing.Point(214, 538);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 21);
+            this.label4.Size = new System.Drawing.Size(37, 23);
             this.label4.TabIndex = 20;
             this.label4.Text = "de";
             this.label4.Visible = false;
@@ -295,9 +311,10 @@
             this.lblPaginas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPaginas.AutoSize = true;
             this.lblPaginas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaginas.Location = new System.Drawing.Point(198, 814);
+            this.lblPaginas.Location = new System.Drawing.Point(248, 540);
+            this.lblPaginas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPaginas.Name = "lblPaginas";
-            this.lblPaginas.Size = new System.Drawing.Size(19, 21);
+            this.lblPaginas.Size = new System.Drawing.Size(21, 23);
             this.lblPaginas.TabIndex = 21;
             this.lblPaginas.Text = "0";
             this.lblPaginas.Visible = false;
@@ -306,14 +323,15 @@
             // 
             this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numericUpDown1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(107, 811);
+            this.numericUpDown1.Location = new System.Drawing.Point(134, 536);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(58, 27);
+            this.numericUpDown1.Size = new System.Drawing.Size(72, 32);
             this.numericUpDown1.TabIndex = 22;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
@@ -329,9 +347,10 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(674, 92);
+            this.label5.Location = new System.Drawing.Point(842, 115);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 21);
+            this.label5.Size = new System.Drawing.Size(93, 23);
             this.label5.TabIndex = 23;
             this.label5.Text = "Registros";
             // 
@@ -339,14 +358,15 @@
             // 
             this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown2.Location = new System.Drawing.Point(758, 90);
+            this.numericUpDown2.Location = new System.Drawing.Point(948, 112);
+            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown2.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(58, 27);
+            this.numericUpDown2.Size = new System.Drawing.Size(72, 32);
             this.numericUpDown2.TabIndex = 24;
             this.numericUpDown2.Value = new decimal(new int[] {
             30,
@@ -359,9 +379,10 @@
             this.dateTimePickerInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerInicio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerInicio.Location = new System.Drawing.Point(561, 818);
+            this.dateTimePickerInicio.Location = new System.Drawing.Point(701, 544);
+            this.dateTimePickerInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePickerInicio.Name = "dateTimePickerInicio";
-            this.dateTimePickerInicio.Size = new System.Drawing.Size(124, 27);
+            this.dateTimePickerInicio.Size = new System.Drawing.Size(154, 32);
             this.dateTimePickerInicio.TabIndex = 25;
             this.dateTimePickerInicio.ValueChanged += new System.EventHandler(this.dateTimePickerInicio_ValueChanged);
             this.dateTimePickerInicio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimePickerInicio_KeyPress);
@@ -371,9 +392,10 @@
             this.dateTimePickerFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerFin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFin.Location = new System.Drawing.Point(728, 818);
+            this.dateTimePickerFin.Location = new System.Drawing.Point(910, 544);
+            this.dateTimePickerFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePickerFin.Name = "dateTimePickerFin";
-            this.dateTimePickerFin.Size = new System.Drawing.Size(124, 27);
+            this.dateTimePickerFin.Size = new System.Drawing.Size(154, 32);
             this.dateTimePickerFin.TabIndex = 26;
             // 
             // label6
@@ -381,9 +403,10 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(504, 823);
+            this.label6.Location = new System.Drawing.Point(630, 551);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 21);
+            this.label6.Size = new System.Drawing.Size(59, 23);
             this.label6.TabIndex = 27;
             this.label6.Text = "Inicio";
             // 
@@ -392,9 +415,10 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(691, 823);
+            this.label7.Location = new System.Drawing.Point(864, 551);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 21);
+            this.label7.Size = new System.Drawing.Size(35, 23);
             this.label7.TabIndex = 28;
             this.label7.Text = "Fin";
             // 
@@ -403,9 +427,10 @@
             this.checkBoxFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxFecha.AutoSize = true;
             this.checkBoxFecha.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxFecha.Location = new System.Drawing.Point(392, 822);
+            this.checkBoxFecha.Location = new System.Drawing.Point(491, 554);
+            this.checkBoxFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxFecha.Name = "checkBoxFecha";
-            this.checkBoxFecha.Size = new System.Drawing.Size(106, 25);
+            this.checkBoxFecha.Size = new System.Drawing.Size(131, 27);
             this.checkBoxFecha.TabIndex = 29;
             this.checkBoxFecha.Text = "Por Fecha";
             this.checkBoxFecha.UseVisualStyleBackColor = true;
@@ -415,9 +440,10 @@
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(119, 122);
+            this.lblError.Location = new System.Drawing.Point(149, 152);
+            this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(92, 17);
+            this.lblError.Size = new System.Drawing.Size(121, 21);
             this.lblError.TabIndex = 30;
             this.lblError.Text = "Mensaje Error";
             this.lblError.Visible = false;
@@ -432,9 +458,10 @@
             this.btnColumnas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnColumnas.ForeColor = System.Drawing.Color.White;
             this.btnColumnas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnColumnas.Location = new System.Drawing.Point(923, 84);
+            this.btnColumnas.Location = new System.Drawing.Point(1154, 105);
+            this.btnColumnas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnColumnas.Name = "btnColumnas";
-            this.btnColumnas.Size = new System.Drawing.Size(62, 33);
+            this.btnColumnas.Size = new System.Drawing.Size(78, 41);
             this.btnColumnas.TabIndex = 13;
             this.btnColumnas.Text = "Ver";
             this.btnColumnas.UseVisualStyleBackColor = false;
@@ -444,9 +471,10 @@
             // 
             this.pnlColumnas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlColumnas.Controls.Add(this.dtgColumnas);
-            this.pnlColumnas.Location = new System.Drawing.Point(823, 117);
+            this.pnlColumnas.Location = new System.Drawing.Point(1029, 146);
+            this.pnlColumnas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlColumnas.Name = "pnlColumnas";
-            this.pnlColumnas.Size = new System.Drawing.Size(187, 307);
+            this.pnlColumnas.Size = new System.Drawing.Size(234, 384);
             this.pnlColumnas.TabIndex = 31;
             this.pnlColumnas.Visible = false;
             // 
@@ -482,12 +510,14 @@
             this.dtgColumnas.EnableHeadersVisualStyles = false;
             this.dtgColumnas.GridColor = System.Drawing.Color.Black;
             this.dtgColumnas.Location = new System.Drawing.Point(0, 0);
+            this.dtgColumnas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtgColumnas.Name = "dtgColumnas";
             this.dtgColumnas.ReadOnly = true;
             this.dtgColumnas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dtgColumnas.RowHeadersVisible = false;
+            this.dtgColumnas.RowHeadersWidth = 51;
             this.dtgColumnas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgColumnas.Size = new System.Drawing.Size(187, 307);
+            this.dtgColumnas.Size = new System.Drawing.Size(234, 384);
             this.dtgColumnas.TabIndex = 3;
             this.dtgColumnas.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgColumnas_CellMouseDoubleClick);
             this.dtgColumnas.MouseLeave += new System.EventHandler(this.dtgColumnas_MouseLeave);
@@ -495,16 +525,17 @@
             // Columnas
             // 
             this.Columnas.HeaderText = "Columnas";
+            this.Columnas.MinimumWidth = 6;
             this.Columnas.Name = "Columnas";
             this.Columnas.ReadOnly = true;
             // 
             // FrmCrud
             // 
             this.AcceptButton = this.btnBuscar;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1022, 862);
+            this.ClientSize = new System.Drawing.Size(1278, 600);
             this.Controls.Add(this.pnlColumnas);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.checkBoxFecha);
@@ -528,6 +559,7 @@
             this.Controls.Add(this.btnColumnas);
             this.Controls.Add(this.btnBuscar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmCrud";
             this.Text = "FrmCrud";
             this.Activated += new System.EventHandler(this.FrmCrud_Activated);

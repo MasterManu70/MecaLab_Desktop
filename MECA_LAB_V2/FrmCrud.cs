@@ -259,8 +259,6 @@ namespace MECA_LAB_V2
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            //frmPrintConfig = new FrmPrintConfig(dataGridView1);
-            //frmPrintConfig.ShowDialog();
             Funciones.ReportPrint(tabla, dataGridView1);
         }
 
@@ -320,25 +318,18 @@ namespace MECA_LAB_V2
             {
                 for (int i = 0; i < dataGridView1.Columns.Count; i++)
                 {
-                    if (dataGridView1.Columns[i].Name == "status" || dataGridView1.Columns[i].Name == "Disponible")
+                    switch (dataGridView1.Columns[i].Name)
                     {
-                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText(dataGridView1.Columns[i].Name, dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
-                    }
-                    else if (dataGridView1.Columns[i].Name == "ID")
-                    {
-                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
-                    }
-                    else if (dataGridView1.Columns[i].Name == "Matrícula")
-                    {
-                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
-                    }
-                    else if (dataGridView1.Columns[i].Name == "Teléfono")
-                    {
-                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
-                    }
-                    else if (dataGridView1.Columns[i].Name == "Entrega")
-                    {
-                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00/00/0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
+                        case "status":      dataGridView1.Columns[i].Width = TextRenderer.MeasureText(dataGridView1.Columns[i].Name, dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Disponible":  dataGridView1.Columns[i].Width = TextRenderer.MeasureText(dataGridView1.Columns[i].Name, dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "ID":          dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Matrícula":   dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Teléfono":    dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Entrega":     dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00/00/0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Registro":    dataGridView1.Columns[i].Width = TextRenderer.MeasureText(dataGridView1.Columns[i].Name, dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Tabla":       dataGridView1.Columns[i].Width = TextRenderer.MeasureText("Laboratorios", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Descripción": dataGridView1.Columns[i].Width = TextRenderer.MeasureText("Reparación", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Usuario":     dataGridView1.Columns[i].Width = TextRenderer.MeasureText("adminadm", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
                     }
                 }
                 ColumnAdjust = false;

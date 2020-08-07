@@ -22,8 +22,18 @@ namespace MECA_LAB_V2
 
         private void FrmNotificaciones_Load(object sender, EventArgs e)
         {
-            ds = Conexion.MySQL("SELECT prestamos.id ID, CONCAT(alumnos.nombre, ' ', alumnos.apellidop, ' ', alumnos.apellidom) AS Nombre FROM prestamos INNER JOIN alumnos ON prestamos.alumno = alumnos.id WHERE prestamos.fecha_fin < NOW() AND prestamos.status = 1 AND prestamos.fecha_fin != prestamos.created_at;");
+            ds = Conexion.MySQL("SELECT prestamos.id ID, alumnos.matricula Matrícula, CONCAT(alumnos.nombre, ' ', alumnos.apellidop, ' ', alumnos.apellidom) AS Nombre FROM prestamos INNER JOIN alumnos ON prestamos.alumno = alumnos.id WHERE prestamos.fecha_fin < NOW() AND prestamos.status = 1 AND prestamos.fecha_fin != prestamos.created_at;");
             dataGridView1.DataSource = ds.Tables["tabla"];
+
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                switch (dataGridView1.Columns[i].Name)
+                {
+                    case "ID": dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                    case "Matrícula": dataGridView1.Columns[i].Width = TextRenderer.MeasureText("000000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                }
+            }
+
             dataGridView1.ClearSelection();
         }
 
