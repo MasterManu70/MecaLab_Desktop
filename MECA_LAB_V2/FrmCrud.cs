@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,6 +35,7 @@ namespace MECA_LAB_V2
         string fin = "";
         string query = "";
         int id;
+        bool columnsLoad = true;
 
         List<int> prestamosNoCompletos = new List<int>();
 
@@ -58,6 +60,7 @@ namespace MECA_LAB_V2
             btnBuscar.BackColor = color;
             btnRegistro.BackColor = color;
             btnImprimir.BackColor = color;
+            btnColumnas.BackColor = color;
 
             dataGridView1.DefaultCellStyle.BackColor = Color.White;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(223, 223, 223);
@@ -65,6 +68,12 @@ namespace MECA_LAB_V2
             dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = color;
 
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(196, 208, 220);
+
+            dtgColumnas.DefaultCellStyle.BackColor = Color.White;
+            dtgColumnas.ColumnHeadersDefaultCellStyle.BackColor = color;
+            dtgColumnas.ColumnHeadersDefaultCellStyle.SelectionBackColor = color;
+
+            dtgColumnas.DefaultCellStyle.SelectionBackColor = Color.FromArgb(196, 208, 220);
         }
 
         public void btnBuscar_Click(object sender, EventArgs e)
@@ -181,6 +190,18 @@ namespace MECA_LAB_V2
             {
                 RowsToRed();
             }
+
+            if (columnsLoad)
+            {
+                dtgColumnas.Rows.Add(dataGridView1.Columns.Count);
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    dtgColumnas.Rows[i].Cells[0].Value = dataGridView1.Columns[i].Name;
+                    dtgColumnas.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                }
+                columnsLoad = false;
+                dtgColumnas.ClearSelection();
+            }
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
@@ -291,36 +312,11 @@ namespace MECA_LAB_V2
             dateTimePickerFin.MinDate = dateTimePickerInicio.Value;
         }
 
+
+        bool ColumnAdjust = true;
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "status")
-            {
-                if (e.Value.ToString() == "True")
-                {
-                    e.CellStyle.BackColor = Color.LightGreen;
-                    e.CellStyle.SelectionBackColor = Color.DarkSeaGreen;
-                }
-                else
-                {
-                    e.CellStyle.BackColor = Color.OrangeRed;
-                    e.CellStyle.SelectionBackColor = Color.DarkSalmon;
-                }
-            }
-            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "Disponible")
-            {
-                if (e.Value.ToString() == "True")
-                {
-                    e.CellStyle.BackColor = Color.LightGreen;
-                    e.CellStyle.SelectionBackColor = Color.DarkSeaGreen;
-                }
-                else
-                {
-                    e.CellStyle.BackColor = Color.OrangeRed;
-                    e.CellStyle.SelectionBackColor = Color.DarkSalmon;
-                }
-            }
-
-            if (e.ColumnIndex == dataGridView1.Columns.Count - 1)
+            if (e.ColumnIndex == dataGridView1.Columns.Count - 1 && ColumnAdjust)
             {
                 for (int i = 0; i < dataGridView1.Columns.Count; i++)
                 {
@@ -332,6 +328,85 @@ namespace MECA_LAB_V2
                     {
                         dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
                     }
+                    else if (dataGridView1.Columns[i].Name == "Matrícula")
+                    {
+                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
+                    }
+                    else if (dataGridView1.Columns[i].Name == "Teléfono")
+                    {
+                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("0000000000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
+                    }
+                    else if (dataGridView1.Columns[i].Name == "Entrega")
+                    {
+                        dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00/00/0000", dataGridView1.Columns[i].DefaultCellStyle.Font).Width;
+                    }
+                }
+                ColumnAdjust = false;
+            }
+
+            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "status" || this.dataGridView1.Columns[e.ColumnIndex].Name == "Disponible")
+            {
+                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "True")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                    e.CellStyle.SelectionBackColor = Color.DarkSeaGreen;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.OrangeRed;
+                    e.CellStyle.SelectionBackColor = Color.DarkSalmon;
+                }
+            }
+
+            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "Entrega")
+            {
+                e.Value = e.Value.ToString().Substring(0, 10);
+            }
+        }
+
+        private void btnColumnas_Click(object sender, EventArgs e)
+        {
+            pnlColumnas.Visible = !pnlColumnas.Visible;
+        }
+
+        private void dtgColumnas_MouseLeave(object sender, EventArgs e)
+        {
+            pnlColumnas.Visible = false;
+            dtgColumnas.ClearSelection();
+        }
+
+        private void dtgColumnas_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (dtgColumnas.Rows[e.RowIndex].DefaultCellStyle.ForeColor == Color.Red)
+                {
+                    dtgColumnas.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    dtgColumnas.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
+                }
+                else
+                {
+                    dtgColumnas.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                    dtgColumnas.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Red;
+                }
+                RowsHide();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void RowsHide()
+        {
+            for (int i = 0; i < dtgColumnas.Rows.Count; i++)
+            {
+                if (dtgColumnas.Rows[i].DefaultCellStyle.ForeColor == Color.Red)
+                {
+                    dataGridView1.Columns[i].Visible = false;
+                }
+                else
+                {
+                    dataGridView1.Columns[i].Visible = true;
                 }
             }
         }
