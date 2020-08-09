@@ -258,11 +258,11 @@ namespace MECA_LAB_V2
                     {
                         if (especialito)
                         {
-                            html += "<td id='linea-izq'>" + ds.Tables["tabla"].Rows[i][columna].ToString() + "</td>";
+                            html += "<td id='linea-izq'>" + ds.Tables["tabla"].Rows[i][columna].ToString() + " </td>";
                             especialito = !especialito;
                             continue;
                         }
-                        html += "<td>" + ds.Tables["tabla"].Rows[i][columna].ToString() + "</td>";
+                        html += "<td>" + ds.Tables["tabla"].Rows[i][columna].ToString() + " </td>";
                     }
                     html += "</tr>";
                 }
