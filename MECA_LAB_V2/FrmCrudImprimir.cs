@@ -48,9 +48,9 @@ namespace MECA_LAB_V2
                 case "Articulos":       query = "SELECT ID,Artículo,Comentario,IF(Disponible = 1,'Inventario','Prestado') Disponible,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
                 case "Asignaturas":     query = "SELECT ID,Asignatura,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
                 case "Carreras":        query = "SELECT ID,Carrera,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
-                case "Laboratorios":    query = "SELECT ID,Asignatura,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
+                case "Laboratorios":    query = "SELECT ID,Laboratorio,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
                 case "Maestros":        query = "SELECT ID,Maestro,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
-                case "Movimientos":     query = "SELECT ID,Usuario,Registro,Tabla,Campo,Nuevo,Viejo,Descripción,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
+                case "Movimientos":     query = "SELECT ID,Usuario,Registro,Tabla,Campo,Nuevo,Viejo,Descripción,Creado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
                 case "Prestamos":       query = "SELECT ID,Alumno,Maestro,Laboratorio,Asignatura,Usuario,Entrega,Creado,Actualizado, IF(status = 1,'Activo','Terminado') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
                 case "Usuarios":        query = "SELECT ID,Usuario,Creado,Actualizado, IF(status = 1,'Alta','Baja') status FROM (" + sql.Substring(0, sql.Length - 1) + ") Tabla2"; break;
             }
