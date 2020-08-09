@@ -241,5 +241,30 @@ namespace MECA_LAB_V2
         {
             webBrowser1.ShowPrintPreviewDialog();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                Curva.ElipseRadius = 0;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+                Curva.ElipseRadius = 25;
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
