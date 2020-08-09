@@ -92,6 +92,12 @@
     <Compile Include="FrmCrud.Designer.cs">
       <DependentUpon>FrmCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCrudImprimir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrudImprimir.Designer.cs">
+      <DependentUpon>FrmCrudImprimir.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLaboratorioRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCrud.resx">
       <DependentUpon>FrmCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCrudImprimir.resx">
+      <DependentUpon>FrmCrudImprimir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLaboratorioRegistro.resx">
       <DependentUpon>FrmLaboratorioRegistro.cs</DependentUpon>

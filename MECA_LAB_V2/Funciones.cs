@@ -110,6 +110,7 @@ namespace MECA_LAB_V2
             int result = 0;
             string query = "";
             tabla = tabla.ToLower();
+            List<string> columnas = new List<string>();
 
             //Base de la consulta
             switch(tabla)
@@ -203,6 +204,19 @@ namespace MECA_LAB_V2
                 List<string> parametros = new List<string>();
                 List<string> valores = new List<string>();
 
+                switch (tabla)
+                {
+                    case "alumnos":         columnas = ("ID,Matrícula,Nombre,Paterno,Materno,Carrera,Correo,Teléfono,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "articulos":       columnas = ("ID,Artículo,Comentario,Disponible,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "asignaturas":     columnas = ("ID,Asignatura,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "carreras":        columnas = ("ID,Carrera,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "laboratorios":    columnas = ("ID,Asignatura,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "maestros":        columnas = ("ID,Maestro,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "movimientos":     columnas = ("ID,Usuario,Registro,Tabla,Campo,Nuevo,Viejo,Descripción,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "prestamos":       columnas = ("ID,Alumno,Maestro,Laboratorio,Asignatura,Usuario,Entrega,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                    case "usuarios":        columnas = ("ID,Usuario,Creado,Actualizado,status").Trim().Split(',').ToList<string>(); break;
+                }
+
                 if (id != 0 || status == 1 || status == 0) where = false;
 
                 parametros = like.Trim().Split(',').ToList<string>();
@@ -230,20 +244,20 @@ namespace MECA_LAB_V2
                     if (parametro.Contains('='))
                     {
                         valores = parametro.Split('=').ToList<string>();
-                        if (!FrmMenu.columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna '" + valores[0] + "' no existe.";
+                        if (!columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna '" + valores[0] + "' no existe.";
 
-                        if (FrmMenu.columnas.Contains(valores[1].Trim())) query += " " + valores[0].Trim() + "= " + valores[1].Trim(); else query += " " + valores[0].Trim() + "= '" + valores[1].Trim() + "'";
+                        if (columnas.Contains(valores[1].Trim())) query += " " + valores[0].Trim() + "= " + valores[1].Trim(); else query += " " + valores[0].Trim() + "= '" + valores[1].Trim() + "'";
                     }
                     if (parametro.Contains('+'))
                     {
                         valores = parametro.Split('+').ToList<string>();
-                        if (!FrmMenu.columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna " + valores[0] + " no existe.";
+                        if (!columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna " + valores[0] + " no existe.";
                         query += " " + valores[0].Trim() + " LIKE '%" + valores[1].Trim() + "%'";
                     }
                     if (parametro.Contains('-'))
                     {
                         valores = parametro.Split('-').ToList<string>();
-                        if (!FrmMenu.columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna " + valores[0] + " no existe.";
+                        if (!columnas.Contains(valores[0].Trim())) return "¡Error¡ La columna " + valores[0] + " no existe.";
                         query += " " + valores[0].Trim() + " NOT LIKE '%" + valores[1].Trim() + "%'";
                     }
                 }

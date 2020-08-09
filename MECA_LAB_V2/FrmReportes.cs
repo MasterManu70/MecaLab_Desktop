@@ -30,6 +30,7 @@ namespace MECA_LAB_V2
 
         private void cmbReportes_TextChanged(object sender, EventArgs e)
         {
+            webBrowser1.IsWebBrowserContextMenuEnabled = false;
             ReportView();
             if (cmbReportes.Text == "Préstamos")
             {
@@ -40,6 +41,7 @@ namespace MECA_LAB_V2
             {
                 groupBox4.Visible = false;
             }
+            btnVista.Enabled = true;
         }
 
         private void ReportView()
@@ -121,24 +123,31 @@ namespace MECA_LAB_V2
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor == Color.Black)
+            try
             {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Red;
-                columnas.Remove(e.RowIndex);
+                if (dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor == Color.Black)
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Red;
+                    columnas.Remove(e.RowIndex);
+                }
+                else if (dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor == Color.Red)
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    columnas.Add(e.RowIndex);
+                }
+
+                columnas.Sort();
+
+                html = dtgTohtml(ds);
+
+                webBrowser1.DocumentText = html;
+                webBrowser1.Document.Title = cmbReportes.Text;
             }
-            else if (dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor == Color.Red)
+            catch (Exception)
             {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
-                columnas.Add(e.RowIndex);
             }
-
-            columnas.Sort();
-
-            html = dtgTohtml(ds);
-
-            webBrowser1.DocumentText = html;
         }
 
         public string dtgTohtml(DataSet ds)
@@ -148,59 +157,59 @@ namespace MECA_LAB_V2
             html += @"<!DOCTYPE html>
                             <head>
                             <meta charset='UTF-8'>
-                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                            <title>Sistema de Inventario y Prestamos MECALAB 2020 Universidad Tecnologica de Hermosillo</title>
-                            <style>
-                            * {
-                                font-family: century gothic;
-                            }
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+            html += "<title>Sistema de Inventario y Préstamos MECALAB " + DateTime.Now.ToString("yyyy") + " Universidad Tecnologica de Hermosillo</title>";
+            html += @"<style>
+            * {
+                font-family: century gothic;
+            }
 
-                            .contenedor {
-                                clear: both;
-                                margin-left: auto;
-                                margin-right: auto;
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 10px;
-                                border: 1px solid whitesmoke;
-                                background-color: white;
+            .contenedor {
+                clear: both;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                border: 1px solid whitesmoke;
+                background-color: white;
 
-                            }
+            }
 
-                            #formularioTabla {
-                                width: 100%;
-                                margin: 5px;
-                                margin-left: auto;
-                                margin-right: auto;
-                            }
+            #formularioTabla {
+                width: 100%;
+                margin: 5px;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-                            table {
-                                width: 100%;
-                                margin: 5px;
-                                font-size: 16px;
-                                margin-left: auto;
-                                margin-right: auto;
-                            }
+            table {
+                width: 100%;
+                margin: 5px;
+                font-size: 16px;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-                            th {
-                                font-size: 12px;
-                                border-bottom: 2px solid black;
-                                text-align: center;
-                                color: black;
-                                padding: 10px;
-                            }
+            th {
+                font-size: 12px;
+                border-bottom: 2px solid black;
+                text-align: center;
+                color: black;
+                padding: 10px;
+            }
 
-                            td {
-                                font-size: 12px;
-                                border-right: 1px solid black;
-                                border-bottom: 1px solid black;
-                                text-align: justify;
-                            }
-                            #linea-izq{
-                                border-left: 1px solid black;
-                            }
-                            </style>
-                            </head>";
+            td {
+                font-size: 12px;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+                text-align: justify;
+            }
+            #linea-izq{
+                border-left: 1px solid black;
+            }
+            </style>
+            </head>";
 
             html += @"<body>
     <div class='contenedor'>
@@ -260,7 +269,7 @@ namespace MECA_LAB_V2
             }
 
             html += "<tr>";
-            html += "<th colspan='" + columnas.Count + "' style='font-size: 12PX;'>Sistema de Inventario y Prestamos MECALAB 2020</th>";
+            html += "<th colspan='" + columnas.Count + "' style='font-size: 12PX;'>Sistema de Inventario y Préstamos MECALAB " + DateTime.Now.ToString("yyyy") + "</th>";
             html += @"</tr>
                 </table>
             </div>
@@ -275,12 +284,25 @@ namespace MECA_LAB_V2
 
         private void chkPeriodo_CheckedChanged(object sender, EventArgs e)
         {
-            ReportView();
+            if (cmbReportes.Text != "")
+            {
+                ReportView();
+            }
         }
 
         private void chkPrestamo_CheckedChanged(object sender, EventArgs e)
         {
             ReportView();
+        }
+
+        private void FrmReportes_Load(object sender, EventArgs e)
+        {
+            dataGridView1.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void btnVista_Click(object sender, EventArgs e)
+        {
+            webBrowser1.ShowPrintPreviewDialog();
         }
     }
 }

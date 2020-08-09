@@ -36,10 +36,15 @@ namespace MECA_LAB_V2
         string query = "";
         int id;
         bool columnsLoad = true;
+        int operadores = 0;
+        char[] separadores = new char[] { '=', '+', '-' };
 
         List<int> prestamosNoCompletos = new List<int>();
+        List<string> parametros = new List<string>();
+        List<string> valores = new List<string>();
 
-        Form btnRegistroForm;   //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
+        Form btnRegistroForm;               //Objeto tipo 'Form' en el cual se le asignará el objeto obtenido con el método 'GetForm' de la clase de enrutado (Rutas).
+        FrmCrudImprimir frmCrudImprimir;
         public FrmCrud(string tabla, Color color)
         {
             this.tabla = tabla;
@@ -74,10 +79,63 @@ namespace MECA_LAB_V2
             dtgColumnas.ColumnHeadersDefaultCellStyle.SelectionBackColor = color;
 
             dtgColumnas.DefaultCellStyle.SelectionBackColor = Color.FromArgb(196, 208, 220);
+
+            dtgColumnas.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         public void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (txtBuscar.Text != "" && (txtBuscar.Text.Contains("=") || txtBuscar.Text.Contains("+") || txtBuscar.Text.Contains("-") || txtBuscar.Text.Contains(",")))
+            {
+                bool contiene = false;
+                string columna = "";
+                operadores = 0;
+                parametros = txtBuscar.Text.Trim().Split(',').ToList<string>();
+
+                foreach (string parametro in parametros)
+                {
+                    foreach (char operador in parametro)
+                    {
+                        if (operador == '+' || operador == '-' || operador == '=')
+                        {
+                            operadores++;
+                        }
+                    }
+                }
+
+                if (parametros.Count != operadores)
+                {
+                    lblError.Text = "¡Error! Cantidad no válida de operadores.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                foreach (string parametro in parametros)
+                {
+                    contiene = false;
+                    valores = parametro.Split(separadores).ToList<string>();
+                    columna = valores[0];
+                    for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                    {
+                        if (dataGridView1.Columns[i].Name == valores[0])
+                        {
+                            contiene = true;
+                            break;
+                        }
+                    }
+
+                    if (!contiene) break;
+                }
+
+                if (contiene)
+                {
+                    lblError.Text = "¡Error! La columna " + columna + " no existe.";
+                    lblError.Visible = true;
+                    return;
+                }
+            }
+            lblError.Visible = false;
+            status = cmbMostrar.SelectedIndex;
             if (txtBuscar.Text.ToLower() == "!nocompletos" && tabla == "Prestamos")
             {
                 ds = Conexion.MySQL(@"SELECT Tabla.ID,Tabla.Alumno,Tabla.Maestro,Tabla.Laboratorio,Tabla.Asignatura,Tabla.Usuario,Tabla.Entrega,Tabla.Creado,Tabla.Actualizado FROM 
@@ -259,7 +317,21 @@ namespace MECA_LAB_V2
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            Funciones.ReportPrint(tabla, dataGridView1);
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe haber al menos un registro mostrado para poder imprimir.");
+                return;
+            }
+            var respuesta = MessageBox.Show("¿Desea imprimir solo los registros mostrados?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (respuesta == DialogResult.Yes)
+            {
+                frmCrudImprimir = new FrmCrudImprimir(tabla, query, false);
+            }
+            else
+            {
+                frmCrudImprimir = new FrmCrudImprimir(tabla, Funciones.GetQuery(tabla, 0, status, like), true);
+            }
+            frmCrudImprimir.ShowDialog();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -330,6 +402,8 @@ namespace MECA_LAB_V2
                         case "Tabla":       dataGridView1.Columns[i].Width = TextRenderer.MeasureText("Laboratorios", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
                         case "Descripción": dataGridView1.Columns[i].Width = TextRenderer.MeasureText("Reparación", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
                         case "Usuario":     dataGridView1.Columns[i].Width = TextRenderer.MeasureText("adminadm", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Creado":      dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00000000 00:00. pm.", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
+                        case "Actualizado": dataGridView1.Columns[i].Width = TextRenderer.MeasureText("00000000 00:00. pm.", dataGridView1.Columns[i].DefaultCellStyle.Font).Width; break;
                     }
                 }
                 ColumnAdjust = false;
