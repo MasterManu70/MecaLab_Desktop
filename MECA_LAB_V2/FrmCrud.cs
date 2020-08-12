@@ -322,14 +322,18 @@ namespace MECA_LAB_V2
                 MessageBox.Show("Debe haber al menos un registro mostrado para poder imprimir.");
                 return;
             }
-            var respuesta = MessageBox.Show("¿Desea imprimir solo los registros mostrados?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            var respuesta = MessageBox.Show("¿Desea imprimir solo los registros mostrados?", "Informacion", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
             if (respuesta == DialogResult.Yes)
             {
                 frmCrudImprimir = new FrmCrudImprimir(tabla, query, false);
             }
-            else
+            else if (respuesta == DialogResult.No)
             {
                 frmCrudImprimir = new FrmCrudImprimir(tabla, Funciones.GetQuery(tabla, 0, status, like), true);
+            }
+            else
+            {
+                return;
             }
             frmCrudImprimir.ShowDialog();
         }
