@@ -66,6 +66,7 @@ namespace MECA_LAB_V2
 
         public static bool Validate(string texto, bool letras = false, bool numeros = false, string caracteres = "")
         {
+            caracteres += "áéíóúÁÉÍÓÚ";
             if (texto == "") return true;
 
             foreach (char c in texto)

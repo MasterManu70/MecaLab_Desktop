@@ -360,15 +360,15 @@ namespace MECA_LAB_V2
 
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
-            if (!Validar.Validate(txtCorreo.Text, letras: true,numeros:true," _-@.!¡¿?/") && !Validar.CorreoValidate(txtCorreo.Text))
-            {
-                lblErrorCorreo.Text = "Formato no válido";
-                lblErrorCorreo.Visible = true;
-            }
-            else
-            {
-                lblErrorCorreo.Visible = false;
-            }
+            //if (!Validar.Validate(txtCorreo.Text, letras: true,numeros:true," _-@.!¡¿?/") && !Validar.CorreoValidate(txtCorreo.Text))
+            //{
+            //    lblErrorCorreo.Text = "Formato no válido";
+            //    lblErrorCorreo.Visible = true;
+            //}
+            //else
+            //{
+            lblErrorCorreo.Visible = false;
+            //}
         }
 
         private void txtCorreo_Leave(object sender, EventArgs e)
