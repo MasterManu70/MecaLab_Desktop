@@ -125,6 +125,7 @@ namespace MECA_LAB_V2
                     }
 
                     if (!contiene) break;
+                    contiene = false;
                 }
 
                 if (contiene)
