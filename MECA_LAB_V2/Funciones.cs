@@ -146,6 +146,8 @@ namespace MECA_LAB_V2
             {
                 if (id != 0 || status == 1 || status == 0) query += " AND "; else query += " WHERE ";
 
+                query += "(";
+
                 switch (tabla)
                 {
                     case "alumnos":
@@ -188,18 +190,20 @@ namespace MECA_LAB_V2
                                 query += " Alumno LIKE '%" + ds.Tables["tabla"].Rows[0][0].ToString() + "%'";
                             }
                         }
-                        else                                                                    query += " Maestro LIKE '%" + like + "%' OR Laboratorio LIKE '%" + like + "%' OR Asignatura LIKE '%" + like + "%' OR Usuario LIKE '%" + like + "%'";
+                        else                                                                    query += "Alumno LIKE '%" + like + "%' OR Maestro LIKE '%" + like + "%' OR Laboratorio LIKE '%" + like + "%' OR Asignatura LIKE '%" + like + "%' OR Usuario LIKE '%" + like + "%'";
                         break;
                     case "usuarios":
                         if (int.TryParse(like, out result) && like.Length <= 4 && result > 0)   query += " ID = " + result + "";
                         else                                                                    query += " Usuario LIKE '%" + like + "%'";
                         break;
                 }
+                query += ") ";
             }
             //Búsqueda avanzada parametrizada
             else if (like.Contains('=') || like.Contains('+') || like.Contains('-'))
             {
                 bool where = true;
+                bool first = true;
                 int operadores = 0;
                 List<string> parametros = new List<string>();
                 List<string> valores = new List<string>();
@@ -241,6 +245,12 @@ namespace MECA_LAB_V2
                 {
                     if (where) { query += " WHERE "; where = false; } else query += " AND ";
 
+                    if (first)
+                    {
+                        query += "(";
+                        first = false;
+                    }
+
                     if (parametro.Contains('='))
                     {
                         valores = parametro.Split('=').ToList<string>();
@@ -261,7 +271,9 @@ namespace MECA_LAB_V2
                         query += " " + valores[0].Trim() + " NOT LIKE '%" + valores[1].Trim() + "%'";
                     }
                 }
+                query += ") ";
             }
+
 
             //Búsqueda por fecha
             if (inicio != "")
